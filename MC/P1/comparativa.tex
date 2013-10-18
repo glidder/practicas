@@ -1,0 +1,304 @@
+\documentclass[a4paper]{article}
+%%%%%Paquetes%%%%%
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,eucal,mathrsfs}
+\usepackage[svgnames,x11names]{xcolor}
+\usepackage{colortbl}
+\usepackage{Estilos/MiEstilo}
+%\usepackage{Estilos/Informe}
+\usepackage{times}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+
+	\setcounter{tocdepth}{2} %Mostrar solo 3 niveles en el índice
+		\makeindex	%índice de palabras
+		\title{Modelos de Computación.\\ Práctica 1. }
+		\author{Luis José Quintana Bolaño}
+		\date{\today}
+
+\begin{document}
+		\maketitle
+		\begin{abstract}
+		    Especificación de las funciones determinadas para cada ejemplo de L tras una batería de pruebas.
+  		\end{abstract}
+
+  		\section{Ejemplo ej1}
+  		    \subsection{Batería de pruebas}
+			\begin{center}
+  		        \begin{tabular}{|c|c|c|} \hline
+  		            \multicolumn{2}{|l|}{Entrada}&\multicolumn{1}{l|}{Salida}\\
+			    X1 & X2 & Y \\
+  		            \hline
+  		        0 & 0 & 0 \\
+			    1 & 0 & 1 \\
+			    0 & 1 & 1 \\
+			    1 & 1 & 2 \\
+			    2 & 3 & 5 \\
+  		            \hline
+  		        \end{tabular} \\
+			\end{center}
+  		    \subsection{Función}
+  		        Se corresponde con la función:
+  		        $$f: \mathbb{N}^2 \longrightarrow \mathbb{N}$$
+  		        \begin{equation*}
+  		        	f(x_1,x_2) = x_1 + x_2 
+  		        \end{equation*}
+
+  		\section{Ejemplo ej2}
+  			\subsection{Batería de pruebas}
+  			\begin{center}
+  				\begin{tabular}{|c|c|} \hline
+  					\multicolumn{1}{|l|}{Entrada}&\multicolumn{1}{l|}{Salida}\\
+  				X & Y \\
+  					\hline
+  				0 & 0 \\
+  				1 & 3 \\
+  				2 & 6 \\
+  					\hline
+  				\end{tabular} \\
+  			\end{center}
+  			\subsection{Función}
+  				Se corresponde con la función:
+  				$$f: \mathbb{N} \longrightarrow \mathbb{N}$$
+  				\begin{equation*}
+  					f(x) = x * 3
+  				\end{equation*}
+
+  		\section{Ejemplo ej5}
+  			\subsection{Batería de pruebas}
+  			\begin{center}
+  				\begin{tabular}{|c|c|} \hline
+  					\multicolumn{1}{|l|}{Entrada}&\multicolumn{1}{l|}{Salida}\\
+  				X & Y \\
+  					\hline
+  				0 & 1 \\
+  				1 & 0 \\
+  				2 & 1 \\
+  				5 & 0 \\
+  					\hline
+  				\end{tabular} \\
+  			\end{center}
+  			\subsection{Función}
+  				Se corresponde con la función:
+  				$$f: \mathbb{N} \longrightarrow \{0, 1\}$$
+  				\begin{equation*}
+  					f(x) = \left\{ 
+  					\begin{array}{rcl}
+  						1 & \text{si } x=2k, & k \in \mathbb{N}, \\
+  						0 & \text{si } x=2k+1, & k \in \mathbb{N}
+  					\end{array} \right.
+  				\end{equation*}
+
+  		\section{Ejemplo ej6}
+  			\subsection{Batería de pruebas}
+  			\begin{center}
+  				\begin{tabular}{|c|c|} \hline
+  					\multicolumn{1}{|l|}{Entrada}&\multicolumn{1}{l|}{Salida}\\
+  				X & Y \\
+  					\hline
+  				0 & 1 \\
+  				1 & $\uparrow$ \\
+  				2 & 1 \\
+  				3 & $\uparrow$ \\
+  				4 & 1 \\
+  					\hline
+  				\end{tabular} \\
+  			\end{center}
+  			\subsection{Función}
+  				Se corresponde con la función:
+  				$$f:\subseteq \mathbb{N} \longrightarrow \{1\}$$
+  				\begin{equation*}
+  					f(x) = \left\{
+  					\begin{array}{rcl}
+  						1 & \text{si } x=2k, & k \in \mathbb{N}, \\
+  						\uparrow & \text{si } x=2k+1, & K \in \mathbb{N}
+  					\end{array} \right.
+  				\end{equation*}
+  				La función es parcialmente computable, estando solo definida para los números pares.
+
+  		\section{Ejemplo ej7}
+  			\subsection{Batería de pruebas}
+  			\begin{center}
+  				\begin{tabular}{|c|c|c|} \hline
+  					\multicolumn{2}{|l|}{Entrada}&\multicolumn{1}{l|}{Salida}\\
+  				X1 & X2 & Y \\
+  					\hline
+  				0 & 0 & 1 \\
+  				0 & 1 & 0 \\
+  				1 & 0 & 0 \\
+  				1 & 1 & 1 \\
+  				2 & 2 & 1 \\
+  				3 & 5 & 0 \\
+  					\hline
+  				\end{tabular}\\
+  			\end{center}
+  			\subsection{Función}
+  				Se corresponde con la función:
+  				$$f:\mathbb{N}^2 \longrightarrow \{0, 1\}$$
+  				\begin{equation*}
+  					f(x_1, x_2) = \left\{
+  					\begin{array}{rl}
+  					0 & \text{si } x_1 \not =x_2, \\
+  					1 & \text{si } x_1= x_2 \\
+  					\end{array} \right.
+  				\end{equation*}
+
+  		\section{Ejemplo ej8}
+  			\subsection{Batería de pruebas}
+  			\begin{center}
+  				\begin{tabular}{|c|c|} \hline
+  					\multicolumn{1}{|l|}{Entrada}&\multicolumn{1}{l|}{Salida}\\
+  				X & Y \\
+  					\hline
+  				0 & 0 \\
+  				1 & 0 \\
+  				2 & 0 \\
+  				4 & 2 \\
+  				9 & 3 \\
+  				10 & 3 \\
+  				16 & 4 \\
+  					\hline
+  				\end{tabular}\\
+  			\end{center}
+  			\subsection{Función}
+  				Se corresponde con la función:
+  				$$f:\mathbb{N} \longrightarrow \mathbb{N}$$
+  				\begin{equation*}
+  					f(x) = \lfloor \sqrt{x} \rfloor
+  				\end{equation*}
+
+  		\section{Ejemplo ej9}
+  			\subsection{Batería de pruebas}
+  			\begin{center}
+  				\begin{tabular}{|c|c|c|} \hline
+  					\multicolumn{2}{|l|}{Entrada}&\multicolumn{1}{l|}{Salida}\\
+  				X1 & X2 & Y \\
+  					\hline
+  				0 & 0 & 0 \\
+  				1 & 0 & 0 \\
+  				0 & 1 & 0 \\
+  				1 & 1 & 1 \\
+  				2 & 2 & 2 \\
+  				5 & 5 & 5 \\
+  				5 & 2 & 1 \\
+  				4 & 8 & 4 \\
+  					\hline
+  				\end{tabular}\\
+  			\end{center}
+  			\subsection{Función}
+  				Se corresponde con la función:
+  				$$f:\mathbb{N}^2 \longrightarrow \mathbb{N}$$
+  				\begin{equation*}
+  					f(x_1, x_2) = \mathrm{mcd}(x_1,x_2)
+  				\end{equation*}
+
+  		 \section{Ejemplo ej10}
+  		 	\subsection{Batería de pruebas}
+  		 	\begin{center}
+  		 		\begin{tabular}{|c|c|c|} \hline
+  		 			\multicolumn{2}{|l|}{Entrada}&\multicolumn{1}{l|}{Salida}\\
+  		 		X1 & X2 & Y \\
+  		 			\hline
+  		 		0 & 0 & 0 \\
+  		 		1 & 0 & 2 \\
+  		 		0 & 1 & 3 \\
+  		 		1 & 1 & 0 \\
+  		 		5 & 2 & 6 \\
+  		 		2 & 5 & 7 \\
+  		 			\hline
+  		 		\end{tabular}\\
+  		 	\end{center}
+  		 	\subsection{Función}
+  		 		Se corresponde con la función:
+  		 		$$f:\mathbb{N}^2 \longrightarrow \mathbb{N}$$
+  		 		\begin{equation*}
+  		 			f(x_1, x_2) = \left\{
+  		 			\begin{array}{rl}
+  					2(x_1 - x_2) & \text{si } x_1 > x_2, \\
+  					2(x_2 - x_1)+1 & \text{si } x_1 < x_2 \\
+  					\end{array} \right.
+  				\end{equation*}
+
+  		\section{Ejemplo ej14}
+  			\subsection{Batería de pruebas}
+  			\begin{center}
+  				\begin{tabular}{|c|c|} \hline
+  					\multicolumn{1}{|l|}{Entrada}&\multicolumn{1}{l|}{Salida}\\
+  				X & Y \\
+  					\hline
+  				0 & $\uparrow$ \\
+  				1 & $\uparrow$ \\
+  					\hline
+  				\end{tabular}\\
+  			\end{center}
+  			\subsection{Función}
+  				No se corresponde con ninguna función.
+
+  		\section{Ejemplo ej15}
+  			\subsection{Batería de pruebas}
+  			\begin{center}
+  				\begin{tabular}{|c|c|} \hline
+  					\multicolumn{1}{|l|}{Entrada}&\multicolumn{1}{l|}{Salida}\\
+  				X & Y \\
+  					\hline
+  				0 & $\uparrow$ \\
+  				1 & 0 \\
+  				4 & 0 \\
+  					\hline
+  				\end{tabular}\\
+  			\end{center}
+  			\subsection{Función}
+  				Se corresponde con la función:
+  				$$f:\subseteq \mathbb{N} \longrightarrow \{0\}$$
+  				\begin{equation*}
+  					f(x) = \left\{
+  					\begin{array}{rl}
+  						0 & \text{si } x>0, \\
+  						\uparrow & \text{si } x=0 \\
+  					\end{array} \right.
+  				\end{equation*}
+  				La función es parcialmente computable, estando definida para $\mathbb{N}-\{0\}$.
+
+  		\section{Ejemplo ej17}
+  			\subsection{Batería de pruebas}
+  			\begin{center}
+  				\begin{tabular}{|c|c|c|} \hline
+  					\multicolumn{2}{|l|}{Entrada}&\multicolumn{1}{l|}{Salida}\\
+  				X1 & X2 & Y \\
+  					\hline
+  				0 & 0 & $\uparrow$ \\
+  				1 & 0 & $\uparrow$ \\
+  				0 & 1 & 0 \\
+  				1 & 1 & 1 \\
+  				2 & 1 & 2 \\
+  				5 & 1 & 5 \\
+  					\hline
+  				\end{tabular}\\
+  			\end{center}
+  			\subsection{Función}
+  				Se corresponde con la función:
+  				$$f:\subseteq \mathbb{N}^2 \longrightarrow \{0\}$$
+  				\begin{equation*}
+  					f(x_1, x_2) = \left\{
+  					\begin{array}{rl}
+  						x_1 & \text{si } x_2 > 0, \\
+  						\uparrow & \text{si } x_2=0 \\
+  					\end{array} \right.
+  				\end{equation*}
+  				La función es parcialmente computable, estando definida para $x_1 \in \mathbb{N} \text{y } x_2 \in \mathbb{N}-\{0\}$.
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

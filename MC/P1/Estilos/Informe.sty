@@ -1,0 +1,67 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% CAMBIANDO ESTILO DE PORTADA %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Comando para mostrar la fecha en formato abreviado
+%%  Por ejemplo: 26/Mar/2011
+\def\abrevHoy{%
+    \number\day/%
+    \ifcase\month
+    \or
+      Ene%
+    \or
+      Feb%
+    \or
+      Mar%
+    \or
+      Abr%
+    \or
+      May%
+    \or
+      Jun%
+    \or
+      Jul%
+    \or
+      Ago%
+    \or
+      Sep%
+    \or
+      Oct%
+    \or
+      Nov%
+    \or
+      Dic%
+    \fi
+    /\number\year
+  }%
+
+%%%% Redefiniendo la portada
+\def\maketitle{%
+    %\null
+    %\leavevmode
+    \normalfont
+    \hbox to\textwidth{%
+        \setbox1=\vbox{%
+                \hsize=0.75\textwidth
+                \parindent 0pt
+                \vskip10pt
+                {\LARGE\bf \vss\@title\vss}
+                \vskip10pt
+                {\large\sl \@author}%
+                \vskip15pt
+                {\it INSTALACIÓN Y MANTENIMIENTO DE EQUIPOS INFORMÁTICOS}%
+                \vskip10pt
+                }
+        \dimen1=\ht1
+        \advance\dimen1 by\dp1
+        \vbox to\dimen1{%
+              \hsize=0.2\textwidth
+              \vss
+              %\abrevHoy
+              \vss
+              }
+        \hskip 0.025\textwidth\vrule width 2pt\hskip 0.025\textwidth%
+        \box1
+    }
+    \null
+}
