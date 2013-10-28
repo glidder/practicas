@@ -1,0 +1,5 @@
+tic
+f1=[1:256]
+A=repmat(f1,256,1)
+toc
+imshow(A',[0 256]);
