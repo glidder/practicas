@@ -1,3 +1,6 @@
+%Practica 3, SI. NReinas y Backtracking
+%autor: Luis José Quintana Bolaño
+%
 function sol= restricciones(t,i)
     sol=true;
     if((length(t)-sum(isnan(t)))>1)
