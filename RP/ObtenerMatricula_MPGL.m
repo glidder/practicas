@@ -2,7 +2,7 @@ clear all
 clc
 
 cd fotos
-A = imread(['Coche' num2str(31,'%03d') '.jpg']);
+A = imread(['Coche' num2str(29,'%03d') '.jpg']);
 figure, imshow(A,[])
 cd ..
 
@@ -29,6 +29,6 @@ sc = sc - min(sc); sc = sc / max(sc);
 figure, plot(sc)
 
 [sco, scoi] = sort(sc, 'descend');
-mu_sc = mean(scoi(3:6))
+mu_sc = mean(scoi(1:3))
 RC = RF (mu_sc-25:mu_sc+25,:);
 figure, imshow(RC,[])
