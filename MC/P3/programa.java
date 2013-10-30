@@ -8,6 +8,11 @@ import java.io.*;
 
 public class programa
 {
-	public programa(){}
+	public programa(){
+		conf=new configuracion();
+		
+	}
+
+	ArrayList instrucciones;
 	private  configuracion conf;
 }

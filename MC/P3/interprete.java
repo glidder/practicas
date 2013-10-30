@@ -26,7 +26,7 @@ public class interprete
             Matcher m;
             while (scanner.hasNextLine()) {
                 m = zero.matcher(scanner.nextLine());
-                if(m.matches()) System.out.println("YAY");
+                if(m.matches()) p;
                 
             }
             scanner.close();
