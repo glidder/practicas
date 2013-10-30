@@ -13,6 +13,6 @@ public class programa
 		
 	}
 
-	ArrayList instrucciones;
+	ArrayList<int*> instrucciones;
 	private  configuracion conf;
 }
