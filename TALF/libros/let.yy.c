@@ -1,5 +1,6 @@
+#line 2 "let.yy.c"
 
-#line 3 "lex.yy.c"
+#line 4 "let.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -382,7 +383,7 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[13] =
     {   0,
-        0,    0,    5,    3,    1,    1,    2,    3,    1,    2,
+        0,    0,    5,    3,    1,    1,    3,    3,    2,    0,
         0,    0
     } ;
 
@@ -404,11 +405,11 @@ static yyconst flex_int32_t yy_ec[256] =
         4,    4,    1,    1,    1,    1,    1,    1,    5,    1,
         1,    1,    1,    1,    1,    1,    6,    1,    1,    1,
         7,    1,    1,    1,    8,    1,    9,    1,    1,    1,
-        1,    1,    1,   10,    1,    1,    1,    1,    1,    1,
-       11,    1,    1,    1,    1,    1,    1,    1,   12,    1,
-        1,    1,   13,    1,    1,    1,   14,    1,   15,    1,
-        1,    1,    1,    1,    1,   16,    1,    1,    1,    1,
-        1,    1,    1,    1,   17,    1,    1,    1,    1,    1,
+        1,    1,    1,   10,    1,   11,    1,    1,    1,    1,
+       12,    1,    1,    1,    1,    1,    1,    1,   13,    1,
+        1,    1,   14,    1,    1,    1,   15,    1,   16,    1,
+        1,    1,    1,    1,    1,   17,    1,   18,    1,    1,
+        1,    1,    1,    1,   19,    1,    1,    1,    1,    1,
 
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -418,44 +419,48 @@ static yyconst flex_int32_t yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst flex_int32_t yy_meta[18] =
+static yyconst flex_int32_t yy_meta[20] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1
+        1,    1,    1,    1,    1,    1,    1,    1,    1
     } ;
 
 static yyconst flex_int16_t yy_base[14] =
     {   0,
-        0,   16,   13,   46,    3,    5,    5,   29,    8,    8,
-        0,   46,    0
+        0,   18,    5,   66,   66,   66,    4,   33,   66,   47,
+        5,   66,    0
     } ;
 
 static yyconst flex_int16_t yy_def[14] =
     {   0,
        13,   13,   12,   12,   12,   12,   12,   12,   12,   12,
-        8,    0,   12
+       12,    0,   12
     } ;
 
-static yyconst flex_int16_t yy_nxt[64] =
+static yyconst flex_int16_t yy_nxt[86] =
     {   0,
-        4,    5,    6,    7,    9,    9,    9,    9,   10,    9,
-        9,   10,   12,   12,   12,   12,    8,    5,    6,    7,
-       12,   11,   12,   12,   11,   12,   12,   12,   12,   12,
-       12,   12,    8,   10,   10,   10,   10,   10,   10,   10,
-       10,   10,   10,   10,   10,    3,   12,   12,   12,   12,
+        4,    5,    6,    7,   12,   12,   12,    9,    9,   12,
+       12,   12,   12,   12,   12,   12,   12,   12,    8,    5,
+        6,    7,   10,   10,   12,   12,   12,   12,   12,   12,
+       12,   12,   12,   12,   12,   12,    8,   11,   11,   11,
+       11,   11,   11,   11,   11,   11,   11,   11,   11,   11,
+       11,    9,    9,    9,    9,    9,    9,    9,    9,    9,
+        9,    9,    9,    9,    9,    3,   12,   12,   12,   12,
        12,   12,   12,   12,   12,   12,   12,   12,   12,   12,
-       12,   12,   12
+       12,   12,   12,   12,   12
     } ;
 
-static yyconst flex_int16_t yy_chk[64] =
+static yyconst flex_int16_t yy_chk[86] =
     {   0,
-       13,    1,    1,    1,    5,    5,    6,    6,    7,    9,
-        9,   10,    3,    0,    0,    0,    1,    2,    2,    2,
-        0,    7,    0,    0,   10,    0,    0,    0,    0,    0,
-        0,    0,    2,    8,    8,    8,    8,    8,    8,    8,
-        8,    8,    8,    8,    8,   12,   12,   12,   12,   12,
+       13,    1,    1,    1,    3,    0,    0,    7,   11,    0,
+        0,    0,    0,    0,    0,    0,    0,    0,    1,    2,
+        2,    2,    7,   11,    0,    0,    0,    0,    0,    0,
+        0,    0,    0,    0,    0,    0,    2,    8,    8,    8,
+        8,    8,    8,    8,    8,    8,    8,    8,    8,    8,
+        8,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+       10,   10,   10,   10,   10,   12,   12,   12,   12,   12,
        12,   12,   12,   12,   12,   12,   12,   12,   12,   12,
-       12,   12,   12
+       12,   12,   12,   12,   12
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -472,19 +477,14 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "ejercicio3.l"
-#line 2 "ejercicio3.l"
+#line 1 "cuentaletras.l"
+#line 2 "cuentaletras.l"
 #include <iostream>
-#include <map>
 #include <string>
-
-#include <cstdio>
-
+#include <map>
 using namespace std;
-
-map <string, int> tabla;
-
-#line 488 "lex.yy.c"
+map<string,int> tabla;
+#line 488 "let.yy.c"
 
 #define INITIAL 0
 
@@ -671,10 +671,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 18 "ejercicio3.l"
+#line 13 "cuentaletras.l"
 
 
-#line 678 "lex.yy.c"
+#line 678 "let.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -733,7 +733,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 46 );
+		while ( yy_base[yy_current_state] != 66 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -760,33 +760,25 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 20 "ejercicio3.l"
+#line 15 "cuentaletras.l"
 ;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 21 "ejercicio3.l"
-{tabla[string(yytext)]++ ;
-		 #ifdef DEBUG
-			cout << "anotada palabra (" << yytext << ")\n";
-		 #endif
-		}
+#line 16 "cuentaletras.l"
+{tabla[string(yytext)]++; unput(yytext[1]);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 26 "ejercicio3.l"
-{
-		 #ifdef DEBUG
-			cout<<"filtrado caracter (" << yytext << ")\n";
-		 #endif
-		}
+#line 17 "cuentaletras.l"
+;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 32 "ejercicio3.l"
+#line 19 "cuentaletras.l"
 ECHO;
 	YY_BREAK
-#line 790 "lex.yy.c"
+#line 782 "let.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1784,20 +1776,19 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 32 "ejercicio3.l"
+#line 19 "cuentaletras.l"
 
 
-
-extern FILE* yyin;
 
 int main() {
-	yylex();
-	cout << "-----------------\nEstadísticas del archivo de entrada\n"
-	     << "----------\n";
-	for (map<string,int>::iterator i = tabla.begin();i != tabla.end();i++)
-		{cout << i->first << " = " << i->second << endl;}
-	cout << "-----------------\n"
-	     << "Fin de las estadísticas del archivo de entrada\n"
-	     << "----------\n";
-} // fin de main() 
+cout << "Comienza el programa\n";
+yylex();
+cout << "Esta es la estadística\n";
+
+for (map<string,int>::iterator i = tabla.begin(); i != tabla.end(); i++)
+cout << i->first << " = " << i->second << endl;
+
+cout << "Fin de la estadística\n";
+return 0;
+} // fin de main()
 

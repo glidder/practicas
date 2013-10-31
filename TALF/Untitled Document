@@ -1,0 +1,35 @@
+Ejercicio sobre expresiones regulares
+
+Un identificador
+	[_a-z][_0-9a-Z]
+Una constante entera	
+	0[Xx][A-Fa-f0-9]+|0[0-7]*|[1-9][0-9]* %hex,oct,int
+Una constante flotante
+	Tiene .
+		Exponencial es optativa
+			Tiene parte entera
+				parte fraccional optativa
+			No tiene parte entera
+				parte fraccional obligatoria
+	No tiene .
+		Exponencial obligatoria
+		
+	FRA "."[0-9]+
+	ENT [0-9]+"."[0-9]*
+	EXP [eE][+-]?[0-9]+
+	[0-9]+{EXP}|[{FRA}|{ENT}]{EXP}?[fFlL]?
+Palabras reservadas
+	int|float|for
+Un literal alfanumérico
+	\"(\\.|[^\\"])*\"
+Comentario
+	"//".*
+
+
+
+PRIORIDADES
+		(max)
+{+*?}	↓
+concat	↓prioridad				Ej: for|if+ = (((f)o)r)|(i((f)+)) != for|(if)+
+|		↓
+		(min)
