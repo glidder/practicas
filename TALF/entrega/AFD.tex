@@ -1,0 +1,156 @@
+\documentclass[a4paper]{article}
+%%%%%Paquetes%%%%%
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,eucal,mathrsfs}
+\usepackage[svgnames,X_11names]{xcolor}
+\usepackage{colortbl}
+\usepackage{Estilos/MiEstilo}
+%\usepackage{Estilos/Informe}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+
+	\setcounter{tocdepth}{2} %Mostrar solo 3 niveles en el índice
+		\makeindex	%índice de palabras
+		\title{Teoría de Autómatas y Lenguajes Formales.\\ AFD para multiplos de 3. }
+		\author{Luis José Quintana Bolaño}
+		\date{\today}
+
+\begin{document}
+		\maketitle
+		\begin{abstract}
+		    Encontrar un AFD, que llamaremos A, que reconozca números binarios múltiplos de 3.
+  		\end{abstract}
+
+  		\section{Función Asignación}
+		\subsection{Computación para la entrada $X=0$}
+		\begin{equation*}\begin{gathered}
+		(1, <X=0, Z=0, Y=0>) \sim (2, <X=0, Z=0, Y=0>) \sim (7, <X=0, Z=0, Y=0>) \sim\\
+		(8, <X=0, Z=0, Y=0>) \sim (12, <X=0, Z=0, Y=0>)
+		\end{gathered}\end{equation*}
+		\subsection{Computación para la entrada $X=1$}
+		\begin{equation*}\begin{gathered}
+		(1, <X=1, Z=0, Y=0>) \sim (3, <X=1, Z=0, Y=0>) \sim (4, <X=0, Z=0, Y=0>) \sim\\
+		(5, <X=0, Z=0, Y=1>) \sim (6, <X=0, Z=1, Y=1>) \sim (1, <X=0, Z=1, Y=1>) \sim\\
+		(2, <X=0, Z=1, Y=1>) \sim (7, <X=0, Z=1, Y=1>) \sim (9, <X=0, Z=1, Y=1>) \sim\\
+		(10, <X=0, Z=0, Y=1>) \sim (11, <X=1, Z=0, Y=1>) \sim (7, <X=1, Z=0, Y=1>) \sim\\
+		(8, <X=1, Z=0, Y=1>) \sim (12, <X=1, Z=0, Y=1>)
+		\end{gathered}\end{equation*}
+		\subsection{Computación para la entrada $X=2$}
+		\begin{equation*}\begin{gathered}
+		(1, <X=2, Z=0, Y=0>) \sim (3, <X=2, Z=0, Y=0>) \sim (4, <X=1, Z=0, Y=0>) \sim\\
+		(5, <X=1, Z=0, Y=1>) \sim (6, <X=1, Z=1, Y=1>) \sim (1, <X=1, Z=1, Y=1>) \sim\\
+		(3, <X=1, Z=1, Y=1>) \sim (4, <X=0, Z=1, Y=1>) \sim (5, <X=0, Z=1, Y=2>) \sim\\
+		(6, <X=0, Z=2, Y=2>) \sim (1, <X=0, Z=2, Y=2>) \sim (2, <X=0, Z=2, Y=2>) \sim\\
+		(7, <X=0, Z=2, Y=2>) \sim (9, <X=0, Z=2, Y=2>) \sim (10, <X=0, Z=1, Y=2>) \sim\\
+		(11, <X=1, Z=1, Y=2>) \sim (7, <X=1, Z=1, Y=2>) \sim (9, <X=1, Z=1, Y=2>) \sim\\
+		(10, <X=1, Z=0, Y=2>) \sim (11, <X=2, Z=0, Y=2>) \sim (7, <X=2, Z=0, Y=2>) \sim\\
+		(8, <X=2, Z=0, Y=2>) \sim (12, <X=2, Z=0, Y=2>)
+		\end{gathered}\end{equation*}
+		\subsection{Computación para la entrada $X=3$}
+		\begin{equation*}\begin{gathered}
+		(1, <X=3, Z=0, Y=0>) \sim (3, <X=3, Z=0, Y=0>) \sim (4, <X=2, Z=0, Y=0>) \sim\\
+		(5, <X=2, Z=0, Y=1>) \sim (6, <X=2, Z=1, Y=1>) \sim (1, <X=2, Z=1, Y=1>) \sim\\
+		(3, <X=2, Z=1, Y=1>) \sim (4, <X=1, Z=1, Y=1>) \sim (5, <X=1, Z=1, Y=2>) \sim\\
+		(6, <X=1, Z=2, Y=2>) \sim (1, <X=1, Z=2, Y=2>) \sim (3, <X=1, Z=2, Y=2>) \sim\\
+		(4, <X=0, Z=2, Y=2>) \sim (5, <X=0, Z=2, Y=3>) \sim (6, <X=0, Z=3, Y=3>) \sim\\
+		(1, <X=0, Z=3, Y=3>) \sim (2, <X=0, Z=3, Y=3>) \sim (7, <X=0, Z=3, Y=3>) \sim\\
+		(9, <X=0, Z=3, Y=3>) \sim (10, <X=0, Z=2, Y=3>) \sim (11, <X=1, Z=2, Y=3>) \sim\\
+		(7, <X=1, Z=2, Y=3>) \sim (9, <X=1, Z=2, Y=3>) \sim (10, <X=1, Z=1, Y=3>) \sim\\
+		(11, <X=2, Z=1, Y=3>) \sim (7, <X=2, Z=1, Y=3>) \sim (9, <X=2, Z=1, Y=3>) \sim\\
+		(10, <X=2, Z=0, Y=3>) \sim (11, <X=3, Z=0, Y=3>) \sim (7, <X=3, Z=0, Y=3>) \sim\\
+		(8, <X=3, Z=0, Y=3>) \sim (12, <X=3, Z=0, Y=3>)
+		\end{gathered}\end{equation*}
+
+		\section{Función Suma}
+		\subsection{Computación para la entrada $X_1=0, X_2=0$}
+		\begin{equation*}\begin{gathered}
+		(1, <X_1=0, X_2=0, Z=0, Y=0>) \sim (2, <X_1=0, X_2=0, Z=0, Y=0>) \sim\\
+		(3, <X_1=0, X_2=0, Z=0, Y=0>) \sim (4, <X_1=0, X_2=0, Z=0, Y=0>) \sim\\
+		(8, <X_1=0, X_2=0, Z=0, Y=0>)
+		\end{gathered}\end{equation*}
+		\subsection{Computación para la entrada $X_1=1, X_2=0$}
+		\begin{equation*}\begin{gathered}
+		(1, <X_1=1, X_2=0, Z=0, Y=0>) \sim (2, <X_1=1, X_2=0, Z=0, Y=1>) \sim\\
+		(3, <X_1=1, X_2=0, Z=0, Y=1>) \sim (4, <X_1=1, X_2=0, Z=0, Y=1>) \sim\\
+		(8, <X_1=1, X_2=0, Z=0, Y=1>)
+		\end{gathered}\end{equation*}
+		\subsection{Computación para la entrada $X_1=1, X_2=1$}
+		\begin{equation*}\begin{gathered}
+		(1, <X_1=1, X_2=1, Z=0, Y=0>) \sim (2, <X_1=1, X_2=1, Z=0, Y=1>) \sim\\
+		(3, <X_1=1, X_2=1, Z=1, Y=1>) \sim (5, <X_1=1, X_2=1, Z=1, Y=1>) \sim\\
+		(6, <X_1=1, X_2=1, Z=0, Y=1>) \sim (7, <X_1=1, X_2=1, Z=0, Y=2>) \sim\\
+		(3, <X_1=1, X_2=1, Z=0, Y=2>) \sim (4, <X_1=1, X_2=1, Z=0, Y=2>) \sim\\
+		(8, <X_1=1, X_2=1, Z=0, Y=2>)
+		\end{gathered}\end{equation*}
+		\subsection{Computación para la entrada $X_1=3, X_2=0$}
+		\begin{equation*}\begin{gathered}
+		(1, <X_1=3, X_2=0, Z=0, Y=0>) \sim (2, <X_1=3, X_2=0, Z=0, Y=3>) \sim\\
+		(3, <X_1=3, X_2=0, Z=0, Y=3>) \sim (4, <X_1=3, X_2=0, Z=0, Y=3>) \sim\\
+		(8, <X_1=3, X_2=0, Z=0, Y=3>)
+		\end{gathered}\end{equation*}
+
+		\section{Función Resta Restringida}
+		\subsection{Computación para la entrada $X_1=0, X_2=0$}
+		\begin{equation*}\begin{gathered}
+		(1, <X_1=0, X_2=0, Z=0, Y=0>) \sim (2, <X_1=0, X_2=0, Z=0, Y=0>) \sim\\
+		(3, <X_1=0, X_2=0, Z=0, Y=0>) \sim (4, <X_1=0, X_2=0, Z=0, Y=0>) \sim\\
+		(10, <X_1=0, X_2=0, Z=0, Y=0>)
+		\end{gathered}\end{equation*}
+		\subsection{Computación para la entrada $X_1=1, X_2=0$}
+		\begin{equation*}\begin{gathered}
+		(1, <X_1=1, X_2=0, Z=0, Y=0>) \sim (2, <X_1=1, X_2=0, Z=0, Y=1>) \sim\\
+		(3, <X_1=1, X_2=0, Z=0, Y=1>) \sim (4, <X_1=1, X_2=0, Z=0, Y=1>) \sim\\
+		(10, <X_1=1, X_2=0, Z=0, Y=1>)
+		\end{gathered}\end{equation*}
+		\subsection{Computación para la entrada $X_1=1, X_2=1$}
+		\begin{equation*}\begin{gathered}
+		(1, <X_1=1, X_2=1, Z=0, Y=0>) \sim (2, <X_1=1, X_2=1, Z=0, Y=1>) \sim\\
+		(3, <X_1=1, X_2=1, Z=1, Y=1>) \sim (5, <X_1=1, X_2=1, Z=1, Y=1>) \sim\\
+		(7, <X_1=1, X_2=1, Z=1, Y=1>) \sim (8, <X_1=1, X_2=1, Z=1, Y=0>) \sim\\
+		(9, <X_1=1, X_2=1, Z=0, Y=0>) \sim (3, <X_1=1, X_2=1, Z=0, Y=0>) \sim\\
+		(4, <X_1=1, X_2=1, Z=0, Y=0>) \sim (10, <X_1=1, X_2=1, Z=0, Y=0>)
+		\end{gathered}\end{equation*}
+		\subsection{Computación para la entrada $X_1=3, X_2=1$}
+		\begin{equation*}\begin{gathered}
+		(1, <X_1=3, X_2=1, Z=0, Y=0>) \sim (2, <X_1=3, X_2=1, Z=0, Y=3>) \sim\\
+		(3, <X_1=3, X_2=1, Z=1, Y=3>) \sim (5, <X_1=3, X_2=1, Z=1, Y=1>) \sim\\
+		(7, <X_1=3, X_2=1, Z=1, Y=1>) \sim (8, <X_1=3, X_2=1, Z=1, Y=2>) \sim\\
+		(9, <X_1=3, X_2=1, Z=0, Y=2>) \sim (3, <X_1=3, X_2=1, Z=0, Y=2>) \sim\\
+		(4, <X_1=3, X_2=1, Z=0, Y=2>) \sim (10, <X_1=3, X_2=1, Z=0, Y=2>)
+		\end{gathered}\end{equation*}
+
+		\section{Función Producto}
+		\subsection{Computación para la entrada $X_1=0, X_2=0$}
+		\begin{equation*}\begin{gathered}
+		(1, <X_1=0, X_2=0, Z_1=0, Z_2=0, Y=0>) \sim (2, <X_1=0, X_2=0, Z_1=0, Z_2=0, Y=0>) \sim\\
+		(3, <X_1=0, X_2=0, Z_1=0, Z_2=0, Y=0>) \sim	(8, <X_1=0, X_2=0, Z_1=0, Z_2=0, Y=0>)
+		\end{gathered}\end{equation*}
+		\subsection{Computación para la entrada $X_1=1, X_2=0$}
+		\begin{equation*}\begin{gathered}
+		(1, <X_1=1, X_2=0, Z_1=0, Z_2=0, Y=0>) \sim (2, <X_1=1, X_2=0, Z_1=0, Z_2=0, Y=0>) \sim\\
+		(3, <X_1=1, X_2=0, Z_1=0, Z_2=0, Y=0>) \sim	(8, <X_1=1, X_2=0, Z_1=0, Z_2=0, Y=0>)
+		\end{gathered}\end{equation*}
+		\subsection{Computación para la entrada $X_1=1, X_2=1$}
+		\begin{equation*}\begin{gathered}
+		(1, <X_1=1, X_2=1, Z_1=0, Z_2=0, Y=0>) \sim (2, <X_1=1, X_2=1, Z_1=0, Z_2=1, Y=0>) \sim\\
+		(4, <X_1=1, X_2=1, Z_1=0, Z_2=1, Y=0>) \sim	(5, <X_1=1, X_2=1, Z_1=0, Z_2=0, Y=0>) \sim\\
+		(6, <X_1=1, X_2=1, Z_1=1, Z_2=0, Y=0>) \sim (7, <X_1=1, X_2=1, Z_1=1, Z_2=0, Y=1>) \sim\\
+		(2, <X_1=1, X_2=1, Z_1=1, Z_2=0, Y=1>) \sim (3, <X_1=1, X_2=1, Z_1=1, Z_2=0, Y=1>) \sim\\
+		(8, <X_1=1, X_2=1, Z_1=1, Z_2=0, Y=1>)
+		\end{gathered}\end{equation*}
+		\subsection{Computación para la entrada $X_1=0, X_2=1$}
+		\begin{equation*}\begin{gathered}
+		(1, <X_1=0, X_2=1, Z_1=0, Z_2=0, Y=0>) \sim (2, <X_1=0, X_2=1, Z_1=0, Z_2=1, Y=0>) \sim\\
+		(4, <X_1=0, X_2=1, Z_1=0, Z_2=1, Y=0>) \sim	(5, <X_1=0, X_2=1, Z_1=0, Z_2=0, Y=0>) \sim\\
+		(6, <X_1=0, X_2=1, Z_1=0, Z_2=0, Y=0>) \sim (7, <X_1=0, X_2=1, Z_1=0, Z_2=0, Y=0>) \sim\\
+		(2, <X_1=0, X_2=1, Z_1=0, Z_2=0, Y=0>) \sim (3, <X_1=0, X_2=1, Z_1=0, Z_2=0, Y=0>) \sim\\
+		(8, <X_1=0, X_2=1, Z_1=0, Z_2=0, Y=0>)
+		\end{gathered}\end{equation*}
+
+\end{document}
