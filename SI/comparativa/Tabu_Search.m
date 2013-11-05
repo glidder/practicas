@@ -1,10 +1,11 @@
-function solucion = Tabu_Search()
-    [estado, M]=Tareas();
+function solucion = Tabu_Search(estado,M)
     Mejor=estado;
     [sucesores, ind]= calculasucesores(estado); %Calcula todos los sucesores
     tabu=zeros(length(estado));
     i=1000;
-    while i>0
+    Maux=estado;
+    contador=1;
+    while (i>0 && contador<5)
         i=i-1;
         for j=1:length(sucesores)
         	val(j)=Evaluacion(sucesores(j,:),M); %Evalua todos los sucesores
@@ -41,6 +42,11 @@ function solucion = Tabu_Search()
                     end
                 end
             end
+        end
+        if (Mejor-Maux)==0
+        	contador = contador+1;
+        else Maux = Mejor;
+        	 contador = 1;
         end
     end
     solucion=Mejor;
