@@ -1,5 +1,5 @@
 filtra: lex.yy.o
-	g++ -o tokeniza lex.yy.o -lfl
+	g++ -o contarpalabras lex.yy.o -lfl
 
 lex.yy.o: lex.yy.c
 	g++ -c lex.yy.c

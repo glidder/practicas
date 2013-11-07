@@ -10,7 +10,8 @@ int line=1;
 map <string, string> tres;
 map <string, string> tint;
 map <string, string> tid;
-
+int lol = 15.3;
+float pedo = 1e15l;
 extern FILE* yyin;
 
 int main() {
