@@ -1,4 +1,4 @@
-function tempPob = seleccion(poblacion)%por torneo
+function tempPob = seleccionTorneo(poblacion)
 	evalPob=EvaluaPoblacion(poblacion);
 	 k=2;
 	 for i=1:length(evalPob)

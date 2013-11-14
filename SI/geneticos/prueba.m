@@ -1,3 +1,10 @@
 poblacion = generarPoblacion(4,4)
 val=EvaluaPoblacion(poblacion)
-tempPob=seleccion(poblacion)
+%tempPob=seleccionTorneo(poblacion)
+tempPob=seleccionRuleta(poblacion)
+Par=Emparejar(length(tempPob),0.7)
+%cruzados=cruzePMX(tempPob,Par)
+cruzados=cruzeOX(tempPob,Par)
+mutados=mutacion(cruzados,0.2)
+poblacion=reemplazo(poblacion,mutados)
+
