@@ -1,0 +1,11 @@
+1:J(2,3,0)    Programa ejemplo del simulador web.
+2:S(1)        f(x1,x2)=x1+x2
+ :S(3)        
+4: J( 1,1,1) 
+
+Instrucciones:
+ -Admite comentarios en cualquier parte, excepto dentro de una instrucción.
+ -Los espacios y lineas blancas son ignorados.
+ -Una sola instruccion por linea.
+ -Las instrucciones han de comenzar por ":"
+ -El numero de linea es opcional.

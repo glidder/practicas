@@ -1,0 +1,13 @@
+1:J(1,3,1) realiza la funcion f(x1,x2)=x1-x2 si x2<x1
+2:J(1,2,6) no está definida en otro caso.
+3:S(2)
+4:S(3)
+5:J(1,1,2)
+6:T(3,1)
+
+Instrucciones:
+ -Admite comentarios en cualquier parte, excepto dentro de una instrucción.
+ -Los espacios y lineas blancas son ignorados.
+ -Una sola instruccion por linea.
+ -Las instrucciones han de comenzar por ":"
+ -El numero de linea es opcional.

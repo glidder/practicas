@@ -1,0 +1,11 @@
+1:J(2,3,0)
+2:S(1)        May comment anywhere.
+ :S(3)        Line numbers are optional.
+4: J( 1,1,1)  Spaces are ignored.
+
+-Must use colon before each instruction.
+-Never use colons in comments.
+
+
+This program adds registers 1 & 2.
+Click Run to see output.
