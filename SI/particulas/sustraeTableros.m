@@ -3,9 +3,10 @@ function V=sustraeTableros(Sk,Sj)
 	V=[];
 	aux=Sk;
 	for i=1:size(Sk)
-		if aux(i)~=Sj(i)
-			V(j,:)=[i find(Sj==Sk(i),1)];
-			aux(i)=Sj(i);
+		if aux(i,:)~=Sj(i,:)
+			V(j,1)=i;
+            V(j,2)=find(Sj==Sk(i),1);
+			aux(i,:)=Sj(i,:);
 			aux(V(j,2))=Sj(V(j,2));
 			j=j+1;
 		end

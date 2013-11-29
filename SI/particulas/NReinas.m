@@ -10,7 +10,7 @@ function [Btab,Bval,i]=NReinas(N, P, w, cp, cg)
 	[X, I]=max(val);
 	gbest=poblacion(I(1),:);
 	NMax=sum(1:N-1);
-	while i<1000 && sum(find(val==NMax))~=0
+	while i<1000 && sum(find(val==NMax))==0
 		for j=1:P
 			SUMP=sumaVelocidades(multiplica(w,v{j}),multiplica(cp*rand(),sustraeTableros(pbest(j),poblacion(j,:))));
 			SUMG=multiplica(cg*rand(),sustraeTableros(gbest,poblacion(j,:)));
