@@ -6,20 +6,24 @@
 import java.util.*;
 import java.io.*;
 
-
-public class Life
+public class Life 
 {
-	private int[][] board;
-	private int population;
 	static final int DEAD=0;
 	static final int ALIVE=1;
-	
+	private int[][] board;
+	private int population;
+	private int prevpop;
+	private int sgen;
+	private int generation;
+
 	public Life (int bsize, int ncell)
 	{
 		board=new int[bsize+2][bsize+2];
 		population=ncell;
+		prevpop=0;
+		generation=1;
 		ArrayList<Integer> x=new ArrayList<Integer>(bsize);
-		ArrayList<List<Integer>> y= new ArrayList<List<Integer>>(bsize);
+		ArrayList<ArrayList<Integer>> y= new ArrayList<ArrayList<Integer>>(bsize);
 		for (int i=1;i<=bsize;++i){
 			x.add(i);
 			ArrayList<Integer> row= new ArrayList<Integer>(bsize);
@@ -36,8 +40,7 @@ public class Life
 				y.remove(aux);
 				x.remove(aux);
 			}
-		}
-			
+		}		
 	}
 	
 	public String toString()
@@ -49,35 +52,68 @@ public class Life
 			}
 			s+="\n";
 		}
-		return s+="population: "+population;
+		s+="population: "+((population==0)?"DEAD":population)
+			+((prevpop==population)?" (stable for "+sgen+" generations)\n":"\n");
+		return s+="generation: "+generation+"\n";
 	}
 	
 	public int sigGen()
 	{
+		prevpop=population;
 		population=0;
-		int[][] boardaux=board;
+		int[][] boardaux=new int[board.length][board.length];
+		for(int i=0;i<board.length-1;++i)
+			for(int j=0;j<board.length-1;++j)
+				boardaux[i][j]=board[i][j];
 		int aux;
 		for(int i=1;i<board.length-1;++i){
 			for(int j=1;j<board.length-1;++j){
 				aux=0;
 				for(int ii=-1;ii<2;++ii)
 					for(int jj=-1;jj<2;++jj)
-						if(ii!=0||jj!=0)aux+=board[i+ii][j+jj];
-				boardaux[i][j]=((aux<2||aux>3)?DEAD:((aux==3)?ALIVE:board[i][j]));
+						if(ii!=0||jj!=0)aux+=boardaux[i+ii][j+jj];
+				board[i][j]=((aux<2||aux>3)?DEAD:((aux==3)?ALIVE:boardaux[i][j]));
 				if(board[i][j]==ALIVE)
 					population++;
 			}
 		}
-		board=boardaux;
+		generation++;
+		sgen=(prevpop==population)?sgen+1:0;
 		return population;
 	}
-	
-	public static void main(String[] args) {
+
+	public int[][] currentBoard()
+	{
+		return board;
+	}
+
+	public int currentPopulation()
+	{
+		return population;
+	}
+
+	public int previousPopulation()
+	{
+		return prevpop;
+	}
+
+	public int currentGeneration()
+	{
+		return generation;
+	}
+
+	public int stableGeneration()
+	{
+		return sgen;
+	}
+
+    public static void main(String[] args) {
+
 		Scanner scan= new Scanner(System.in);
 		Life game= new Life(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 		do{
 			System.out.println(game.toString());
 			scan.nextLine();
-		}while (game.sigGen()!=0);	
+		}while (game.sigGen()!=0);
 	}
 }
