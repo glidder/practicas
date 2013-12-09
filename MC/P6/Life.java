@@ -57,6 +57,12 @@ public class Life
 		return s+="generation: "+generation+"\n";
 	}
 	
+	public void setAlive(int x, int y){
+		board[x][y]=ALIVE;
+	}
+	public void setDead(int x, int y){
+		board[x][y]=DEAD;
+	}
 	public int sigGen()
 	{
 		prevpop=population;
@@ -106,7 +112,10 @@ public class Life
 	{
 		return sgen;
 	}
-
+	public int size()
+	{
+		return board.length-2;
+	}
     public static void main(String[] args) {
 
 		Scanner scan= new Scanner(System.in);

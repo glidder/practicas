@@ -13,15 +13,22 @@ import java.awt.*;
 public class LifeGUI extends JFrame
 {
 	public LifeGUI(Game game){
+        JPanel menu = new JPanel();
+        JButton button1 = new JButton("Next");
+        JTextArea pop = new JTextArea(5,20);
+        pop.setEditable(false);
         add(game);
-        JButton button1 = new JButton();
-        game.add(button1);
+        menu.setLayout(new GridLayout());
+        menu.add(button1);
+        //menu.add(pop);
+        add(menu, BorderLayout.EAST);
+        
         addComponentListener(game);
         button1.addActionListener(game);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //setSize(640,520);
         setLocationRelativeTo(null);
-        setTitle("Conway's Life Game");
+        setTitle("Conway's Game of Life");
         setResizable(true);
         setVisible(true);
         pack();
@@ -34,20 +41,62 @@ public class LifeGUI extends JFrame
 		new LifeGUI(game);
 	}
 
-	 
 }
 
 class Game extends JPanel implements ActionListener, ComponentListener
 {
 	private Life life;
+	private int painting = 0;
 	public Game(Life l) {
 		life=l;
-		setPreferredSize(new Dimension(480,480));
+		int aux=480/l.size();
+		aux*=l.size();
+		setPreferredSize(new Dimension(aux,aux));
 		setFocusable(true);
 		setBackground(Color.BLACK);
 		setDoubleBuffered(true);
+		addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if(SwingUtilities.isLeftMouseButton(e))
+					painting = 1;
+				else
+					painting = 2;
+				tryAdjustValue(e.getPoint());
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				painting = 0;
+			}
+		});
+		addMouseMotionListener(new MouseMotionListener() {
+			public void mouseDragged(MouseEvent e) {
+				tryAdjustValue(e.getPoint());
+			}
+
+			public void mouseMoved(MouseEvent e) {
+				tryAdjustValue(e.getPoint());
+			}
+		});
 	}
-	
+	private void tryAdjustValue(Point pt) {
+		int[][] matrix=life.currentBoard();
+		int SCALE=getSize().height/(matrix.length-2);
+		int newX=pt.x/SCALE;
+		int newY=pt.y/SCALE;
+		if(painting==1 && isInRange(newX)&&isInRange(newY)){
+			life.setAlive(newX+1,newY+1);
+			repaint();
+		}else if(painting==2&& isInRange(newX)&&isInRange(newY)){
+			life.setDead(newX+1,newY+1);
+			repaint();
+		}
+	}
+	public boolean isInRange(int val){
+		return val >=0 && val<(life.currentBoard().length-2);
+	}
+	public int currentPopulation(){
+		return life.currentPopulation();
+	}
 	public void actionPerformed(ActionEvent e) {
         life.sigGen();
         repaint();
@@ -58,6 +107,7 @@ class Game extends JPanel implements ActionListener, ComponentListener
         g.setColor(Color.GREEN);
         int[][] matrix=life.currentBoard();
         int SCALE=getSize().height/(matrix.length-2);
+        setPreferredSize(new Dimension(SCALE*(matrix.length-2),SCALE*(matrix.length-2)));
         for (int x=0; x<matrix.length-2; ++x) {
             for (int y=0; y<matrix.length-2; ++y) {
                 if (matrix[x+1][y+1]==1) {
@@ -75,6 +125,8 @@ class Game extends JPanel implements ActionListener, ComponentListener
     		int w=c.getContentPane().getSize().width;
     		int h=c.getContentPane().getSize().height;
     		int s=((h<w)?h:w);
+    		s=s/life.size();
+			s*=life.size();
             setSize(s,s);
             //Component c = (Component)evt.getSource();
             //........
