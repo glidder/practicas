@@ -1,0 +1,71 @@
+/*
+inicio		: tipo corcho ID declaracion inicio
+        	| 
+;
+declaracion : '(' atributos ')' bloque
+        | lista ';'
+;
+corcho        :corcho '[' asignacion ']'
+        |
+;
+lista        : ',' nom lista
+        |
+;
+bloque        : '{' sentencia '}'
+;
+atributos    : tipo nom moar
+        | 
+;
+moar        : ',' tipo nom moar
+        |
+;
+sentencia    : bloque sentencia
+        | inicio    sentencia
+        | "while" '(' asignacion ')' bloque sentencia
+        | "if" '(' asignacion ')' bloque else sentencia
+| "return" sentencia
+        | ';' sentencia
+        |
+;
+else        : "else" bloque
+        |
+;
+asignacion    : or
+        | or '=' asignacion
+;
+or        : and
+        | or '|''|' and
+;
+and        : igualdad
+        | and '&''&' igualdad 
+;
+igualdad    : relacional
+        | igualdad '=''=' relacional
+        | igualdad '!''=' relacional
+;
+relacional    :suma
+        | relacional '<''=' suma
+           | relacional '>''=' suma
+           | relacional '=''=' suma
+           | relacional '!''=' suma  
+           | relacional '<' suma  
+           | relacional '>' suma  
+;
+suma        : producto
+        | suma '+' producto
+        | suma '-' producto
+;
+producto    : basico
+        | producto '*' basico
+        | producto '/' basico
+;
+basico        : nom
+        | ENTERO
+        | REAL
+        | CADENA
+        | '(' asignacion ')'
+        | 
+;
+nom        : nom '[' asignacion ']'
+        | ID
+;*/

@@ -1,0 +1,108 @@
+﻿Esquema propuesto (Luis) [LEER NOTA AL FINAL]:
+
+
+inicio                >declaracion inicio
+                | definicion inicio
+                | EPSILON[a]
+
+
+definicion        >tipo lc ID ( atributos ) llaves
+                | tipo lc ID ( ) llaves
+
+
+llaves                >{ bloque }
+
+
+bloque                >sentencia bloque
+                | EPSILON
+
+
+sentencia        >declaracion
+                | asignacion ;
+                | while ( asignacion ) sentencia[b]
+                | if ( asignacion ) sentencia[c]
+                | llamada ; [d]
+                | llaves
+                | ;[e]
+
+
+declaracion        >tipo lista ;
+                | tipo lc ID ( atributos ) ;
+
+
+atributos        >tipo ID lc , atributos
+                | tipo ID[f] lc
+
+
+lc                >lc [ ]
+                | EPSILON
+
+
+lista                >ID lcn[g] = asignacion , lista
+                | ID lcn = asignacion
+                | ID lcn , lista
+                | ID lcn
+
+
+asignacion        >ID lcn = asignacion
+                | relacional
+
+
+relacional        >suma
+                | relacional < suma
+                | relacional > suma
+                | relacional <= suma
+                | relacional >= suma
+                | relacional == suma
+                | relacional != suma
+
+
+suma                >producto
+                | suma + producto
+                | suma - producto
+
+
+producto        >basico
+                | producto * basico
+                | producto / basico
+
+
+basico                >ID lcn
+                | ENTERO
+                | REAL
+                | CADENA
+                | llamada
+                | ( asignacion )
+
+
+llamada         >ID ( valores ) 
+| ID ( ) 
+
+
+lcn                >lcn [ asignacion[h] ]
+                | EPSILON
+
+
+valores        >asignacion , valores
+                | asignacion
+
+
+NOTA:
+Faltan por incluir los punteros y referencias (*, &) porque no estoy seguro de si los hemos incluido en el lenguaje (creo que no). 
+[a]Luis Quintana:
+Fuera de una función solo se permiten declaraciones
+[b]Luis Quintana:
+while ( asignacion ) sentencia ; corresponde al bucle while.
+[c]Luis Quintana:
+if ( asignacion ) sentencia ; corresponde al condicional if.
+[d]Luis Quintana:
+Llamada a un método.
+[e]Luis Quintana:
+Dentro de una función no se permiten definiciones de otras funciones, pero si declaraciones.
+[f]Luis Quintana:
+No se permiten valores por defecto en la definición de los atributos.
+Las declaraciones de las funciones han de incluir los nombres de los atributos.
+[g]Luis Quintana:
+C no permite declarar matrices sin poner el tamaño.
+[h]Luis Quintana:
+Cualquier expresión que devuelva un valor (de cualquier tipo) puede ir dentro de unos corchetes, el parseo a entero es automático.
