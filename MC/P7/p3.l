@@ -5,6 +5,8 @@
 	GOTO E
 [A]	IF Y != 0 GOTO B
 	GOTO A
-[B]	Y <- Y - 1
-	Z <- Z - 1
+[B]	Y--
+	Z--
 	GOTO C
+
+

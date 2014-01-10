@@ -3,6 +3,6 @@
 	Z <- X2
 [B] IF Z!=0 GOTO A
 	GOTO E
-[A]	Z <- Z - 1
-	Y <- Y + 1
+[A]	Z--
+	Y++
 	GOTO B
