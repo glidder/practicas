@@ -15,6 +15,8 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{float}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
 	\setcounter{tocdepth}{2} %Mostrar solo 3 niveles en el índice
 		\makeindex	%índice de palabras
 		\title{Modelos de Computación.\\ Práctica 8. }
@@ -26,6 +28,42 @@
 	\begin{abstract}
 	    Descipción del conjunto de Mandelbrot, un conjunto matemático de puntos cuya frontera conforma una de las más conocidas formas fractales. Está estrechamente relacionado con el conjunto de Julia. El nombre del conunto le fue dado en honor a Benoît Mandelbrot, matemático conocido por su trabajo en el campo de los fractales y principal responsable de su popularidad.
   	\end{abstract}
-	\section{}
+	\section{Descripción del conjunto de Mandelbrot}
+		El conjunto de Mandelbrot se define como el conjunto de valores de $C$ en el plano complejo tales que la sucesión por recursión cuadrática
+		$$z_{n+1} = z^2_n + C$$
+		queda acotada para el termino inicial $z_0 = 0$.
+		 pseudo-codigo que permite generar una representacion
+visual del conjunto, y breve explicacion del concepto de dimension fractal
+ligada a este objeto. 
+	\subsection{Pseudocódigo}
+		El algoritmo más simple conocido para la generación de una representación del conjunto de Mandelbrot es el algoritmo de "tiempo de escape", en el cual se asigna un color a cada punto del area de representación no perteneciente al conjunto que representa la velocidad con la que diverge la sucesión correspondiente a estos. 
+		\begin{algorithm}
+			\caption{Algoritmo "tiempo de escape"}
+			\begin{algorithmic}[1]
+			\For{cada pixel $(Px, Py)$ de la pantalla}
+				\State $x0 \gets$ coordenada $x$ del pixel a escala Mandelbrot
+  				\State $y0 \gets$ coordenada $y$ del pixel a escala Mandelbrot
+  				\State $x \gets 0.0$
+  				\State $y \gets 0.0$
+  				\State $iteracion \gets 0$
+				\State $iteracion\_maxima \gets 1000$
+				\While{$(x*x + y*y < 2*2 ) \land (iteracion < iteracion\_maxima)$}
+					\State $auxiliar \gets x*x - y*y + x0$
+    				\State $y \gets 2*x*y + y0$
+    				\State $x \gets auxiliar$
+    				\State $iteracion \gets iteracion + 1$
+				\EndWhile
+				\State $color \gets paleta[iteration]$
+  				\State $pintar(Px, Py, color)$
+			\EndFor
+			\end{algorithmic}
+		\end{algorithm}			
+		%\lstinputlisting[language=C]{scapetime}
+	\\Nótese que el algoritmo no utiliza numeros complejos, pero los simula mediante dos números reales.
+	\newpage
+	\subsection{Dimensión Fractal}
+		En geometría fractal, la dimensión fractal, $D$ es un número real que generaliza el concepto de dimensión ordinaria para objetos geométricos que no admiten espacio tangente.
+		También se define como una relación que proporciona un índice estadístico de complejidad que compara como cambia el detalle de un patrón fractal con la escala en que se mide. En general, se refiere a cualquiera de las dimensiones comunmente usadas para caracterizar fractales (como la dimensión de capacidad, dimensión de correlación, dimensión de Lyapaunov, dimensión Minkownski-Bouligand, etc...).
+		El conjunto de Mandelbrot tiene una dimensión topológica de 1 para su frontera, pero dimensión de Hausdorff 2, la máxima posible al ser subconjunto del plano.
 		
 \end{document}
