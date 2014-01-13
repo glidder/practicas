@@ -1,0 +1,94 @@
+%problema 1 
+
+x=abalone(:,1:end-1);
+y=abalone(:,end);
+
+rand('seed',0);
+[xd,yd]=shuffle(x,y);
+
+xtrain=xd(:,1:400);
+ytrain=yd(:,1:400);
+
+xtest=xd(:,401:end);
+ytest=yd(:,401:end);
+
+%Apartado b
+for i=1:10
+    [xtrn,xtst,ytrn,ytst]=crossval(xtrain,ytrain,10,i);
+    
+    A=[ xtrn' ones(size(xtrn))'];
+    coef=pinv(A)*ytrn';
+    %y_salida=A*coef;
+    
+    %ErrorTrn(i)=100*mean(round(y_salida)~=ytrn);
+    
+    A=[ xtst' ones(size(xtst))'];
+    y_salida=A*coef;
+    
+    ErrorTrn(i)=100*mean(round(y_salida)~=ytst);
+end
+ErrorTrn=mean(Error);
+
+A=[ xtest' ones(size(xtest))'];
+y_salida=A*coef;
+    
+ErrorTst=100*mean(round(y_salida)~=ytest);
+
+
+
+for j=1:8
+    w=pca(xd,9-i);
+    datos_pca=w*xd;
+
+    xtrain=datos_pca(:,1:400);
+    xtest=datos_pca(:,401:end);
+    
+    for i=1:10
+        [xtrn,xtst,ytrn,ytst]=crossval(xtrain,ytrain,10,i);
+        A=[ xtrn' ones(size(xtrn))'];
+        coef=pinv(A)*ytrn';
+        %y_salida=A*coef;
+
+        %ErrorTrn(i)=100*mean(round(y_salida)~=ytrn);
+
+        A=[ xtst' ones(size(xtst))'];
+        coef=pinv(A)*ytst';
+        y_salida=A*coef;
+
+        Error(i)=100*mean(round(y_salida)~=ytst);
+    end
+    ErrorTrn=mean(Error);
+    
+    A=[ xtest' ones(size(xtest))'];
+    y_salida=A*coef;
+    
+    ErrorTst(j)=100*mean(round(y_salida)~=ytest);
+end
+ErrorTrn=mean(ErrorTrn);
+ErrorTst=mean(Error);
+
+
+for i=1:10
+    [xtrn,xtst,ytrn,ytst]=crossval(xtrn,ytrn,10,i);
+    for j=1:8
+        %restar media
+        w=fisher(xtrn,9-i);
+        datos_fisher=w*xtrn;
+            
+
+        A=[ xtrn' ones(size(xtrn))'];
+        coef=pinv(A)*ytrn';
+        y_salida=A*coef;
+
+        ErrorTrn(i)=100*mean(round(y_salida)~=ytrn);
+
+        A=[ xtst' ones(size(xtst))'];
+        coef=pinv(A)*ytst';
+        y_salida=A*coef;
+
+        ErrorTst(i)=100*mean(round(y_salida)~=ytst);
+    end
+end
+ErrorTrn=mean(Error);
+ErrorTst=mean(Error);
+
