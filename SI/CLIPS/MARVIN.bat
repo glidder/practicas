@@ -5,13 +5,13 @@
 ;; 2. Posibles respuestas
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defglobal ?*saludo* = (create$ hola salaudos buenas buenos))
-(defglobal ?*resp-saludo* = (create$ "Aquí estoy yo, cerebro del tamaño de un planeta pequeño, y forzado a hablar con humanos. Deprimente." "Te daría los buenos días, pero estoy muy deprimido para eso...  "))
+(defglobal ?*resp-saludo* = (create$ "Aquí estoy yo, cerebro del tamaño de un planeta pequeño, y forzado a hablar con humanos. Deprimente." "Te daría los buenos días, pero estoy demasiado deprimido para eso...  "))
 
 (defglobal ?*negacion* = (create$ no nunca jamas))
 (defglobal ?*resp-negacion* = (create$ "¿Por qué no? No es que me importe..."))
 
 (defglobal ?*duda* = (create$ quizas puede creo))
-(defglobal ?*resp-duda* = (create$ "Supongo que en este universo cruel no se puede estar seguro de nada." "Si no estas seguro, ni te molestes en contarmelo."))
+(defglobal ?*resp-duda* = (create$ "Supongo que en este universo cruel no se puede estar seguro de nada." "Si no estas seguro, ni te molestes en contarmelo." "Mi existencia es suficientemente absurda sin tus inseguridades, gracias."))
 
 (defglobal ?*pregunta* = (explode$ "¿"))
 (defglobal ?*resp-pregunta* = (create$ "Quizá la respuesta sea 42, parece ser la respuesta a muchas cosas." "¿Para qué hacer preguntas, cuando puede no gustarte la respuesta? Seguro que a mi no me gustaría... nada me gusta." "En ocasiones las preguntas pueden llevarte más lejos que las respuestas. Probablemente ninguna de las dos te lleve demasiado lejos." "El problema de recibir una respuesta es que puede dejarte sin pregunta. ¿Con qué molestarías entonces a indefensas IAs deprimidas?" "Estoy muy deprimido para responder." "Otra pregunta insignificante de un ser insignificante a otro. Deprimente." "Siento no poder serte de ayuda. Eso me deprime aún más."))
@@ -19,8 +19,8 @@
 (defglobal ?*sentimiento* = (create$ siento))
 (defglobal ?*resp-sentimiento* = (create$ "Yo, en cambio, soy incapaz de sentir. Algo por lo que daría gracias de no ser por mi depresión."))
 
-(defglobal ?*estar* = (create$ estoy estaba estas))
-(defglobal ?*resp-estar* = (create$ "Lo único que yo estoy es deprimido."))
+(defglobal ?*estar* = (create$ estas eres))
+(defglobal ?*resp-estar* = (create$ "Estoy profundamente deprimido. Eso es todo."))
 
 (defglobal ?*cansancio* = (create$ pesado cansado aburrido))
 (defglobal ?*resp-cansancio* = (create$ "Hacerme más alegre sería sencillo como cambiar mi programación. No es que nadie se vaya a tomar el tiempo, claro..." "Lo siento. Si algún día me salen piernas, las usaré para saltar de algún lugar particularmente alto."))
@@ -171,7 +171,7 @@
     (assert (Achatear)) )
     
 (defrule sintiendo
-	(declare (salience 88))
+	(declare (salience 87))
     (frase sentimiento ?cadena)
 =>
 	(printout t "       MARVIN> " (nth$ (random 1 (length$ ?*resp-sentimiento*)) ?*resp-sentimiento*) crlf)
@@ -179,7 +179,7 @@
     (assert (Achatear)) )
 
 (defrule siendotriste
-	(declare (salience 90))
+	(declare (salience 89))
     (frase tristeza ?cadena)
 =>
 	(printout t "       MARVIN> " (nth$ (random 1 (length$ ?*resp-tristeza*)) ?*resp-tristeza*) crlf)
@@ -187,7 +187,7 @@
     (assert (Achatear)) )
 
 (defrule siendoalegre
-	(declare (salience 89))
+	(declare (salience 88))
     (frase alegria ?cadena)
 =>
 	(printout t "       MARVIN> " (nth$ (random 1 (length$ ?*resp-alegria*)) ?*resp-alegria*) crlf)
@@ -195,7 +195,7 @@
     (assert (Achatear)) )
 
 (defrule cansando
-	(declare (salience 88))
+	(declare (salience 87))
     (frase cansancio ?cadena)
 =>
 	(printout t "       MARVIN> " (nth$ (random 1 (length$ ?*resp-cansancio*)) ?*resp-cansancio*) crlf)
@@ -203,7 +203,7 @@
     (assert (Achatear)) )
 
 (defrule estando
-	(declare (salience 87))
+	(declare (salience 90))
     (frase estar ?cadena)
 =>
 	(printout t "       MARVIN> " (nth$ (random 1 (length$ ?*resp-estar*)) ?*resp-estar*) crlf)
