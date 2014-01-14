@@ -1,0 +1,98 @@
+%%
+inicio		: tipo corcho ID declaracion inicio
+			|
+;
+declaracion	: '(' atributos ')' bloque
+			| lista ';'
+;
+corcho		:'[' asignacion ']' corcho
+			|
+;
+lista 		: ',' ID lista
+			|
+;
+bloque		: '{' sentencia '}'
+;
+atributos	: tipo corcho ID moar
+			|
+;
+moar		: ',' tipo corcho ID moar
+			|
+;
+sentencia	: bloque sentencia
+			| tipo corcho ID declaracion sentencia
+ 			| WHILE '(' asignacion ')' bloque sentencia
+			| IF '(' asignacion ')' bloque else sentencia
+			| RETURN sentencia
+			| ';' sentencia
+			| asignacion ';' sentencia
+			|
+;
+else		: ELSE bloque
+			|
+;
+asignacion	: or asignacionPrima
+;
+asignacionPrima	: '=' asignacion
+			| 
+;
+##############
+or 			: orPrima and
+;
+orPrima		: or OPOR         
+			| 
+;
+and			: igualdad andPrima
+;
+andPrima	: OPAND and
+			| 
+;
+igualdad	: relacional igualdadPrima	
+;
+igualdadPrima	: IGUAL igualdad
+				| DISTINTO igualdad
+				|
+;
+relacional	: suma relacionalPrima 
+;
+relacionalPrima	: MENORIGUAL relacional
+				| MAYORIGUAL relacional
+				| '<' relacional
+				| '>' relacional
+				|
+;
+suma	: producto sumaPrima
+;
+sumaPrima	: '+' suma
+			| '-' suma
+			|
+;
+producto	: basico productoPrima 
+;
+productoPrima	: '*' producto
+				| '/' producto
+				|
+;
+basico		: ID ident
+        	| ENTERO
+        	| REAL
+       		| CADENA
+       		| '(' asignacion ')'
+;
+ident 		: corcho
+			| '(' valores ')'
+;
+valores		: asignacion moval
+			|
+;
+moval		: ',' asignacion moval
+			|
+;
+tipo		: INT
+			| CHAR
+			| FLOAT
+			| VOID
+			| CONST tipo
+;
+
+%%

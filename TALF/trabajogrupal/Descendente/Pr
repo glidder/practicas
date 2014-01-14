@@ -1,0 +1,30 @@
+
+Pr(tipo)	= {INT, CHAR, FLOAT, VOID, CONST}
+Pr(moval)	= {',', €}
+Pr(valores) = Pr(asignacion)U{€} = {ID, ENTERO, REAL, CADENA, '(', €}
+Pr(ident)	= Pr(corcho)U{'('} = {'[', '(', €}
+Pr(basico)	= {ID, ENTERO, REAL, CADENA, '('}
+Pr(productoPrima)= {'*', '/', €}
+Pr(producto)= Pr(basico) = {ID, ENTERO, REAL, CADENA, '('}
+Pr(sumaPrima)= {'+', '-', €}
+Pr(suma)	= Pr(producto) = {ID, ENTERO, REAL, CADENA, '('}
+Pr(relacionalPrima)={MENORIGUAL, MAYORIGUAL, '<', '>', €}
+Pr(relacional)= Pr(suma) = {ID, ENTERO, REAL, CADENA, '('}
+Pr(igualdadPrima)= {IGUAL, DISTINTO, €}
+Pr(igualdad)= Pr(relacional) = {ID, ENTERO, REAL, CADENA, '('}
+Pr(andPrima)= {OPAND, €}
+Pr(and)		= Pr(igualdad) = {ID, ENTERO, REAL, CADENA, '('}
+Pr(orPrima) = {OPOR, €}
+Pr(or)		= Pr(and) = {ID, ENTERO, REAL, CADENA, '('}
+Pr(asignacionPrima)= {'=', €}
+Pr(asignacion)= Pr(or) = {ID, ENTERO, REAL, CADENA, '('}
+Pr(else) 	= {ELSE, €}
+Pr(sentencia)= Pr(bloque)U Pr(tipo)U Pr(asignacion)U{WHILE, IF, RETURN, ';', €}
+			 = {'{', INT, CHAR, FLOAT, VOID, CONST, ID, ENTERO, REAL, CADENA, '(', WHILE, IF, RETURN, ';', €}
+Pr(moar)	= {',', €}
+Pr(atributos)= Pr(tipo)U{€} = {INT, CHAR, FLOAT, VOID, CONST, €}
+Pr(bloque)	= {'{'}
+Pr(lista)	= {',', €}
+Pr(corcho)	= {'[', €}
+Pr(declaracion)= Pr(lista)U{'('}U{';'} = {'(', ',', ';', €}
+Pr(inicio)	= Pr(tipo)U{€} = {INT, CHAR, FLOAT, VOID, CONST, €}

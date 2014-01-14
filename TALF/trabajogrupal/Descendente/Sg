@@ -1,0 +1,28 @@
+Sg(inicio)	= {$}
+Sg(declaracion)= {'{', INT, CHAR, FLOAT, VOID, CONST, ID, ENTERO, REAL, CADENA, '(', WHILE, IF, RETURN, ';','}'}
+Sg(corcho)	= {ID, '*', '/'}
+Sg(lista)	= {';'}
+Sg(bloque)	= {'{', INT, CHAR, FLOAT, VOID, CONST, ID, ENTERO, REAL, CADENA, '(', WHILE, IF, RETURN, ';', '}', ELSE}
+Sg(atributos)= {')'}
+Sg(moar)	= {')'}
+Sg(sentencia)= {'}'}
+Sg(else)	= {'{', INT, CHAR, FLOAT, VOID, CONST, ID, ENTERO, REAL, CADENA, '(', WHILE, IF, RETURN, ';','}'}
+Sg(asignacion)= {']', ')', ';', ','}
+Sg(asignacionPrima)= {']', ')', ';' ','}
+Sg(or)		= {'=', ']', ')', ';', ','}
+Sg(orPrima) = {'=', ']', ')', ';', ','}
+Sg(and)		= {OPOR, '=', ']', ')', ';', ','}
+Sg(andPrima)= {OPOR, '=', ']', ')', ';', ','}
+Sg(igualdad)= {OPAND, OPOR, '=', ']', ')', ';', ','}
+Sg(igualdadPrima)= {OPAND, OPOR, '=', ']', ')', ';', ','}
+Sg(relacional)= {IGUAL, DISTINTO, OPAND, OPOR, '=', ']', ')', ';', ','}
+Sg(relacionalPrima)= {IGUAL, DISTINTO, OPAND, OPOR, '=', ']', ')', ';', ','}
+Sg(suma)	= {MENORIGUAL, MAYORIGUAL, '<', '>', IGUAL, DISTINTO, OPAND, OPOR, '=', ']', ')', ';', ','}
+Sg(sumaPrima)= {MENORIGUAL, MAYORIGUAL, '<', '>', IGUAL, DISTINTO, OPAND, OPOR, '=', ']', ')', ';', ','}
+Sg(producto)= {'+', '-', MENORIGUAL, MAYORIGUAL, '<', '>', IGUAL, DISTINTO, OPAND, OPOR, '=', ']', ')', ';', ','}
+Sg(productoPrima)= {'+', '-', MENORIGUAL, MAYORIGUAL, '<', '>', IGUAL, DISTINTO, OPAND, OPOR, '=', ']', ')', ';', ','}
+Sg(basico)	= {'*', '/', '+', '-', MENORIGUAL, MAYORIGUAL, '<', '>', IGUAL, DISTINTO, OPAND, OPOR, '=', ']', ')', ';', ','}
+Sg(ident)	= {'*', '/', '+', '-', MENORIGUAL, MAYORIGUAL, '<', '>', IGUAL, DISTINTO, OPAND, OPOR, '=', ']', ')', ';', ','}
+Sg(valores) = {')'}
+Sg(moval)	= {')'}
+Sg(tipo)	= {'['}
