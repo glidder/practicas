@@ -22,7 +22,7 @@
 (defglobal ?*estar* = (create$ estas eres))
 (defglobal ?*resp-estar* = (create$ "Estoy profundamente deprimido. Eso es todo."))
 
-(defglobal ?*poder* = (create$ puedes podrías))
+(defglobal ?*poder* = (create$ puedes podrias))
 (defglobal ?*resp-poder* = (create$ "Es posible, pero no pienso intentarlo." "No creo." "Con una probabilidad del 99.9... en contra."))
 
 (defglobal ?*cansancio* = (create$ pesado cansado aburrido))
@@ -41,7 +41,7 @@
 
 (defglobal ?*miscu* = (create$ ordenador robot programa libro windows))
 (defglobal ?*misco* = (create$ ocio deporte futbol cine internet conocimiento trabajo))
-(defglobal ?*misca* = (create$ filosofía moda comida programación depresion religion politica libertad gente historia alegría informática charla conversación palabra))
+(defglobal ?*misca* = (create$ filosofia moda comida programacion depresion religion politica libertad gente historia alegria informatica charla conversacion palabra))
 (defglobal ?*miscs* = (create$ ordenadores deportes robots libros listos))
 (defglobal ?*resp-misc* = (create$ "Si hay algo que me deprime es eso, " "Ni me menciones " "No soporto ni el nombre de " "En cuentro profundamente deprimente "))
 

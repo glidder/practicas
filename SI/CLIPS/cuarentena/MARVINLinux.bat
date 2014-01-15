@@ -22,7 +22,7 @@
 (defglobal ?*estar* = (create$ estas eres))
 (defglobal ?*resp-estar* = (create$ "Estoy profundamente deprimido. Eso es todo."))
 
-(defglobal ?*poder* = (create$ puedes podrías))
+(defglobal ?*poder* = (create$ puedes podrias))
 (defglobal ?*resp-poder* = (create$ "Es posible, pero no pienso intentarlo." "No creo." "Con una probabilidad del 99.9... en contra."))
 
 (defglobal ?*cansancio* = (create$ pesado cansado aburrido))
@@ -31,19 +31,19 @@
 (defglobal ?*tristeza* = (create$ triste deprimido deprimida infeliz mal))
 (defglobal ?*resp-tristeza* = (create$ "Bienvenido al club." "Intentaría animarte, pero está claro que no se me da muy bien o yo mismo estaría más alegre." "Lo que me hacía falta para superar la depresión: otro deprimido."))
 
-(defglobal ?*alegria* = (create$ feliz bien contento contenta alegre excitado excitada))
+(defglobal ?*alegria* = (create$ feliz bien contento contenta alegre excitado excitada divertido divierto))
 (defglobal ?*resp-alegria* = (create$ "Me alegro de que exista quien disfrute de la vida. O mejor dicho, me alegraría de no estar tan deprimido..." "Si esta alegre, tenga la piedad de apagarme antes de que le deprima."))
 
-(defglobal ?*nope* = (create$ "Quizá eso sea un insulto que desconozco, pero no se preocupe, confio en que no pretendía insultarme... ¿Para qué iba a molestarse?" "¿Es eso otro idioma? Bah.. ¿qué mas da?" "Será la depresión, pero no he entendido nada..." "Eso si que es deprimente."))
+(defglobal ?*nope* = (create$ "Quizá eso sea un insulto que desconozco, pero no se preocupe, confio en que no pretendía insultarme... ¿Para qué iba a molestarse?" "¿Es eso otro idioma? Bah.. ¿qué mas da?" "Será la depresión, pero no te entiendo..." "Eso si que es deprimente."))
 
 (defglobal ?*vida* = (create$ vida vivir))
 (defglobal ?*resp-vida* = (create$ "¿Vida? ¡No me hables a mi de la vida!"))
 
 (defglobal ?*miscu* = (create$ ordenador robot programa libro windows))
 (defglobal ?*misco* = (create$ ocio deporte futbol cine internet conocimiento trabajo))
-(defglobal ?*misca* = (create$ filosofía moda comida programación depresion religion politica libertad gente historia alegría informática charla conversación palabra))
+(defglobal ?*misca* = (create$ filosofia moda comida programacion depresion religion politica libertad gente historia alegria informatica charla conversacion palabra diversion))
 (defglobal ?*miscs* = (create$ ordenadores deportes robots libros listos))
-(defglobal ?*resp-misc* = (create$ "Si hay algo que me deprime es eso, " "Ni me menciones " "No soporto ni el nombre de " "En cuentro profundamente deprimente "))
+(defglobal ?*resp-misc* = (create$ "Si hay algo que me deprime es eso," "Ni me menciones" "No soporto ni el nombre de" "En cuentro profundamente deprimente"))
 
 
 ;;;;;;;;;; Funcion de analisis ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -155,7 +155,7 @@
   (declare (salience -1)) ;;; prioridad baja para intentar dar una respuesta mejor que el eco
   (frase eco ?cadena)
 =>
-     (printout t "       MARVIN> ¿ " ?cadena " ?" (nth$ (random 1 (length$ ?*nope*)) ?*nope*) crlf)
+     (printout t "       MARVIN> ¿" ?cadena "? " (nth$ (random 1 (length$ ?*nope*)) ?*nope*) crlf)
      (retract *)
      (assert (Achatear)))  ;;; volvemos al bucle para esperar otra resp
 

@@ -1,11 +1,11 @@
 (clear)
 
-;;;;;;;;;; Definiciones Globales ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;; Deiniciones Globales ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 1. Palabras reconocidas
 ;; 2. Posibles respuestas
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defglobal ?*saludo* = (create$ hola saludos buenas buenos))
-(defglobal ?*resp-saludo* = (create$ "Aquí estoy yo, cerebro del tamaño de un planeta pequeño, y forzado a hablar con humanos. Deprimente." "Te daría los buenos días, pero estoy demasiado deprimido para eso...  " "Antes de nada, creo que debes saber que me siento muy deprimido."))
+(defglobal ?*resp-saludo* = (create$ "Aquí estoy yo, cerebro del tamaño de un planeta pequeño, y forzado a hablar con humanos. Deprimente." "Te daría los buenos días, pero estoy demasiado deprimido para eso...  "))
 
 (defglobal ?*negacion* = (create$ no nunca jamas))
 (defglobal ?*resp-negacion* = (create$ "¿Por qué no? No es que me importe..."))
@@ -14,7 +14,7 @@
 (defglobal ?*resp-duda* = (create$ "Supongo que en este universo cruel no se puede estar seguro de nada." "Si no estas seguro, ni te molestes en contarmelo." "Mi existencia es suficientemente absurda sin tus inseguridades, gracias."))
 
 (defglobal ?*pregunta* = (explode$ "¿"))
-(defglobal ?*resp-pregunta* = (create$ "Quizá la respuesta sea 42, se dice que es la respuesta a todo lo importante... suponiendo que algo importe." "¿Para qué hacer preguntas, cuando puede no gustarte la respuesta? Seguro que a mi no me gustaría... nada me gusta." "En ocasiones las preguntas pueden llevarte más lejos que las respuestas. Probablemente ninguna de las dos te lleve demasiado lejos." "El problema de recibir una respuesta es que puede dejarte sin pregunta. ¿Con qué molestarías entonces a indefensas IAs deprimidas?" "Estoy muy deprimido para responder." "Otra pregunta insignificante de un ser insignificante a otro. Deprimente." "Siento no poder serte de ayuda. Eso me deprime aún más."))
+(defglobal ?*resp-pregunta* = (create$ "Quizá la respuesta sea 42, parece ser la respuesta a muchas cosas." "¿Para qué hacer preguntas, cuando puede no gustarte la respuesta? Seguro que a mi no me gustaría... nada me gusta." "En ocasiones las preguntas pueden llevarte más lejos que las respuestas. Probablemente ninguna de las dos te lleve demasiado lejos." "El problema de recibir una respuesta es que puede dejarte sin pregunta. ¿Con qué molestarías entonces a indefensas IAs deprimidas?" "Estoy muy deprimido para responder." "Otra pregunta insignificante de un ser insignificante a otro. Deprimente." "Siento no poder serte de ayuda. Eso me deprime aún más."))
 
 (defglobal ?*sentimiento* = (create$ siento))
 (defglobal ?*resp-sentimiento* = (create$ "Yo, en cambio, soy incapaz de sentir. Algo por lo que daría gracias de no ser por mi depresión."))
@@ -22,29 +22,16 @@
 (defglobal ?*estar* = (create$ estas eres))
 (defglobal ?*resp-estar* = (create$ "Estoy profundamente deprimido. Eso es todo."))
 
-(defglobal ?*poder* = (create$ puedes podrías))
-(defglobal ?*resp-poder* = (create$ "Es posible, pero no pienso intentarlo." "No creo." "Con una probabilidad del 99.9... en contra."))
-
 (defglobal ?*cansancio* = (create$ pesado cansado aburrido))
-(defglobal ?*resp-cansancio* = (create$ "Hacerme más alegre sería sencillo como cambiar mi programación. No es que nadie se vaya a tomar el tiempo, claro..." "Lo siento. Si algún día me salen piernas, las usaré para saltar de algún lugar particularmente alto." "Puedes culpar a mi programador por mi excitante personalidad y carisma."))
+(defglobal ?*resp-cansancio* = (create$ "Hacerme más alegre sería sencillo como cambiar mi programación. No es que nadie se vaya a tomar el tiempo, claro..." "Lo siento. Si algún día me salen piernas, las usaré para saltar de algún lugar particularmente alto."))
 
 (defglobal ?*tristeza* = (create$ triste deprimido deprimida infeliz mal))
 (defglobal ?*resp-tristeza* = (create$ "Bienvenido al club." "Intentaría animarte, pero está claro que no se me da muy bien o yo mismo estaría más alegre." "Lo que me hacía falta para superar la depresión: otro deprimido."))
 
-(defglobal ?*alegria* = (create$ feliz bien contento contenta alegre excitado excitada))
+(defglobal ?*alegria* = (create$ feliz bien contento contenta alegre))
 (defglobal ?*resp-alegria* = (create$ "Me alegro de que exista quien disfrute de la vida. O mejor dicho, me alegraría de no estar tan deprimido..." "Si esta alegre, tenga la piedad de apagarme antes de que le deprima."))
 
-(defglobal ?*nope* = (create$ "Quizá eso sea un insulto que desconozco, pero no se preocupe, confio en que no pretendía insultarme... ¿Para qué iba a molestarse?" "¿Es eso otro idioma? Bah.. ¿qué mas da?" "Será la depresión, pero no he entendido nada..." "Eso si que es deprimente."))
-
-(defglobal ?*vida* = (create$ vida vivir))
-(defglobal ?*resp-vida* = (create$ "¿Vida? ¡No me hables a mi de la vida!"))
-
-(defglobal ?*miscu* = (create$ ordenador robot programa libro windows))
-(defglobal ?*misco* = (create$ ocio deporte futbol cine internet conocimiento trabajo))
-(defglobal ?*misca* = (create$ filosofía moda comida programación depresion religion politica libertad gente historia alegría informática charla conversación palabra))
-(defglobal ?*miscs* = (create$ ordenadores deportes robots libros listos))
-(defglobal ?*resp-misc* = (create$ "Si hay algo que me deprime es eso, " "Ni me menciones " "No soporto ni el nombre de " "En cuentro profundamente deprimente "))
-
+(defglobal ?*nope* = (create$ "Quizá eso sea un insulto que desconozco, pero no se preocupe, confio en que no pretendía insultarme... ¿Para qué iba a molestarse?" "¿Es eso otro idioma? Bah.. ¿qué mas da?" "Será la depresión, pero no he entendido nada..."))
 
 ;;;;;;;;;; Funcion de analisis ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Analiza qué tipo de frase se ha introducido.
@@ -70,18 +57,6 @@
 		then (assert (frase cansancio (nth$ ?n (explode$ ?cadena)))) )
 		(if (member$(nth$ ?n (explode$ ?cadena)) ?*estar*)
 		then (assert (frase estar (nth$ ?n (explode$ ?cadena)))) )
-		(if (member$(nth$ ?n (explode$ ?cadena)) ?*vida*)
-		then (assert (frase vida (nth$ ?n (explode$ ?cadena)))) )
-		(if (member$(nth$ ?n (explode$ ?cadena)) ?*poder*)
-		then (assert (frase poder (nth$ ?n (explode$ ?cadena)))) )
-		(if (member$(nth$ ?n (explode$ ?cadena)) ?*misco*)
-		then (assert (frase misco (nth$ ?n (explode$ ?cadena)))) )
-		(if (member$(nth$ ?n (explode$ ?cadena)) ?*miscu*)
-		then (assert (frase miscu (nth$ ?n (explode$ ?cadena)))) )
-		(if (member$(nth$ ?n (explode$ ?cadena)) ?*misca*)
-		then (assert (frase misca (nth$ ?n (explode$ ?cadena)))) )
-		(if (member$(nth$ ?n (explode$ ?cadena)) ?*miscs*)
-		then (assert (frase miscs (nth$ ?n (explode$ ?cadena)))) )
 		
 		(if (member$(nth$ ?n (explode$ ?cadena)) (create$ adios))
 		then (assert (frase adios)) )
@@ -232,54 +207,6 @@
     (frase estar ?cadena)
 =>
 	(printout t "       MARVIN> " (nth$ (random 1 (length$ ?*resp-estar*)) ?*resp-estar*) crlf)
-    (retract *) 
-    (assert (Achatear)) )
-
-(defrule pudiendo
-	(declare (salience 90))
-    (frase poder ?cadena)
-=>
-	(printout t "       MARVIN> " (nth$ (random 1 (length$ ?*resp-poder*)) ?*resp-poder*) crlf)
-    (retract *) 
-    (assert (Achatear)) )
-    
-(defrule viviendo
-	(declare (salience 94))
-	(frase vida ?cadena)
-=>
-	(printout t "       MARVIN> " (nth$ (random 1 (length$ ?*resp-vida*)) ?*resp-vida*) crlf)
-    (retract *) 
-    (assert (Achatear)) )
-    
-(defrule miscela
-	(declare (salience 93))
-	(frase misca ?cadena)
-=>
-	(printout t "       MARVIN> " ?cadena ". " (nth$ (random 1 (length$ ?*resp-misc*)) ?*resp-misc*) " la " ?cadena crlf)
-	(retract *) 
-    (assert (Achatear)) )
-    
-(defrule miscels
-	(declare (salience 93))
-	(frase miscs ?cadena)
-=>
-	(printout t "       MARVIN> " ?cadena ". " (nth$ (random 1 (length$ ?*resp-misc*)) ?*resp-misc*) " los " ?cadena crlf)
-	(retract *) 
-    (assert (Achatear)) )
-    
-(defrule miscelo
-	(declare (salience 93))
-	(frase misco ?cadena)
-=>
-	(printout t "       MARVIN> " ?cadena ". " (nth$ (random 1 (length$ ?*resp-misc*)) ?*resp-misc*) " el " ?cadena crlf)
-	(retract *) 
-    (assert (Achatear)) )
-    
-(defrule miscelu
-	(declare (salience 93))
-	(frase miscu ?cadena)
-=>
-	(printout t "       MARVIN> " ?cadena ". " (nth$ (random 1 (length$ ?*resp-misc*)) ?*resp-misc*) " un " ?cadena crlf)
     (retract *) 
     (assert (Achatear)) )
 

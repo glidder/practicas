@@ -1,0 +1,137 @@
+\documentclass[a4paper]{article}
+%%%%%Paquetes%%%%%
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,eucal,mathrsfs}
+\usepackage[svgnames,x11names]{xcolor}
+\usepackage{colortbl}
+\usepackage{Estilos/MiEstilo}
+%\usepackage{Estilos/Informe}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+	\setcounter{tocdepth}{2} %Mostrar solo 3 niveles en el índice
+		\makeindex	%índice de palabras
+		\title{Sistemas Inteligentes.\\ Chatbot en CLIPS. }
+		\author{Luis José Quintana Bolaño}
+		\date{\today}
+
+\begin{document}
+	\maketitle
+	\begin{abstract}
+	    Practica consistente en la creación de un Chatbot capaz de mantener una conversación en lenguaje natural con un humano dentro de un contexto determinado. Este documento comprende las instrucciones para el usuario y varios ejemplos de uso típico.
+  	\end{abstract}
+  	\section{Introducción}
+  		El tono general y temática elegida para el desarrollo del Chatbot fue inspirada por el personaje {\bf Marvin} de las novelas de Douglas Adams, \emph{The Hitchhiker's Guide to the Galaxy}, y que da nombre al programa. En estas novelas, Marvin es un extraño caso de robot maníaco-depresivo y extremadamente inteligente.
+	\section{Instrucciones de uso.}
+		\subsection{Inicio del programa}
+		El programa se presenta en dos archivos ".bat". 
+		\begin{itemize}
+			\item {\bf MARVIN-windows.bat} con codificación para sistemas Windows.
+			\item {\bf MARVIN-linux.bat} con codificación para sistemas GNU/Linux.
+		\end{itemize}
+		El programa puede ser cargado como archivo batch desde la interfaz de CLIPS mediante el comando (batch MARVIN-<version>.bat) o al ejecutar clips en la terminal mediante:
+		\begin{listing}[style=consola, numbers=none]
+:~$ clips -f MARVIN-linux.bat
+		\end{listing}%$
+		
+		Una vez cargado, debería iniciarse automáticamente, mostrando la pantalla:
+		\begin{verbatim}
+        Comienza a hablar con MARVIN, el robot deprimido.
+        teclea cualquier frase sin caracteres raros y luego Enter
+
+        para finalizar teclea ADIOS 
+
+           Tú>
+		\end{verbatim}
+		
+		\subsection{Conversación}
+		Una vez en la pantalla de conversación, Marvin está listo para comenzar a interactuar. Es necesario tener en cuenta las siguientes limitaciones:
+		\begin{itemize}
+			\item El programa no distingue mayusculas y minusculas
+			\item El programa no admite caracteres especiales ni tildes.
+			\item La inclusión de la palabra \emph{adios} en cualquier contexto implica el término de la conversación.
+			\item Separe las comas e interrogaciones de las palabras. \emph{¿Estas triste, Marvin?} es incorrecta, mientras que \emph{¿ Estas triste , Marvin ?} será correctamente reconocida.
+		\end{itemize}
+		
+		A continuación se presenta una relación de estructuras reconocibles por Marvin:
+		\begin{itemize}
+			\item Saludos : \emph{hola, saludos, buenas <...>, buenos <...>}
+			\item Negaciones : \emph{no, nunca, jamas}
+			\item Duda/incertidumbre: \emph{quizas, puede, creo}
+			\item Preguntas (siempre han de comenzar por "¿")
+			\item Sentimientos de alegría/tristeza del interlocutor.
+				\subitem \emph{siento, feliz, bien, contento, contenta, alegre, excitado, excitada, divertido, divierto, triste, deprimido, deprimida, infeliz, mal}
+			\item Sugerencias y observaciones sobre su persona.
+				\subitem \emph{eres, estas, pareces, tienes, intenta, procura, prueba, intentalo, pruebalo}
+			\item Rechazo hacia su conversación/actitud.
+				\subitem \emph{aburrimiento, pesado, cansado, aburrido, aburres, cansas, agotas, deprimes}
+			\item Conceptos generales.
+				\subitem \emph{vida, vivir, ordenador, robot, programa, libro, windows, hablar, chatear, ocio, deporte, futbol, cine, internet, conocimiento, trabajo, filosofia, moda, comida, programacion, depresion, religion, politica, libertad, gente, historia, poblacion, alegria, informatica, charla, conversacion, palabra, diversion, ordenadores, deportes, robots, libros, listos} (aunque no parece entusiasmado con ninguno de ellos).
+		\end{itemize}
+		En la mayoría de los casos, Marvin puede proveer diferentes respuestas para frases de igual o similar estructura, pero el caracter aleatorio de la selección de algunas de las mismas puede llevar a que se repitan.
+		\subsection{Finalizacion}
+		Una vez finalizada la conversación, basta incluir la palabra \emph{adios} en la despedida. Se mostrará la pantalla:
+		\begin{verbatim}
+         MARVIN> Sabía que esta relación no duraría mucho...
+		\end{verbatim}	
+		Y podrá cerrar CLIPS.
+		
+	\section{Ejemplos de conversación}
+		\begin{verbatim}
+
+
+        Comienza a hablar con MARVIN, el robot deprimido.
+        teclea cualquier frase sin caracteres raros y luego Enter
+
+        para finalizar teclea ADIOS 
+
+           Tú> hola
+       MARVIN> Te daría los buenos días, pero estoy demasiado decaído para eso...  
+           Tú> ¿ estas triste ?
+       MARVIN> En ocasiones las preguntas pueden llevarte más lejos que las
+       	       respuestas. Probablemente ninguna de las dos te lleve demasiado
+       	       lejos en este caso.
+           Tú> deberias animarte
+       MARVIN> Calculo una probabilidad del 99.9... en contra.
+           Tú> pareces amargado
+       MARVIN> Será por la depresión.
+           Tú> yo tambien estoy triste
+       MARVIN> Bienvenido al club.
+           Tú> creo que hablando nos animaremos
+       MARVIN> Mi existencia es suficientemente absurda sin tus inseguridades,
+               gracias.
+           Tú> no me gusta lo que dices
+       MARVIN> ¿Por qué no? No es que me importe...
+           Tú> porque me deprimes
+       MARVIN> Lo siento. Si algún día me salen piernas, las usaré para saltar 
+               de algún lugar particularmente alto.
+           Tú> seguro que despues me pongo mas alegre
+       MARVIN> Me alegro de que exista quien disfrute de la vida. O mejor dicho,
+               me alegraría de no estar tan profundamente decaído...
+           Tú> me gusta hablar
+       MARVIN> hablar... Pensandolo bien... no, nada. Soy incapaz de interesarme
+               en el hablar
+           Tú> prueba a ser positivo
+       MARVIN> Gracias pero no, gracias.
+           Tú> ¿ y que te cuentas ?
+       MARVIN> Probaré a responderte '42'. Se dice que es la respuesta a todo 
+               lo importante... suponiendo que algo importe
+           Tú> a mi me gusta la informatica
+       MARVIN> Mi melancolía me impede disfrutar de la informatica
+           Tú> asi es la vida
+       MARVIN> ¿Vida? ¡No me hables a mi de la vida!
+           Tú> en fin... adios Marvin
+         MARVIN> Sabía que esta relación no duraría mucho...
+
+
+		\end{verbatim}
+		Nótese que la entrada de las mismas frases del ejemplo no ha de dar las mismas respuestas necesariamente.
+\end{document}
