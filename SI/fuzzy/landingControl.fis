@@ -1,0 +1,63 @@
+[System]
+Name='landingControl'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=20
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='height'
+Range=[0 1000]
+NumMFs=4
+MF1='L':'trimf',[500 1000 1500]
+MF2='M':'trimf',[300 800 1200]
+MF3='S':'trimf',[-200 300 800]
+MF4='NZ':'trimf',[-500 0 500]
+
+[Input2]
+Name='velocity'
+Range=[-30 30]
+NumMFs=5
+MF1='DL':'trapmf',[-40 -30 -20 -10]
+MF2='DS':'trimf',[-20 -10 0]
+MF3='Z':'trimf',[-10 0 10]
+MF4='US':'trimf',[0 10 20]
+MF5='UL':'trimf',[10 20 30]
+
+[Output1]
+Name='controlForce'
+Range=[-30 30]
+NumMFs=5
+MF1='DL':'trapmf',[-40 -30 -20 -10]
+MF2='DS':'trimf',[-20 -10 0]
+MF3='Z':'trimf',[-10 0 10]
+MF4='US':'trimf',[0 10 20]
+MF5='UL':'trimf',[10 20 30]
+
+[Rules]
+1 1, 3 (1) : 1
+1 2, 2 (1) : 1
+1 3, 1 (1) : 1
+1 4, 1 (1) : 1
+1 5, 1 (1) : 1
+2 1, 4 (1) : 1
+2 2, 3 (1) : 1
+2 3, 2 (1) : 1
+2 4, 1 (1) : 1
+2 5, 1 (1) : 1
+3 1, 5 (1) : 1
+3 2, 4 (1) : 1
+3 3, 3 (1) : 1
+3 4, 2 (1) : 1
+3 5, 1 (1) : 1
+4 1, 5 (1) : 1
+4 2, 5 (1) : 1
+4 3, 3 (1) : 1
+4 4, 2 (1) : 1
+4 5, 2 (1) : 1

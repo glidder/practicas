@@ -1,0 +1,35 @@
+entrada -> sent {sent.s->evaluar();} entrada
+         | epsilon
+
+sent -> PRINT expr ';'    {sent.s := new NodoPrint(expr.s);}
+      | ID ":=" expr ';'  {sent.s := new NodoAsign(ID.lexval, expr.s);}
+
+expr -> term {expr'.h := term.s;} expr' {expr.s := expr'.s;}
+
+expr' -> OR term {expr'1.h := new NodoDisy(expr'.h, term.s);} expr'1 {expr'.s := expr'1.s;}
+       | epsilon    {expr'.s := expr'.h;}
+
+term -> fact {term'.h := fact.s;} term' {term.s := term'.s;}
+
+term' -> AND fact {term'1.h := new NodoConj(term'.h, fact.s);} term'1 {term'.s := term'1.s;}
+       |  epsilon    {term'.s := term'.h;}
+
+fact -> NOT fact1              {fact.s = new NodoNo(fact1.s);}
+      | ID                     {fact.s = new NodoId(ID.lexval);}
+      | TRUE                   {fact.s = new NodoTrue();}
+      | FALSE                  {fact.s = new NodoFalse();}
+      | '(' expr ')'           {fact.s = expr.s;}
+
+/***************** conjuntos principio y siguiente ******************/
+
+pr(entrada) = {PRINT, ID, epsilon}
+pr(sent) = {PRINT, ID}
+pr(expr) = pr(term) = pr(fact) = {NOT, TRUE, FALSE, ID, '('}
+pr(expr') = {OR, epsilon}
+pr(term') = {AND, epslion}
+
+sig(entrada) ={$}
+sig(expr') = sig(expr) = {';', ')'}
+sig(term') = sig(term) = {';', ')', OR}
+
+

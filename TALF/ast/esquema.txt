@@ -1,0 +1,22 @@
+entrada -> definicion entrada 
+		| epsilon
+definicion -> tipo {lista.h := tipo.s;} lista ';'
+tipo -> INTEGER {tipo.s := new TipoEntero;}
+		| FLOAT {tipo.s := new TipoFlotante;}
+lista -> ID {tabla[id.lexval = listaPrima.h; listaPrima.h = lista.h; } listaPrima
+listaPrima -> ',' ID {tabla[id.lexval = listaPrima.h; lp1.h = listaPrima.h; } listaPrima1
+			| epsilon
+          
+Pr(listaP) = {',', €}
+Pr(lista)= {ID}
+Pr(tipo)= {Integer, Float}
+Pr(definicion)=Pr(tipo)={Integer, Float}
+Pr(entrada)=Pr(definicion)U€=Pr(tipo)={Integer, Float, €}
+
+Sg(entrada)= {$}
+Sg(definicion)= Pr(entrada) = {Integer, Float}
+Sg(tipo)= Pr(lista) = {ID}
+Sg(lista)= {';'}
+sG(listaP)=Sg(listaP)USg(lista)={';'}
+
+

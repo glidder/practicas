@@ -1,3 +1,5 @@
+;;Autor: Luis Jose Quintana Bolaño
+;;Fecha: 14 Enero, 2014
 (clear)
 
 ;;;;;;;;;; Definiciones Globales ;;;;;;;;;;;;;;;;;;;;;;;;;;;

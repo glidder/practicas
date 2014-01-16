@@ -1,0 +1,39 @@
+### Comienza el programa, calculadora booleana
+
+## x := true;
+Almaceno 1 en tabla[x]
+Evaluacion = 1
+
+## print x;
+IMPRIMO valor = 1
+Evaluacion = 1
+
+## y := false and x;
+Almaceno 0 en tabla[y]
+Evaluacion = 0
+
+## print y;
+IMPRIMO valor = 0
+Evaluacion = 0
+
+## print not y;
+IMPRIMO valor = 1
+Evaluacion = 1
+
+## print x and not y;
+IMPRIMO valor = 1
+Evaluacion = 1
+
+## print not(x and not y);
+IMPRIMO valor = 0
+Evaluacion = 0
+
+## x := not x;
+Almaceno 0 en tabla[x]
+Evaluacion = 0
+
+## z:= true or not(x and not y);
+Almaceno 1 en tabla[z]
+Evaluacion = 1
+
+### Fin del programa
