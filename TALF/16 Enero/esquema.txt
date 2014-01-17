@@ -1,0 +1,16 @@
+entrada -> definicion entrada
+             | epsilon
+
+definicion -> tipo {lista.h := tipo.s;} lista ';'
+
+tipo -> INTEGER {tipo.s := new TipoEntero;}
+         | FLOAT {tipo.s := new TipoFlotante;}
+		 
+lista -> ID {tabla[id.lexval = listaPrima.h;
+                      listaPrima.h = lista.h; }
+         listaPrima
+
+listaPrima -> ',' ID {tabla[id.lexval = listaPrima.h;
+                      lp1.h = listaPrima.h; }
+              listaPrima1
+          | epsilon

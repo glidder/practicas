@@ -1,0 +1,39 @@
+### Comienza el programa, calculadora booleana
+## x = true;
+sentencia = tabla[x]=True
+Almaceno 1 en tabla[x]
+su valor = 1
+## print x;
+sentencia = print(ID(x))
+PRINT = 1
+su valor = 1
+## y = false and x;
+sentencia = tabla[y]=and(False,ID(x))
+Almaceno 0 en tabla[y]
+su valor = 0
+## print y;
+sentencia = print(ID(y))
+PRINT = 0
+su valor = 0
+## print not y;
+sentencia = print(NO(ID(y)))
+PRINT = 1
+su valor = 1
+## print x and not y;
+sentencia = print(and(ID(x),NO(ID(y))))
+PRINT = 1
+su valor = 1
+## print not(x and not y);
+sentencia = print(NO(and(ID(x),NO(ID(y)))))
+PRINT = 0
+su valor = 0
+## x = not x;
+sentencia = tabla[x]=NO(ID(x))
+Almaceno 0 en tabla[x]
+su valor = 0
+## z = true or not(x and not y);
+sentencia = tabla[z]=or(True,NO(and(ID(x),NO(ID(y)))))
+Almaceno 1 en tabla[z]
+su valor = 1
+## 
+### Fin del programa
