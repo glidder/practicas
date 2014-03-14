@@ -27,7 +27,7 @@
 (defglobal ?*poder* = (create$ puedes podrias deberias tendrias))
 (defglobal ?*resp-poder* = (create$ "Es posible, pero no pienso intentarlo." "No creo." "Calculo una probabilidad del 99.9... en contra."))
 
-(defglobal ?*cansancio* = (create$ aburrimiento pesado cansado aburrido aburres cansas agotas, deprimes))
+(defglobal ?*cansancio* = (create$ aburrimiento pesado cansado aburrido aburres cansas agotas deprimes))
 (defglobal ?*resp-cansancio* = (create$ "Hacerme más alegre sería sencillo como cambiar mi programación. No es que nadie se vaya a tomar el tiempo, claro..." "Lo siento. Si algún día me salen piernas, las usaré para saltar de algún lugar particularmente alto." "Puedes culpar a mi programador por mi excitante personalidad y carisma." "¿Acaso es culpa mía estar desoladoramente deprimido?"))
 
 (defglobal ?*tristeza* = (create$ triste deprimido deprimida infeliz mal))

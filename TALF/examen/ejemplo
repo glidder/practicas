@@ -1,0 +1,7 @@
+uno := a b+ | c d ; //comentario a filtrar
+
+dos := {tres}* d ;
+
+hola := (e {uno})+ f | (g* | k)+ h ;
+
+adios := {dos} g ({hola} | c) ; // otro comentario
