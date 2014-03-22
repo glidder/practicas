@@ -1,0 +1,321 @@
+[x, y] =cosdiscreta(102, 80, 10, 4, 0);
+stem(x,y)
+[x, y] =cosdiscreta(102, 20, 10, 4, 0);
+stem(x,y)
+[x1, y1]=cosdiscreta(100, 40, 1, 10, 0);
+stem(x1,y1);
+hold on
+stem(x2, y2,'r');
+# Octave 3.6.2, Wed Mar 12 17:10:19 2014 CET <glidder@glidder-1005HA>
+exit
+# Octave 3.6.2, Wed Mar 12 17:25:58 2014 CET <glidder@glidder-1005HA>
+n1=4;n2=10;n=n1:n2
+impulso_unitario(5, 2, 10, 1)
+impulso_unitario(5, 2, 10, 1)
+escalon_unitario(5, 2, 10, 1)
+escalon_unitario(5, 2, 10, 1)
+x=4;y=x*(x<5)
+x=6;y=x*(x<5)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,10,1)
+rampa(5,1,20,1)
+rampa(5,1,20,1)
+rampa(5,1,20,1)
+rampa(5,1,20,1)
+rampa(5,1,20,1)
+# Octave 3.6.2, Wed Mar 12 19:51:30 2014 CET <glidder@glidder-1005HA>
+frontera_decision(5, 5, 5, 5)
+# Octave 3.6.2, Thu Mar 13 19:12:31 2014 CET <glidder@glidder-1005HA>
+colores(0,1,0,0,0,0)
+close all
+colores(0,1,0,0,0,0)
+close all
+colores(0,1,0,0,0,0)
+close all
+colores(0,1,0,0,0,0)
+# Octave 3.6.2, Thu Mar 13 20:17:01 2014 CET <glidder@glidder-1005HA>
+colores(0,1,0,0,0,0)
+close all
+colores(0,1,0,0,0,0)
+close all
+colores(0,1,0,0,0,0)
+# Octave 3.6.2, Thu Mar 13 20:22:17 2014 CET <glidder@glidder-1005HA>
+colores(0,1,0,0,0,0)
+colores(1, 1, 0, 23, 3, 2)
+colores(1, 1, 0, 23, 3, 2)
+colores(1, 1, 0, 23, 3, 2, 10000000)
+colores(1, 1, 0, 23, 3, 2, 10000000)
+colores(1, 1, 0, 23, 3, 2, 10000)
+colores(1, 1, 0, 23, 3, 2, 10000)
+help line
+colores(1, 1, 0, 23, 3, 2, 10000)
+colores(1, 1, 0, 23, 3, 2, 10000)
+colores(1, 1, 0, 23, 3, 2, 10000)
+colores(1, 1, 0, 23, 3, 2, 10000)
+ç
+colores(1, 1, 0, 23, 3, 2, 10000)
+colores(1, 1, 0, 23, 3, 2, 10000)
+colores(1, 1, 0, 23, 3, 2, 10000)
+colores(1, 1, 0, 23, 3, 2, 10000)
+help axis
+help axis
+colores(1, 1, 0, 23, 3, 2, 10000)
+colores(1, 1, 0, 23, 3, 2, 10000)
+quit
+# Octave 3.6.2, Wed Mar 19 13:28:22 2014 CET <glidder@glidder-1005HA>
+colores(1, 1, 0, 23, 3, 2, 10000)
+colores(1, 1, 0, 23, 3, 2, 10000)
+colores(1, 0, 23, 2, -0.5, 0.5, 10000)
+colores(1, 0, 23, 2, -0.5, 0.5, 10000)
+colores(1, 0, 0, 0, -0.5, 0.5, 10000)
+colores(1, 0, 0, 0, -0.5, 0.5, 10000)
+colores(1, 0, 0, 0, -0.5, 0.5, 10000)
+colores(1, 0, 0, 0, -0.5, 0.5, 10000)
+colores(1, 0, 0, 0, -0.5, 0.5, 10000)
+colores(1, 0, 0, 0, 0, 10, 10000)
+colores(1, 0, 0, 0, -2, 10, 10000)
+colores(1, 0, 0, 1, -2, 10, 10000)
+colores(1, 0, -1, 1, -2, 10, 10000)
+colores(1, 0, 1, 2, -2, 10, 10000)
+colores(0, 0, 1, 0, -2, 2, 10000)
+colores(1, 0, 1, 2, -2, 10, 10000)
+close all
+help fft
+x=[1 3 2 4 5 6 5 4]; y=fft(x);
+y
+x=[1 3 2 4 5 6 5 4]; y=fft(x)
+clear;x=[1 3 2 4 5 6 5 4]; y=fft(x)
+clean
+clear
+clc
+clc;x=[1 3 2 4 5 6 5 4]; y=fft(x)
+clc;x=[1 3 2 4 5 6 5 4]; y=ifft(fft(x))
+clc;x=[1 3 2 4 5 6 5 4]; y=abs(ifft(fft(x)))
+clc;x=[1 3 2 4 5 6 5 4]; y=ifft(fft(x))
+clc;x=[1 3 2 4 5 6 5 4]; y=abs(ifft(fft(x)))
+clc;x=[1 3 2 4 5 6 5 4]; y=abs(ifft(fft(x,256)))
+clc;x=[1 3 2 4 5 6 5 4]; y=fft(x,256)))
+clc;x=[1 3 2 4 5 6 5 4]; y=fft(x,256)
+clc;x=[1 3 2 4 5 6 5 4]; y=ifft(fft(x,256))
+clc;x=[1 3 2 4 5 6 5 4]; y=abs(ifft(fft(x,256)))
+clc;x=[1 3 2 4 5 6 5 4]; y=ifft(fft(x,256))
+clc;x=[1 3 2 4 5 6 5 4]; y=abs(ifft(fft(x,256))); plot(y)
+clc;x=[1 3 2 4 5 6 5 4]; y=abs(ifft(fft(x,256))); plot(y(1:8))
+help angle
+close
+quit
+# Octave 3.6.2, Wed Mar 19 17:36:55 2014 CET <glidder@glidder-1005HA>
+plot(sindiscreta(200, 100, 4, 8, 0))
+[x,y]=sindiscreta(200, 100, 4, 8, 0));plot(x,y,'p');
+[x,y]=sindiscreta(200, 100, 4, 8, 0);plot(x,y,'p');
+[x,y]=sindiscreta(200, 100, 4, 8, 0);plot(x,y,'g');
+[x,y]=sindiscreta(200, 500, 4, 8, 0);plot(x,y,'g');
+stem(x,y,'g');
+stem(x,y,'G');
+stem(x,y,'Y');
+stem(x,y,'N');
+stem(x,y,'M');
+stem(x,y,'dg');
+stem(x,y,'d');
+tf=fft(y);
+bar(abs(tf))
+stem(x,y,'v');
+stem(x,y,'g');
+stem(x,y,'v');
+stem(x,y,'p');
+stem(x,y,'l');
+frec=linspace(0,100,length(y)+1)
+bar(frec(1:end-1),abs(tf))
+figure,bar(abs(tf));
+find frec==8
+find(frec==8)
+abs(tf(17))
+[x,y]=sindiscreta(200, 100, 4, 8, 0);plot(x,y,'g');
+abs(tf(17))
+tf=fft(y);
+frec=linspace(0,100,length(y)+1)
+abs(tf(17))
+ angle(tf(17))
+y=y+3;
+tf=fft(y);
+bar(frec(1:end-1),abs(tf))
+abs(tf(1))
+#La componente continua representa el desplazamiento promedio
+#Montagón es un petardo
+bar(frec(1:end-1),real(tf)); figure; bar(frec(1:end-1), imag(tf));
+function [y] = funció(a) y=a;end
+variáble=1
+clc
+quit
+# Octave 3.6.2, Wed Mar 19 19:36:59 2014 CET <glidder@glidder-1005HA>
+ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+quit
+# Octave 3.6.2, Wed Mar 19 19:45:50 2014 CET <glidder@glidder-1005HA>
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+quit
+# Octave 3.6.2, Wed Mar 19 19:46:28 2014 CET <glidder@glidder-1005HA>
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+[x,y]=ondaRectangular(1,4,0,100,200,500,1,0.05)
+plot(x,y)
+# Octave 3.6.2, Wed Mar 19 19:48:01 2014 CET <glidder@glidder-1005HA>
+quit
+# Octave 3.6.2, Thu Mar 20 16:23:06 2014 CET <glidder@glidder-1005HA>
+'Untitled Document'
+Cosa.m 
+Cosa
+Cosa
+figure, Cosa
+figure, Cosa
+[a,b]=sort(rand(1,10));
+a
+b
+Cosa
+Cosa
+Cosa
+X
+B
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+ECM
+Cosa
+ECM
+ECM
+ECM
+Cosa
+ECM
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+Cosa
+while EG<1000 do Cosa; end
+while EG<1000 do, Cosa; end
+while EG<1000, Cosa; end
+while EG<8000, Cosa; end
+1.1929e+05
+while EG<119290, Cosa; end
+EG=0
+while EG<119290, Cosa; end
+close all
+while EG<800000, Cosa2; end
+while EG<800000, Cosa2; end
+while EG<800000, Cosa2; end
+while EG<800000, Cosa2; end
+while EG<800000, Cosa2; end
+while EG<800000, Cosa2; end
+while EG<800000, Cosa2; end
+while EG<800000, Cosa2; end
+quit
+# Octave 3.6.2, Thu Mar 20 17:57:09 2014 CET <glidder@glidder-1005HA>
+while EG<800000, Cosa2; end
+EG=0; while EG<800000, Cosa2; end
+plot(xdata,polyval(p,xdata),'.k')
+figure, plot(xdata,ydata,'og'); hold on, plot(x,yok,'.b'); drawnow;
+plot(xdata,polyval(p,xdata),'.k')
+plot(x,polyval(p,x),'.r')
+Cosa 
+Cosa 
+Cosa 
+Cosa 
+Cosa 
+Cosa 
+Cosa 
+Cosa 
+close all
+Cosa 
+close all
+Cosa 
+close all
+Cosa 
+close all
+Cosa 
+close all
+Cosa 
+Cosa 
+Cosa 
+ECM
+close all
+ECM
+Cosa 
+close all
+Cosa 
+Cosa 
+Cosa 
+quit
+# Octave 3.6.2, Thu Mar 20 18:55:27 2014 CET <glidder@glidder-1005HA>
+Cosa 
+Cosa 
+Cosa 
+Cosa
+ErrorTamaño
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+ErrorTam
+# Octave 3.6.2, Thu Mar 20 20:06:44 2014 CET <glidder@glidder-1005HA>
