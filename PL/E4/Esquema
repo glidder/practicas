@@ -1,0 +1,9 @@
+_______Ascendente__________
+S : A		{A.h := 1}
+A : ID		{escribir(ID.lexval,"=",A.h);}
+  | A1 ID	{ A1.h := A.h+1; escribir(ID.lexval, "=",A.h);}
+_______Descendente_________
+S : A
+A : ID A'	{escribir(ID.lexval, "=", A'.h);}
+A': ID A1'	{escribir(ID.lexval, "=", A1'.h); A.s := A1'.h+1}
+A': €		{A'.s := 1;}

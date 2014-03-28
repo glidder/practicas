@@ -1,0 +1,8 @@
+Fourier = fft(y);
+amplitud=abs(Fourier);
+bar(amplitud);
+close all;
+bar(ampitud);
+frec=linspace(0, Fs);
+bar(frec(1:end-1),y);
+bar(frec(1:end-1),abs(fft(y)));
