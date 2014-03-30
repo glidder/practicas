@@ -3,7 +3,6 @@ if nargin <7
 	n=10000;
 end
 rand('seed',0);
-%0=Ax+By+C;
 x=ri+(rs-ri)*rand(1,n);
 y=ri+(rs-ri)*rand(1,n);
 c=zeros(1,n);
