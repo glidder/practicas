@@ -5,7 +5,8 @@
 \usepackage{Estilos/Estilopres}
 \usepackage{color}
 \usepackage{listings}
-\usepackage{natbib}
+%\usepackage{natbib}
+\usepackage{hyperref}
 \def\newblock{\hskip .11em plus .33em minus .07em}
 \usetheme{Warsaw}
 \usecolortheme{dolphin}
@@ -61,7 +62,7 @@
     {\bf Class} & {\bf Computational Model} & {\bf Resource Constraint} \\ \hline
     DSPACE & 	DTM &	Space $f(n)$ \\ \hline
     L 	& DTM &	Space $O(\log n)$ \\ \hline
-    $L^2$ & DTM & Space $O(\log^2 n)$ \\ \hline
+    L$^2$ & DTM & Space $O(\log^2 n)$ \\ \hline
     PSPACE &	DTM &	Space $poly(n)$ \\ \hline
     EXPSPACE &	DTM &	Space $2^{poly(n)}$ \\ \hline
     NSPACE & 	NDTM &	Space $f(n)$ \\ \hline
@@ -72,6 +73,11 @@
 }
 \frame{
 \frametitle{Relations Between Time- and Space-Bounded Classes}
+    \begin{figure}[!h]
+  			\centering
+  			\includegraphics[width=0.60\textwidth,clip]{relations.png}
+  			\caption{The relationships among complexity classes}
+  	\end{figure}
     \begin{block}{}
     \begin{center}
     $\mbox{L} \subseteq \mbox{NL} \subseteq \mbox{P} \subseteq \mbox{NP} \subseteq \mbox{PSPACE} \subseteq \mbox{EXPTIME} \subseteq \mbox{NEXPTIME}$ \\ Where \\
