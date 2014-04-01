@@ -6,7 +6,7 @@
 \usepackage{color}
 \usepackage{listings}
 \usepackage{natbib}
-
+\def\newblock{\hskip .11em plus .33em minus .07em}
 \usetheme{Warsaw}
 \usecolortheme{dolphin}
 \setcounter{tocdepth}{2} %Mostrar solo 3 niveles en el índice
@@ -97,14 +97,14 @@
 }
 \frame{
     \begin{exampleblock}{Example}
-    For the {\bf NP} class there's a {\bf coNP} class which, for every decision problem {\it P} in {\bf NP}, contains the complemental decision problem, denoted {\it coP}; that is, the decision problem in which the “Yes” instances are “No” instances of {\bf P} and vice versa.
+    For the {\bf NP} class there's a {\bf coNP} class which, for every decision problem {\it P} in {\bf NP}, contains the complementary decision problem, denoted {\it coP} (i.e., the decision problem in which the “Yes” instances are “No” instances of {\bf P} and vice versa).
     \end{exampleblock}
     \begin{block}{}If {\bf C} is a deterministic time or space complexity class, then {\bf coC} = {\bf C}.\end{block}
 }
 \frame{
 \section{References}
 \frametitle{References}
-    \nocite{Sav08}
+    \nocite{*}
     \bibliographystyle{alpha}
     \bibliography{biblio.bib}
 }
