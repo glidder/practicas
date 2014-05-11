@@ -486,8 +486,8 @@ char *yytext;
 #include <string>
 
 using namespace std;
-#include "nodo.h"
-#include "parser.tab.h"
+//#include "parser.tab.h"
+#include "cabecera.h"
 
 
 
