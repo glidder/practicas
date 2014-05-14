@@ -6,27 +6,27 @@
 
 using namespace std;
 
-typedef size_t vertice;// un valor entre 0 y Grafo::numVert()-1
+typedef size_t vertex;// un valor entre 0 y Grafo::numVert()-1
 
-template <typename tCoste>
-class GrafoP {
+template <typename tCost>
+class Pgraph {
 public:
-	static const tCoste INFINITO;
-	GrafoP(size_t n): costes(n, vector<tCoste>(n, INFINITO)) {}
-	GrafoP(const GrafoP& g);
-	size_t numVert() const {return costes.size();}
-	const vector<tCoste>& operator [](vertice v) const {return costes[v];}
-	vector<tCoste>& operator [](vertice v) {return costes[v];}
+	static const tCoste INFINITE;
+	PGraph(size_t n): costs(n, vector<tCost>(n, INFINITE)) {}
+	PGraph(const PGraph& g);
+	size_t vertices() const {return costes.size();}
+	const vector<tCoste>& operator [](vertex v) const {return costs[v];}
+	vector<tCost>& operator [](vertex v) {return costs[v];}
 private:
-	vector<vector<tCoste> > costes;
+	vector<vector<tCost> > costs;
 };
 
-template <typename tCoste>
-const tCoste GrafoP<tCoste>::INFINITO = std::numeric_limits<tCoste>::max();
+template <typename tCost>
+const tCost PGraph<tCoste>::INFINITE = std::numeric_limits<tCost>::max();
 
-template <typename tCoste>
-inline GrafoP<tCoste>::GrafoP(const GrafoP& g){
-	costes = g.costes;
+template <typename tCost>
+inline PGraph<tCost>::PGraph(const PGraph& g){
+	costs = g.costs;
 }
 
 #endif
