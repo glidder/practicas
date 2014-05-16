@@ -25,6 +25,7 @@ const vertices getMandatory()const{return mandatory;}
 void setMandatory(vertice v){mandatory.insert(v);optional.erase(v);}
 vertices getOptional(){return optional;}
 void setOptional(vertice v){optional.insert(v);mandatory.erase(v);}
+void delOptional(vertice v){optional.erase(v);}
 private:
 vector<vector<tCoste> > costes;
 vertices mandatory;

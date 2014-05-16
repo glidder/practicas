@@ -1,4 +1,4 @@
-#include "APo.h"
+//#include "APo.h"
 #include "GrafoP.h"
 template <typename tCoste>
 vertice select(vertices& C, vector<tCoste>& d);
