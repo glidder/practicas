@@ -33,7 +33,7 @@ GrafoP<tCoste> gRead(std::string& file){
 		}
 		vertices optional=g.getOptional();
 		unsigned cont=optional.size();
-		cout<<"Number of optative vertices (max="<<cont<<"): ";
+		cout<<"Number of optional vertices (max="<<cont<<"): ";
 		unsigned num;
 		cin>>num;
 		if(num>cont)num=cont;
