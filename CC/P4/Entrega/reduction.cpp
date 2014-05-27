@@ -1,6 +1,7 @@
 //
-//Description: A simple program to reduce a vertex coloring problem for
-//			   a formated input graph to a SAT problem in DIMACS' format.
+//Description: A simple program to reduce a vertex coloring problem for an
+//			   input graph contained in a formated plain text file 
+//			   to a SAT problem in DIMACS' format.
 //Author: Luis Jose Quintana Bolaño
 //Date: 27-5-2014
 //
@@ -32,13 +33,13 @@ int main(){
 	ofstream f;
 	f.open(file2.c_str());
 	
-	//If the output file is successfuly accessed, the reduction begins
+	//If the output file is successfully accessed, the reduction begins
 	if(f.is_open()){
 		//Producing a simple comment header
 		f<<"c generated from the graph "<<file1<<"\nc for the "<<col<<"COL problem\np cnf ";
 		//Introducing the number of variables
 		f<<g.size()*col<<" ";
-		//Introducing the number of clausules, calculating the k-combinations
+		//Introducing the number of clauses, calculating the k-combinations
 		f<<g.size()*(1+(fac(col)/(fac(2)*fac(col-2))))+(g.numEdges()/2)*col<<"\n";
 		//For every vertex we make sure there's only one colour
 		for(int i=0;i<g.size();++i){
