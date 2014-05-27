@@ -1,12 +1,12 @@
 CXX = g++
 
-EXES = NAME
+EXES = reduction
 OBJS = ${EXES:=.o}
 
 all: ${EXES}
 
-steiner:
-	${CXX} ${LDFLAGS} -std=c++11 -Wall -g -o $@ CODE.cpp
+reduction:
+	${CXX} ${LDFLAGS} -std=c++11 -Wall -g -o $@ reduction.cpp
 
 clean:
 	${RM} ${EXES} ${OBJS} core *~

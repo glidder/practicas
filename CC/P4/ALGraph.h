@@ -1,14 +1,31 @@
-#ifndef _GRAPH_H_
-#define _GRAPH_H_
+#ifndef _ALGRAPH_H_
+#define _ALGRAPH_H_
 #include <vector>
 #include <limits>
 #include <istream>
-#include <set>
 #include <iostream>
+#include <list>
 
 using namespace std;
 
-typedef size_t vertice;// un valor entre 0 y Grafo::numVert()-1
+typedef unsigned vertex;
+typedef list<vertex> adList;
+typedef vector<adList> vertices;
+class ALGraph{
+public:
+	ALGraph(int n): g(n, adList()), nEdges(0){}
+	ALGraph operator =(const ALGraph& g);
+ 	const adList& operator [](int n) const{return g[n];}
+  	adList& operator [](int n){return g[n];} 
+  	int size(){return g.size();} 
+  	int numEdges(){return nEdges;} 
+  	void setEdge(vertex a, vertex b){g[a].push_back(b);++nEdges;} 
+private: 
+	vertices g; 
+	int nEdges; 
+};
+
+/*typedef size_t vertice;// un valor entre 0 y Grafo::numVert()-1
 typedef set<vertice> vertices;
 
 template <typename tCoste>
@@ -40,6 +57,6 @@ inline GrafoP<tCoste>::GrafoP(const GrafoP& g){
 costes = g.costes;
 mandatory = g.mandatory;
 optional = g.optional;
-}
+}*/
 
 #endif
