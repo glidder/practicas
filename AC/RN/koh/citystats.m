@@ -1,18 +1,19 @@
 clear all;
-puntos = rands(2,5000)*50;
-distancia=sum(puntos.^2);
-datos  = puntos(:,find(distancia>400 & distancia<1600));
+load cities.mat
 
-plot(datos(1,:),datos(2,:),'o');
+positions = hextop(6,6);
+
 
 w=gridtop(6,6);
 vecindad=linkdist(w);
 
-W=som(datos,w,vecindad,50,0.2);
+W=som(ratings,w,vecindad,50,0.2);
+
 clase=zeros(1,length(datos));
 for i=1:length(datos);
     [~,clase(i)]=min(dist(W', datos(:,i)));
 end
+
 close all;
 colores=['ob'; 'or'; 'om'; 'og'; 'oy'];
 j=0;

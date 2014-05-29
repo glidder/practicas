@@ -1,10 +1,12 @@
 clear all;
 puntos = rands(2,5000)*50;
 distancia=sum(puntos.^2);
-datos  = puntos(:,find(distancia>400 & distancia<1600));
+a=2;
+b=-4;
+datos  = puntos(:,find(puntos(2,:)<(puntos(1,:)*a+b) & puntos(2,:)<(puntos(1,:)*-a-b)));
 
 plot(datos(1,:),datos(2,:),'o');
-
+pause
 w=gridtop(6,6);
 vecindad=linkdist(w);
 
