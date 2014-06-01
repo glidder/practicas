@@ -1,0 +1,1707 @@
+Grammar
+
+    0 $accept: inicio $end
+
+    1 inicio: inicio tipo corcho ID declaracion
+    2       | %empty
+
+    3 declaracion: '(' atributos ')' bloque
+    4            | lista ';'
+
+    5 corcho: '[' asignacion ']' corcho
+    6       | %empty
+
+    7 lista: lista ',' ID
+    8      | %empty
+
+    9 bloque: '{' sentencia '}'
+
+   10 atributos: tipo corcho ID moar
+   11          | %empty
+
+   12 moar: moar ',' tipo corcho ID
+   13     | %empty
+
+   14 sentencia: sentencia bloque
+   15          | sentencia tipo corcho ID declaracion
+   16          | sentencia WHILE '(' asignacion ')' senti
+   17          | sentencia IF '(' asignacion ')' senti else
+   18          | sentencia RETURN asignacion ';'
+   19          | sentencia ';'
+   20          | sentencia asignacion ';'
+   21          | %empty
+
+   22 senti: bloque
+   23      | WHILE '(' asignacion ')' senti
+   24      | IF '(' asignacion ')' senti
+   25      | RETURN asignacion ';'
+   26      | ';'
+   27      | asignacion ';'
+
+   28 else: ELSE senti
+   29     | %empty
+
+   30 asignacion: or
+   31           | or '=' asignacion
+
+   32 or: and
+   33   | or OPOR and
+
+   34 and: igualdad
+   35    | and OPAND igualdad
+
+   36 igualdad: relacional
+   37         | igualdad IGUAL relacional
+   38         | igualdad DISTINTO relacional
+
+   39 relacional: suma
+   40           | relacional MENORIGUAL suma
+   41           | relacional MAYORIGUAL suma
+   42           | relacional '<' suma
+   43           | relacional '>' suma
+
+   44 suma: producto
+   45     | suma '+' producto
+   46     | suma '-' producto
+
+   47 producto: basico
+   48         | producto '*' basico
+   49         | producto '/' basico
+
+   50 basico: corcho ID ident
+   51       | ENTERO
+   52       | REAL
+   53       | CADENA
+   54       | '(' asignacion ')'
+
+   55 ident: corcho
+   56      | '(' valores ')'
+
+   57 valores: asignacion moval
+   58        | %empty
+
+   59 moval: moval ',' asignacion
+   60      | %empty
+
+   61 tipo: INT
+   62     | CHAR
+   63     | FLOAT
+   64     | VOID
+   65     | CONST tipo
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 3 16 17 23 24 54 56
+')' (41) 3 16 17 23 24 54 56
+'*' (42) 48
+'+' (43) 45
+',' (44) 7 12 59
+'-' (45) 46
+'/' (47) 49
+';' (59) 4 18 19 20 25 26 27
+'<' (60) 42
+'=' (61) 31
+'>' (62) 43
+'[' (91) 5
+']' (93) 5
+'{' (123) 9
+'}' (125) 9
+error (256)
+ID (258) 1 7 10 12 15 50
+ENTERO (259) 51
+REAL (260) 52
+CADENA (261) 53
+INT (262) 61
+CHAR (263) 62
+FLOAT (264) 63
+RETURN (265) 18 25
+CONST (266) 65
+IF (267) 17 24
+WHILE (268) 16 23
+VOID (269) 64
+ELSE (270) 28
+MENORIGUAL (271) 40
+MAYORIGUAL (272) 41
+IGUAL (273) 37
+DISTINTO (274) 38
+OPAND (275) 35
+OPOR (276) 33
+
+
+Nonterminals, with rules where they appear
+
+$accept (37)
+    on left: 0
+inicio (38)
+    on left: 1 2, on right: 0 1
+declaracion (39)
+    on left: 3 4, on right: 1 15
+corcho (40)
+    on left: 5 6, on right: 1 5 10 12 15 50 55
+lista (41)
+    on left: 7 8, on right: 4 7
+bloque (42)
+    on left: 9, on right: 3 14 22
+atributos (43)
+    on left: 10 11, on right: 3
+moar (44)
+    on left: 12 13, on right: 10 12
+sentencia (45)
+    on left: 14 15 16 17 18 19 20 21, on right: 9 14 15 16 17 18 19
+    20
+senti (46)
+    on left: 22 23 24 25 26 27, on right: 16 17 23 24 28
+else (47)
+    on left: 28 29, on right: 17
+asignacion (48)
+    on left: 30 31, on right: 5 16 17 18 20 23 24 25 27 31 54 57 59
+or (49)
+    on left: 32 33, on right: 30 31 33
+and (50)
+    on left: 34 35, on right: 32 33 35
+igualdad (51)
+    on left: 36 37 38, on right: 34 35 37 38
+relacional (52)
+    on left: 39 40 41 42 43, on right: 36 37 38 40 41 42 43
+suma (53)
+    on left: 44 45 46, on right: 39 40 41 42 43 45 46
+producto (54)
+    on left: 47 48 49, on right: 44 45 46 48 49
+basico (55)
+    on left: 50 51 52 53 54, on right: 47 48 49
+ident (56)
+    on left: 55 56, on right: 50
+valores (57)
+    on left: 57 58, on right: 56
+moval (58)
+    on left: 59 60, on right: 57 59
+tipo (59)
+    on left: 61 62 63 64 65, on right: 1 10 12 15 65
+
+
+State 0
+
+    0 $accept: . inicio $end
+
+    $default  reduce using rule 2 (inicio)
+
+    inicio  go to state 1
+
+
+State 1
+
+    0 $accept: inicio . $end
+    1 inicio: inicio . tipo corcho ID declaracion
+
+    $end   shift, and go to state 2
+    INT    shift, and go to state 3
+    CHAR   shift, and go to state 4
+    FLOAT  shift, and go to state 5
+    CONST  shift, and go to state 6
+    VOID   shift, and go to state 7
+
+    tipo  go to state 8
+
+
+State 2
+
+    0 $accept: inicio $end .
+
+    $default  accept
+
+
+State 3
+
+   61 tipo: INT .
+
+    $default  reduce using rule 61 (tipo)
+
+
+State 4
+
+   62 tipo: CHAR .
+
+    $default  reduce using rule 62 (tipo)
+
+
+State 5
+
+   63 tipo: FLOAT .
+
+    $default  reduce using rule 63 (tipo)
+
+
+State 6
+
+   65 tipo: CONST . tipo
+
+    INT    shift, and go to state 3
+    CHAR   shift, and go to state 4
+    FLOAT  shift, and go to state 5
+    CONST  shift, and go to state 6
+    VOID   shift, and go to state 7
+
+    tipo  go to state 9
+
+
+State 7
+
+   64 tipo: VOID .
+
+    $default  reduce using rule 64 (tipo)
+
+
+State 8
+
+    1 inicio: inicio tipo . corcho ID declaracion
+
+    '['  shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho  go to state 11
+
+
+State 9
+
+   65 tipo: CONST tipo .
+
+    $default  reduce using rule 65 (tipo)
+
+
+State 10
+
+    5 corcho: '[' . asignacion ']' corcho
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    asignacion  go to state 17
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 11
+
+    1 inicio: inicio tipo corcho . ID declaracion
+
+    ID  shift, and go to state 25
+
+
+State 12
+
+   51 basico: ENTERO .
+
+    $default  reduce using rule 51 (basico)
+
+
+State 13
+
+   52 basico: REAL .
+
+    $default  reduce using rule 52 (basico)
+
+
+State 14
+
+   53 basico: CADENA .
+
+    $default  reduce using rule 53 (basico)
+
+
+State 15
+
+   54 basico: '(' . asignacion ')'
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    asignacion  go to state 26
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 16
+
+   50 basico: corcho . ID ident
+
+    ID  shift, and go to state 27
+
+
+State 17
+
+    5 corcho: '[' asignacion . ']' corcho
+
+    ']'  shift, and go to state 28
+
+
+State 18
+
+   30 asignacion: or .
+   31           | or . '=' asignacion
+   33 or: or . OPOR and
+
+    OPOR  shift, and go to state 29
+    '='   shift, and go to state 30
+
+    $default  reduce using rule 30 (asignacion)
+
+
+State 19
+
+   32 or: and .
+   35 and: and . OPAND igualdad
+
+    OPAND  shift, and go to state 31
+
+    $default  reduce using rule 32 (or)
+
+
+State 20
+
+   34 and: igualdad .
+   37 igualdad: igualdad . IGUAL relacional
+   38         | igualdad . DISTINTO relacional
+
+    IGUAL     shift, and go to state 32
+    DISTINTO  shift, and go to state 33
+
+    $default  reduce using rule 34 (and)
+
+
+State 21
+
+   36 igualdad: relacional .
+   40 relacional: relacional . MENORIGUAL suma
+   41           | relacional . MAYORIGUAL suma
+   42           | relacional . '<' suma
+   43           | relacional . '>' suma
+
+    MENORIGUAL  shift, and go to state 34
+    MAYORIGUAL  shift, and go to state 35
+    '<'         shift, and go to state 36
+    '>'         shift, and go to state 37
+
+    $default  reduce using rule 36 (igualdad)
+
+
+State 22
+
+   39 relacional: suma .
+   45 suma: suma . '+' producto
+   46     | suma . '-' producto
+
+    '+'  shift, and go to state 38
+    '-'  shift, and go to state 39
+
+    $default  reduce using rule 39 (relacional)
+
+
+State 23
+
+   44 suma: producto .
+   48 producto: producto . '*' basico
+   49         | producto . '/' basico
+
+    '*'  shift, and go to state 40
+    '/'  shift, and go to state 41
+
+    $default  reduce using rule 44 (suma)
+
+
+State 24
+
+   47 producto: basico .
+
+    $default  reduce using rule 47 (producto)
+
+
+State 25
+
+    1 inicio: inicio tipo corcho ID . declaracion
+
+    '('  shift, and go to state 42
+
+    $default  reduce using rule 8 (lista)
+
+    declaracion  go to state 43
+    lista        go to state 44
+
+
+State 26
+
+   54 basico: '(' asignacion . ')'
+
+    ')'  shift, and go to state 45
+
+
+State 27
+
+   50 basico: corcho ID . ident
+
+    '('  shift, and go to state 46
+    '['  shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho  go to state 47
+    ident   go to state 48
+
+
+State 28
+
+    5 corcho: '[' asignacion ']' . corcho
+
+    '['  shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho  go to state 49
+
+
+State 29
+
+   33 or: or OPOR . and
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    and         go to state 50
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 30
+
+   31 asignacion: or '=' . asignacion
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    asignacion  go to state 51
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 31
+
+   35 and: and OPAND . igualdad
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    igualdad    go to state 52
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 32
+
+   37 igualdad: igualdad IGUAL . relacional
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    relacional  go to state 53
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 33
+
+   38 igualdad: igualdad DISTINTO . relacional
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    relacional  go to state 54
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 34
+
+   40 relacional: relacional MENORIGUAL . suma
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho    go to state 16
+    suma      go to state 55
+    producto  go to state 23
+    basico    go to state 24
+
+
+State 35
+
+   41 relacional: relacional MAYORIGUAL . suma
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho    go to state 16
+    suma      go to state 56
+    producto  go to state 23
+    basico    go to state 24
+
+
+State 36
+
+   42 relacional: relacional '<' . suma
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho    go to state 16
+    suma      go to state 57
+    producto  go to state 23
+    basico    go to state 24
+
+
+State 37
+
+   43 relacional: relacional '>' . suma
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho    go to state 16
+    suma      go to state 58
+    producto  go to state 23
+    basico    go to state 24
+
+
+State 38
+
+   45 suma: suma '+' . producto
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho    go to state 16
+    producto  go to state 59
+    basico    go to state 24
+
+
+State 39
+
+   46 suma: suma '-' . producto
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho    go to state 16
+    producto  go to state 60
+    basico    go to state 24
+
+
+State 40
+
+   48 producto: producto '*' . basico
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho  go to state 16
+    basico  go to state 61
+
+
+State 41
+
+   49 producto: producto '/' . basico
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho  go to state 16
+    basico  go to state 62
+
+
+State 42
+
+    3 declaracion: '(' . atributos ')' bloque
+
+    INT    shift, and go to state 3
+    CHAR   shift, and go to state 4
+    FLOAT  shift, and go to state 5
+    CONST  shift, and go to state 6
+    VOID   shift, and go to state 7
+
+    $default  reduce using rule 11 (atributos)
+
+    atributos  go to state 63
+    tipo       go to state 64
+
+
+State 43
+
+    1 inicio: inicio tipo corcho ID declaracion .
+
+    $default  reduce using rule 1 (inicio)
+
+
+State 44
+
+    4 declaracion: lista . ';'
+    7 lista: lista . ',' ID
+
+    ';'  shift, and go to state 65
+    ','  shift, and go to state 66
+
+
+State 45
+
+   54 basico: '(' asignacion ')' .
+
+    $default  reduce using rule 54 (basico)
+
+
+State 46
+
+   56 ident: '(' . valores ')'
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    ')'       reduce using rule 58 (valores)
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    asignacion  go to state 67
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+    valores     go to state 68
+
+
+State 47
+
+   55 ident: corcho .
+
+    $default  reduce using rule 55 (ident)
+
+
+State 48
+
+   50 basico: corcho ID ident .
+
+    $default  reduce using rule 50 (basico)
+
+
+State 49
+
+    5 corcho: '[' asignacion ']' corcho .
+
+    $default  reduce using rule 5 (corcho)
+
+
+State 50
+
+   33 or: or OPOR and .
+   35 and: and . OPAND igualdad
+
+    OPAND  shift, and go to state 31
+
+    $default  reduce using rule 33 (or)
+
+
+State 51
+
+   31 asignacion: or '=' asignacion .
+
+    $default  reduce using rule 31 (asignacion)
+
+
+State 52
+
+   35 and: and OPAND igualdad .
+   37 igualdad: igualdad . IGUAL relacional
+   38         | igualdad . DISTINTO relacional
+
+    IGUAL     shift, and go to state 32
+    DISTINTO  shift, and go to state 33
+
+    $default  reduce using rule 35 (and)
+
+
+State 53
+
+   37 igualdad: igualdad IGUAL relacional .
+   40 relacional: relacional . MENORIGUAL suma
+   41           | relacional . MAYORIGUAL suma
+   42           | relacional . '<' suma
+   43           | relacional . '>' suma
+
+    MENORIGUAL  shift, and go to state 34
+    MAYORIGUAL  shift, and go to state 35
+    '<'         shift, and go to state 36
+    '>'         shift, and go to state 37
+
+    $default  reduce using rule 37 (igualdad)
+
+
+State 54
+
+   38 igualdad: igualdad DISTINTO relacional .
+   40 relacional: relacional . MENORIGUAL suma
+   41           | relacional . MAYORIGUAL suma
+   42           | relacional . '<' suma
+   43           | relacional . '>' suma
+
+    MENORIGUAL  shift, and go to state 34
+    MAYORIGUAL  shift, and go to state 35
+    '<'         shift, and go to state 36
+    '>'         shift, and go to state 37
+
+    $default  reduce using rule 38 (igualdad)
+
+
+State 55
+
+   40 relacional: relacional MENORIGUAL suma .
+   45 suma: suma . '+' producto
+   46     | suma . '-' producto
+
+    '+'  shift, and go to state 38
+    '-'  shift, and go to state 39
+
+    $default  reduce using rule 40 (relacional)
+
+
+State 56
+
+   41 relacional: relacional MAYORIGUAL suma .
+   45 suma: suma . '+' producto
+   46     | suma . '-' producto
+
+    '+'  shift, and go to state 38
+    '-'  shift, and go to state 39
+
+    $default  reduce using rule 41 (relacional)
+
+
+State 57
+
+   42 relacional: relacional '<' suma .
+   45 suma: suma . '+' producto
+   46     | suma . '-' producto
+
+    '+'  shift, and go to state 38
+    '-'  shift, and go to state 39
+
+    $default  reduce using rule 42 (relacional)
+
+
+State 58
+
+   43 relacional: relacional '>' suma .
+   45 suma: suma . '+' producto
+   46     | suma . '-' producto
+
+    '+'  shift, and go to state 38
+    '-'  shift, and go to state 39
+
+    $default  reduce using rule 43 (relacional)
+
+
+State 59
+
+   45 suma: suma '+' producto .
+   48 producto: producto . '*' basico
+   49         | producto . '/' basico
+
+    '*'  shift, and go to state 40
+    '/'  shift, and go to state 41
+
+    $default  reduce using rule 45 (suma)
+
+
+State 60
+
+   46 suma: suma '-' producto .
+   48 producto: producto . '*' basico
+   49         | producto . '/' basico
+
+    '*'  shift, and go to state 40
+    '/'  shift, and go to state 41
+
+    $default  reduce using rule 46 (suma)
+
+
+State 61
+
+   48 producto: producto '*' basico .
+
+    $default  reduce using rule 48 (producto)
+
+
+State 62
+
+   49 producto: producto '/' basico .
+
+    $default  reduce using rule 49 (producto)
+
+
+State 63
+
+    3 declaracion: '(' atributos . ')' bloque
+
+    ')'  shift, and go to state 69
+
+
+State 64
+
+   10 atributos: tipo . corcho ID moar
+
+    '['  shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho  go to state 70
+
+
+State 65
+
+    4 declaracion: lista ';' .
+
+    $default  reduce using rule 4 (declaracion)
+
+
+State 66
+
+    7 lista: lista ',' . ID
+
+    ID  shift, and go to state 71
+
+
+State 67
+
+   57 valores: asignacion . moval
+
+    $default  reduce using rule 60 (moval)
+
+    moval  go to state 72
+
+
+State 68
+
+   56 ident: '(' valores . ')'
+
+    ')'  shift, and go to state 73
+
+
+State 69
+
+    3 declaracion: '(' atributos ')' . bloque
+
+    '{'  shift, and go to state 74
+
+    bloque  go to state 75
+
+
+State 70
+
+   10 atributos: tipo corcho . ID moar
+
+    ID  shift, and go to state 76
+
+
+State 71
+
+    7 lista: lista ',' ID .
+
+    $default  reduce using rule 7 (lista)
+
+
+State 72
+
+   57 valores: asignacion moval .
+   59 moval: moval . ',' asignacion
+
+    ','  shift, and go to state 77
+
+    $default  reduce using rule 57 (valores)
+
+
+State 73
+
+   56 ident: '(' valores ')' .
+
+    $default  reduce using rule 56 (ident)
+
+
+State 74
+
+    9 bloque: '{' . sentencia '}'
+
+    $default  reduce using rule 21 (sentencia)
+
+    sentencia  go to state 78
+
+
+State 75
+
+    3 declaracion: '(' atributos ')' bloque .
+
+    $default  reduce using rule 3 (declaracion)
+
+
+State 76
+
+   10 atributos: tipo corcho ID . moar
+
+    $default  reduce using rule 13 (moar)
+
+    moar  go to state 79
+
+
+State 77
+
+   59 moval: moval ',' . asignacion
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    asignacion  go to state 80
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 78
+
+    9 bloque: '{' sentencia . '}'
+   14 sentencia: sentencia . bloque
+   15          | sentencia . tipo corcho ID declaracion
+   16          | sentencia . WHILE '(' asignacion ')' senti
+   17          | sentencia . IF '(' asignacion ')' senti else
+   18          | sentencia . RETURN asignacion ';'
+   19          | sentencia . ';'
+   20          | sentencia . asignacion ';'
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    INT     shift, and go to state 3
+    CHAR    shift, and go to state 4
+    FLOAT   shift, and go to state 5
+    RETURN  shift, and go to state 81
+    CONST   shift, and go to state 6
+    IF      shift, and go to state 82
+    WHILE   shift, and go to state 83
+    VOID    shift, and go to state 7
+    '('     shift, and go to state 15
+    ';'     shift, and go to state 84
+    '['     shift, and go to state 10
+    '{'     shift, and go to state 74
+    '}'     shift, and go to state 85
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    bloque      go to state 86
+    asignacion  go to state 87
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+    tipo        go to state 88
+
+
+State 79
+
+   10 atributos: tipo corcho ID moar .
+   12 moar: moar . ',' tipo corcho ID
+
+    ','  shift, and go to state 89
+
+    $default  reduce using rule 10 (atributos)
+
+
+State 80
+
+   59 moval: moval ',' asignacion .
+
+    $default  reduce using rule 59 (moval)
+
+
+State 81
+
+   18 sentencia: sentencia RETURN . asignacion ';'
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    asignacion  go to state 90
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 82
+
+   17 sentencia: sentencia IF . '(' asignacion ')' senti else
+
+    '('  shift, and go to state 91
+
+
+State 83
+
+   16 sentencia: sentencia WHILE . '(' asignacion ')' senti
+
+    '('  shift, and go to state 92
+
+
+State 84
+
+   19 sentencia: sentencia ';' .
+
+    $default  reduce using rule 19 (sentencia)
+
+
+State 85
+
+    9 bloque: '{' sentencia '}' .
+
+    $default  reduce using rule 9 (bloque)
+
+
+State 86
+
+   14 sentencia: sentencia bloque .
+
+    $default  reduce using rule 14 (sentencia)
+
+
+State 87
+
+   20 sentencia: sentencia asignacion . ';'
+
+    ';'  shift, and go to state 93
+
+
+State 88
+
+   15 sentencia: sentencia tipo . corcho ID declaracion
+
+    '['  shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho  go to state 94
+
+
+State 89
+
+   12 moar: moar ',' . tipo corcho ID
+
+    INT    shift, and go to state 3
+    CHAR   shift, and go to state 4
+    FLOAT  shift, and go to state 5
+    CONST  shift, and go to state 6
+    VOID   shift, and go to state 7
+
+    tipo  go to state 95
+
+
+State 90
+
+   18 sentencia: sentencia RETURN asignacion . ';'
+
+    ';'  shift, and go to state 96
+
+
+State 91
+
+   17 sentencia: sentencia IF '(' . asignacion ')' senti else
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    asignacion  go to state 97
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 92
+
+   16 sentencia: sentencia WHILE '(' . asignacion ')' senti
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    asignacion  go to state 98
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 93
+
+   20 sentencia: sentencia asignacion ';' .
+
+    $default  reduce using rule 20 (sentencia)
+
+
+State 94
+
+   15 sentencia: sentencia tipo corcho . ID declaracion
+
+    ID  shift, and go to state 99
+
+
+State 95
+
+   12 moar: moar ',' tipo . corcho ID
+
+    '['  shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho  go to state 100
+
+
+State 96
+
+   18 sentencia: sentencia RETURN asignacion ';' .
+
+    $default  reduce using rule 18 (sentencia)
+
+
+State 97
+
+   17 sentencia: sentencia IF '(' asignacion . ')' senti else
+
+    ')'  shift, and go to state 101
+
+
+State 98
+
+   16 sentencia: sentencia WHILE '(' asignacion . ')' senti
+
+    ')'  shift, and go to state 102
+
+
+State 99
+
+   15 sentencia: sentencia tipo corcho ID . declaracion
+
+    '('  shift, and go to state 42
+
+    $default  reduce using rule 8 (lista)
+
+    declaracion  go to state 103
+    lista        go to state 44
+
+
+State 100
+
+   12 moar: moar ',' tipo corcho . ID
+
+    ID  shift, and go to state 104
+
+
+State 101
+
+   17 sentencia: sentencia IF '(' asignacion ')' . senti else
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    RETURN  shift, and go to state 105
+    IF      shift, and go to state 106
+    WHILE   shift, and go to state 107
+    '('     shift, and go to state 15
+    ';'     shift, and go to state 108
+    '['     shift, and go to state 10
+    '{'     shift, and go to state 74
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    bloque      go to state 109
+    senti       go to state 110
+    asignacion  go to state 111
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 102
+
+   16 sentencia: sentencia WHILE '(' asignacion ')' . senti
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    RETURN  shift, and go to state 105
+    IF      shift, and go to state 106
+    WHILE   shift, and go to state 107
+    '('     shift, and go to state 15
+    ';'     shift, and go to state 108
+    '['     shift, and go to state 10
+    '{'     shift, and go to state 74
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    bloque      go to state 109
+    senti       go to state 112
+    asignacion  go to state 111
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 103
+
+   15 sentencia: sentencia tipo corcho ID declaracion .
+
+    $default  reduce using rule 15 (sentencia)
+
+
+State 104
+
+   12 moar: moar ',' tipo corcho ID .
+
+    $default  reduce using rule 12 (moar)
+
+
+State 105
+
+   25 senti: RETURN . asignacion ';'
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    asignacion  go to state 113
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 106
+
+   24 senti: IF . '(' asignacion ')' senti
+
+    '('  shift, and go to state 114
+
+
+State 107
+
+   23 senti: WHILE . '(' asignacion ')' senti
+
+    '('  shift, and go to state 115
+
+
+State 108
+
+   26 senti: ';' .
+
+    $default  reduce using rule 26 (senti)
+
+
+State 109
+
+   22 senti: bloque .
+
+    $default  reduce using rule 22 (senti)
+
+
+State 110
+
+   17 sentencia: sentencia IF '(' asignacion ')' senti . else
+
+    ELSE  shift, and go to state 116
+
+    $default  reduce using rule 29 (else)
+
+    else  go to state 117
+
+
+State 111
+
+   27 senti: asignacion . ';'
+
+    ';'  shift, and go to state 118
+
+
+State 112
+
+   16 sentencia: sentencia WHILE '(' asignacion ')' senti .
+
+    $default  reduce using rule 16 (sentencia)
+
+
+State 113
+
+   25 senti: RETURN asignacion . ';'
+
+    ';'  shift, and go to state 119
+
+
+State 114
+
+   24 senti: IF '(' . asignacion ')' senti
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    asignacion  go to state 120
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 115
+
+   23 senti: WHILE '(' . asignacion ')' senti
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    '('     shift, and go to state 15
+    '['     shift, and go to state 10
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    asignacion  go to state 121
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 116
+
+   28 else: ELSE . senti
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    RETURN  shift, and go to state 105
+    IF      shift, and go to state 106
+    WHILE   shift, and go to state 107
+    '('     shift, and go to state 15
+    ';'     shift, and go to state 108
+    '['     shift, and go to state 10
+    '{'     shift, and go to state 74
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    bloque      go to state 109
+    senti       go to state 122
+    asignacion  go to state 111
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 117
+
+   17 sentencia: sentencia IF '(' asignacion ')' senti else .
+
+    $default  reduce using rule 17 (sentencia)
+
+
+State 118
+
+   27 senti: asignacion ';' .
+
+    $default  reduce using rule 27 (senti)
+
+
+State 119
+
+   25 senti: RETURN asignacion ';' .
+
+    $default  reduce using rule 25 (senti)
+
+
+State 120
+
+   24 senti: IF '(' asignacion . ')' senti
+
+    ')'  shift, and go to state 123
+
+
+State 121
+
+   23 senti: WHILE '(' asignacion . ')' senti
+
+    ')'  shift, and go to state 124
+
+
+State 122
+
+   28 else: ELSE senti .
+
+    $default  reduce using rule 28 (else)
+
+
+State 123
+
+   24 senti: IF '(' asignacion ')' . senti
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    RETURN  shift, and go to state 105
+    IF      shift, and go to state 106
+    WHILE   shift, and go to state 107
+    '('     shift, and go to state 15
+    ';'     shift, and go to state 108
+    '['     shift, and go to state 10
+    '{'     shift, and go to state 74
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    bloque      go to state 109
+    senti       go to state 125
+    asignacion  go to state 111
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 124
+
+   23 senti: WHILE '(' asignacion ')' . senti
+
+    ENTERO  shift, and go to state 12
+    REAL    shift, and go to state 13
+    CADENA  shift, and go to state 14
+    RETURN  shift, and go to state 105
+    IF      shift, and go to state 106
+    WHILE   shift, and go to state 107
+    '('     shift, and go to state 15
+    ';'     shift, and go to state 108
+    '['     shift, and go to state 10
+    '{'     shift, and go to state 74
+
+    $default  reduce using rule 6 (corcho)
+
+    corcho      go to state 16
+    bloque      go to state 109
+    senti       go to state 126
+    asignacion  go to state 111
+    or          go to state 18
+    and         go to state 19
+    igualdad    go to state 20
+    relacional  go to state 21
+    suma        go to state 22
+    producto    go to state 23
+    basico      go to state 24
+
+
+State 125
+
+   24 senti: IF '(' asignacion ')' senti .
+
+    $default  reduce using rule 24 (senti)
+
+
+State 126
+
+   23 senti: WHILE '(' asignacion ')' senti .
+
+    $default  reduce using rule 23 (senti)
