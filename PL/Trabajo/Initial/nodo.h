@@ -13,7 +13,8 @@ extern map<string, bool> tabla;
 
 class Nodo {
  public:
-  virtual string traducir() = 0;
+  virtual bool evaluar(void) = 0;
+  virtual string toStr(void) = 0;
 } ; // fin de la clase abstracta Nodo
 
 /************ clases derivadas *************************/

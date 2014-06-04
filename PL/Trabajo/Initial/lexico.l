@@ -1,10 +1,10 @@
 %{
 #include <iostream>
 #include <string>
-#include "parser.tab.h"
+//#include "cabecera.h"
 
 using namespace std;
-
+#include "parser.tab.h"
 %}
 
 %option noyywrap
@@ -33,31 +33,28 @@ CONSTFLOT	{CASO1}|{CASO2}|{CASO3}
 "//".*	;
 
 "int"	return INT;
-////////////////////////"float" return FLOAT;
-////////////////////////"char"	return CHAR;
+"float" return FLOAT;
+"char"	return CHAR;
 "if"	return IF;
 "else"	return ELSE;
 "while"	return WHILE;
-"return"return RETURN;
-////////////////////////"const"	return CONST;
-////////////////////////"void"	return VOID;
+"return"	return RETURN;
+"const"	return CONST;
+"void" return VOID;
 "<="	return MENORIGUAL;
 ">="	return MAYORIGUAL;
 "=="	return IGUAL;
 "!="	return DISTINTO;
 "&&"	return OPAND;
 "||"	return OPOR;
-"scanf"	return SCANF;
-"printf"return PRINTF;
 
-////////////////////////[-|'=;\"+*/><(){},[\]]	return *yytext;
+[-|&'=;\"+*/><(){},[\]]	return *yytext;
 
-{CONSTNUM}				{yylval.nombre = new string(yytext);return ENTERO;}
-////////////////////////{CONSTFLOT}	return REAL;
-["].*["]				{yylval.nombre = new string(yytext);return CADENA;}
-[a-zA-Z_][0-9a-zA-Z_]*	{yylval.nombre = new string(yytext);return ID;}
-
-.	cerr << "Error léxico: El caracter (" << yytext << ") no fue reconocido.\n";
+{CONSTNUM}	return ENTERO;
+{CONSTFLOT}	return REAL;
+["].*["]	return CADENA;
+[a-zA-Z_][0-9a-zA-Z_]* {yylval.nombre = new string(yytext);return ID;}
+.	;
 
 }
 <COMENTARIO>{

@@ -3,15 +3,11 @@
 #include <string>
 #include <stdio.h>
 #include "nodo.h"
-
 using namespace std;
-
 int yyerror(const char* msj);
 int yylex(void);
 extern FILE *yyin;
-
 %}
-
 %error-verbose
 
 %union {
@@ -19,10 +15,8 @@ extern FILE *yyin;
   string * nombre;
 }
 
-%token ID ENTERO CADENA INT CHAR RETURN IF WHILE ELSE MENORIGUAL MAYORIGUAL IGUAL DISTINTO OPAND OPOR// REAL FLOAT CONST VOID SI SINO WHILE RETURN CONST 
-%type <nombre> ID CADENA ENTERO
-%type <nodo> 
-
+%token ID ENTERO REAL CADENA INT CHAR FLOAT RETURN CONST IF WHILE VOID ELSE MENORIGUAL MAYORIGUAL IGUAL DISTINTO OPAND OPOR//SI SINO WHILE RETURN CONST 
+%type <nombre> ID
 %start inicio 
 
 %%
