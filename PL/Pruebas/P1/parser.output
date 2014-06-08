@@ -1,0 +1,1391 @@
+Terminals unused in grammar
+
+   CHAR
+
+
+Grammar
+
+    0 $accept: inicio $end
+
+    1 inicio: global
+
+    2 global: global declaracion
+    3       | %empty
+
+    4 $@1: %empty
+
+    5 $@2: %empty
+
+    6 declaracion: INT ID '(' $@1 atributos ')' $@2 bloque
+
+    7 $@3: %empty
+
+    8 declaracion: INT ID $@3 glista ';'
+
+    9 glista: glista ',' ID
+   10       | %empty
+
+   11 $@4: %empty
+
+   12 atributos: INT ID $@4 siguiente
+   13          | %empty
+
+   14 siguiente: siguiente ',' INT ID
+   15          | %empty
+
+   16 bloque: '{' sentencias '}'
+
+   17 sentencias: sentencias sentencia
+   18           | %empty
+
+   19 lista: lista ',' ID
+   20      | %empty
+
+   21 $@5: %empty
+
+   22 sentencia: $@5 bloque
+
+   23 $@6: %empty
+
+   24 sentencia: INT ID $@6 lista ';'
+   25          | WHILE '(' asignacion ')' sentencia
+   26          | IF '(' asignacion ')' sentencia
+   27          | IF '(' asignacion ')' sentencia ELSE sentencia
+   28          | RETURN asignacion ';'
+   29          | PRINTF '(' CADENA entradas ')' ';'
+   30          | SCANF '(' CADENA entradas ')' ';'
+   31          | asignacion ';'
+   32          | ';'
+
+   33 asignacion: or
+   34           | ID '=' asignacion
+
+   35 or: and
+   36   | or OPOR and
+
+   37 and: igualdad
+   38    | and OPAND igualdad
+
+   39 igualdad: relacional
+   40         | igualdad IGUAL relacional
+   41         | igualdad DISTINTO relacional
+
+   42 relacional: suma
+   43           | relacional MENORIGUAL suma
+   44           | relacional MAYORIGUAL suma
+   45           | relacional '<' suma
+   46           | relacional '>' suma
+
+   47 suma: producto
+   48     | suma '+' producto
+   49     | suma '-' producto
+
+   50 producto: basico
+   51         | producto '*' basico
+   52         | producto '/' basico
+
+   53 basico: ID
+   54       | ID '(' entrada ')'
+   55       | ENTERO
+   56       | '(' asignacion ')'
+
+   57 entrada: asignacion entradas
+   58        | %empty
+
+   59 entradas: entradas ',' asignacion
+   60         | %empty
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 6 25 26 27 29 30 54 56
+')' (41) 6 25 26 27 29 30 54 56
+'*' (42) 51
+'+' (43) 48
+',' (44) 9 14 19 59
+'-' (45) 49
+'/' (47) 52
+';' (59) 8 24 28 29 30 31 32
+'<' (60) 45
+'=' (61) 34
+'>' (62) 46
+'{' (123) 16
+'}' (125) 16
+error (256)
+ID (258) 6 8 9 12 14 19 24 34 53 54
+ENTERO (259) 55
+CADENA (260) 29 30
+INT (261) 6 8 12 14 24
+CHAR (262)
+RETURN (263) 28
+IF (264) 26 27
+WHILE (265) 25
+ELSE (266) 27
+MENORIGUAL (267) 43
+MAYORIGUAL (268) 44
+IGUAL (269) 40
+DISTINTO (270) 41
+OPAND (271) 38
+OPOR (272) 36
+SCANF (273) 30
+PRINTF (274) 29
+"then" (275)
+
+
+Nonterminals, with rules where they appear
+
+$accept (34)
+    on left: 0
+inicio (35)
+    on left: 1, on right: 0
+global (36)
+    on left: 2 3, on right: 1 2
+declaracion (37)
+    on left: 6 8, on right: 2
+$@1 (38)
+    on left: 4, on right: 6
+$@2 (39)
+    on left: 5, on right: 6
+$@3 (40)
+    on left: 7, on right: 8
+glista (41)
+    on left: 9 10, on right: 8 9
+atributos (42)
+    on left: 12 13, on right: 6
+$@4 (43)
+    on left: 11, on right: 12
+siguiente (44)
+    on left: 14 15, on right: 12 14
+bloque (45)
+    on left: 16, on right: 6 22
+sentencias (46)
+    on left: 17 18, on right: 16 17
+lista (47)
+    on left: 19 20, on right: 19 24
+sentencia (48)
+    on left: 22 24 25 26 27 28 29 30 31 32, on right: 17 25 26 27
+$@5 (49)
+    on left: 21, on right: 22
+$@6 (50)
+    on left: 23, on right: 24
+asignacion (51)
+    on left: 33 34, on right: 25 26 27 28 31 34 56 57 59
+or (52)
+    on left: 35 36, on right: 33 36
+and (53)
+    on left: 37 38, on right: 35 36 38
+igualdad (54)
+    on left: 39 40 41, on right: 37 38 40 41
+relacional (55)
+    on left: 42 43 44 45 46, on right: 39 40 41 43 44 45 46
+suma (56)
+    on left: 47 48 49, on right: 42 43 44 45 46 48 49
+producto (57)
+    on left: 50 51 52, on right: 47 48 49 51 52
+basico (58)
+    on left: 53 54 55 56, on right: 50 51 52
+entrada (59)
+    on left: 57 58, on right: 54
+entradas (60)
+    on left: 59 60, on right: 29 30 57 59
+
+
+State 0
+
+    0 $accept: . inicio $end
+
+    $default  reduce using rule 3 (global)
+
+    inicio  go to state 1
+    global  go to state 2
+
+
+State 1
+
+    0 $accept: inicio . $end
+
+    $end  shift, and go to state 3
+
+
+State 2
+
+    1 inicio: global .
+    2 global: global . declaracion
+
+    INT  shift, and go to state 4
+
+    $default  reduce using rule 1 (inicio)
+
+    declaracion  go to state 5
+
+
+State 3
+
+    0 $accept: inicio $end .
+
+    $default  accept
+
+
+State 4
+
+    6 declaracion: INT . ID '(' $@1 atributos ')' $@2 bloque
+    8            | INT . ID $@3 glista ';'
+
+    ID  shift, and go to state 6
+
+
+State 5
+
+    2 global: global declaracion .
+
+    $default  reduce using rule 2 (global)
+
+
+State 6
+
+    6 declaracion: INT ID . '(' $@1 atributos ')' $@2 bloque
+    8            | INT ID . $@3 glista ';'
+
+    '('  shift, and go to state 7
+
+    $default  reduce using rule 7 ($@3)
+
+    $@3  go to state 8
+
+
+State 7
+
+    6 declaracion: INT ID '(' . $@1 atributos ')' $@2 bloque
+
+    $default  reduce using rule 4 ($@1)
+
+    $@1  go to state 9
+
+
+State 8
+
+    8 declaracion: INT ID $@3 . glista ';'
+
+    $default  reduce using rule 10 (glista)
+
+    glista  go to state 10
+
+
+State 9
+
+    6 declaracion: INT ID '(' $@1 . atributos ')' $@2 bloque
+
+    INT  shift, and go to state 11
+
+    $default  reduce using rule 13 (atributos)
+
+    atributos  go to state 12
+
+
+State 10
+
+    8 declaracion: INT ID $@3 glista . ';'
+    9 glista: glista . ',' ID
+
+    ';'  shift, and go to state 13
+    ','  shift, and go to state 14
+
+
+State 11
+
+   12 atributos: INT . ID $@4 siguiente
+
+    ID  shift, and go to state 15
+
+
+State 12
+
+    6 declaracion: INT ID '(' $@1 atributos . ')' $@2 bloque
+
+    ')'  shift, and go to state 16
+
+
+State 13
+
+    8 declaracion: INT ID $@3 glista ';' .
+
+    $default  reduce using rule 8 (declaracion)
+
+
+State 14
+
+    9 glista: glista ',' . ID
+
+    ID  shift, and go to state 17
+
+
+State 15
+
+   12 atributos: INT ID . $@4 siguiente
+
+    $default  reduce using rule 11 ($@4)
+
+    $@4  go to state 18
+
+
+State 16
+
+    6 declaracion: INT ID '(' $@1 atributos ')' . $@2 bloque
+
+    $default  reduce using rule 5 ($@2)
+
+    $@2  go to state 19
+
+
+State 17
+
+    9 glista: glista ',' ID .
+
+    $default  reduce using rule 9 (glista)
+
+
+State 18
+
+   12 atributos: INT ID $@4 . siguiente
+
+    $default  reduce using rule 15 (siguiente)
+
+    siguiente  go to state 20
+
+
+State 19
+
+    6 declaracion: INT ID '(' $@1 atributos ')' $@2 . bloque
+
+    '{'  shift, and go to state 21
+
+    bloque  go to state 22
+
+
+State 20
+
+   12 atributos: INT ID $@4 siguiente .
+   14 siguiente: siguiente . ',' INT ID
+
+    ','  shift, and go to state 23
+
+    $default  reduce using rule 12 (atributos)
+
+
+State 21
+
+   16 bloque: '{' . sentencias '}'
+
+    $default  reduce using rule 18 (sentencias)
+
+    sentencias  go to state 24
+
+
+State 22
+
+    6 declaracion: INT ID '(' $@1 atributos ')' $@2 bloque .
+
+    $default  reduce using rule 6 (declaracion)
+
+
+State 23
+
+   14 siguiente: siguiente ',' . INT ID
+
+    INT  shift, and go to state 25
+
+
+State 24
+
+   16 bloque: '{' sentencias . '}'
+   17 sentencias: sentencias . sentencia
+
+    ID      shift, and go to state 26
+    ENTERO  shift, and go to state 27
+    INT     shift, and go to state 28
+    RETURN  shift, and go to state 29
+    IF      shift, and go to state 30
+    WHILE   shift, and go to state 31
+    SCANF   shift, and go to state 32
+    PRINTF  shift, and go to state 33
+    '('     shift, and go to state 34
+    ';'     shift, and go to state 35
+    '}'     shift, and go to state 36
+
+    $default  reduce using rule 21 ($@5)
+
+    sentencia   go to state 37
+    $@5         go to state 38
+    asignacion  go to state 39
+    or          go to state 40
+    and         go to state 41
+    igualdad    go to state 42
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 25
+
+   14 siguiente: siguiente ',' INT . ID
+
+    ID  shift, and go to state 47
+
+
+State 26
+
+   34 asignacion: ID . '=' asignacion
+   53 basico: ID .
+   54       | ID . '(' entrada ')'
+
+    '('  shift, and go to state 48
+    '='  shift, and go to state 49
+
+    $default  reduce using rule 53 (basico)
+
+
+State 27
+
+   55 basico: ENTERO .
+
+    $default  reduce using rule 55 (basico)
+
+
+State 28
+
+   24 sentencia: INT . ID $@6 lista ';'
+
+    ID  shift, and go to state 50
+
+
+State 29
+
+   28 sentencia: RETURN . asignacion ';'
+
+    ID      shift, and go to state 26
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    asignacion  go to state 51
+    or          go to state 40
+    and         go to state 41
+    igualdad    go to state 42
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 30
+
+   26 sentencia: IF . '(' asignacion ')' sentencia
+   27          | IF . '(' asignacion ')' sentencia ELSE sentencia
+
+    '('  shift, and go to state 52
+
+
+State 31
+
+   25 sentencia: WHILE . '(' asignacion ')' sentencia
+
+    '('  shift, and go to state 53
+
+
+State 32
+
+   30 sentencia: SCANF . '(' CADENA entradas ')' ';'
+
+    '('  shift, and go to state 54
+
+
+State 33
+
+   29 sentencia: PRINTF . '(' CADENA entradas ')' ';'
+
+    '('  shift, and go to state 55
+
+
+State 34
+
+   56 basico: '(' . asignacion ')'
+
+    ID      shift, and go to state 26
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    asignacion  go to state 56
+    or          go to state 40
+    and         go to state 41
+    igualdad    go to state 42
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 35
+
+   32 sentencia: ';' .
+
+    $default  reduce using rule 32 (sentencia)
+
+
+State 36
+
+   16 bloque: '{' sentencias '}' .
+
+    $default  reduce using rule 16 (bloque)
+
+
+State 37
+
+   17 sentencias: sentencias sentencia .
+
+    $default  reduce using rule 17 (sentencias)
+
+
+State 38
+
+   22 sentencia: $@5 . bloque
+
+    '{'  shift, and go to state 21
+
+    bloque  go to state 57
+
+
+State 39
+
+   31 sentencia: asignacion . ';'
+
+    ';'  shift, and go to state 58
+
+
+State 40
+
+   33 asignacion: or .
+   36 or: or . OPOR and
+
+    OPOR  shift, and go to state 59
+
+    $default  reduce using rule 33 (asignacion)
+
+
+State 41
+
+   35 or: and .
+   38 and: and . OPAND igualdad
+
+    OPAND  shift, and go to state 60
+
+    $default  reduce using rule 35 (or)
+
+
+State 42
+
+   37 and: igualdad .
+   40 igualdad: igualdad . IGUAL relacional
+   41         | igualdad . DISTINTO relacional
+
+    IGUAL     shift, and go to state 61
+    DISTINTO  shift, and go to state 62
+
+    $default  reduce using rule 37 (and)
+
+
+State 43
+
+   39 igualdad: relacional .
+   43 relacional: relacional . MENORIGUAL suma
+   44           | relacional . MAYORIGUAL suma
+   45           | relacional . '<' suma
+   46           | relacional . '>' suma
+
+    MENORIGUAL  shift, and go to state 63
+    MAYORIGUAL  shift, and go to state 64
+    '<'         shift, and go to state 65
+    '>'         shift, and go to state 66
+
+    $default  reduce using rule 39 (igualdad)
+
+
+State 44
+
+   42 relacional: suma .
+   48 suma: suma . '+' producto
+   49     | suma . '-' producto
+
+    '+'  shift, and go to state 67
+    '-'  shift, and go to state 68
+
+    $default  reduce using rule 42 (relacional)
+
+
+State 45
+
+   47 suma: producto .
+   51 producto: producto . '*' basico
+   52         | producto . '/' basico
+
+    '*'  shift, and go to state 69
+    '/'  shift, and go to state 70
+
+    $default  reduce using rule 47 (suma)
+
+
+State 46
+
+   50 producto: basico .
+
+    $default  reduce using rule 50 (producto)
+
+
+State 47
+
+   14 siguiente: siguiente ',' INT ID .
+
+    $default  reduce using rule 14 (siguiente)
+
+
+State 48
+
+   54 basico: ID '(' . entrada ')'
+
+    ID      shift, and go to state 26
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    $default  reduce using rule 58 (entrada)
+
+    asignacion  go to state 71
+    or          go to state 40
+    and         go to state 41
+    igualdad    go to state 42
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+    entrada     go to state 72
+
+
+State 49
+
+   34 asignacion: ID '=' . asignacion
+
+    ID      shift, and go to state 26
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    asignacion  go to state 73
+    or          go to state 40
+    and         go to state 41
+    igualdad    go to state 42
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 50
+
+   24 sentencia: INT ID . $@6 lista ';'
+
+    $default  reduce using rule 23 ($@6)
+
+    $@6  go to state 74
+
+
+State 51
+
+   28 sentencia: RETURN asignacion . ';'
+
+    ';'  shift, and go to state 75
+
+
+State 52
+
+   26 sentencia: IF '(' . asignacion ')' sentencia
+   27          | IF '(' . asignacion ')' sentencia ELSE sentencia
+
+    ID      shift, and go to state 26
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    asignacion  go to state 76
+    or          go to state 40
+    and         go to state 41
+    igualdad    go to state 42
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 53
+
+   25 sentencia: WHILE '(' . asignacion ')' sentencia
+
+    ID      shift, and go to state 26
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    asignacion  go to state 77
+    or          go to state 40
+    and         go to state 41
+    igualdad    go to state 42
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 54
+
+   30 sentencia: SCANF '(' . CADENA entradas ')' ';'
+
+    CADENA  shift, and go to state 78
+
+
+State 55
+
+   29 sentencia: PRINTF '(' . CADENA entradas ')' ';'
+
+    CADENA  shift, and go to state 79
+
+
+State 56
+
+   56 basico: '(' asignacion . ')'
+
+    ')'  shift, and go to state 80
+
+
+State 57
+
+   22 sentencia: $@5 bloque .
+
+    $default  reduce using rule 22 (sentencia)
+
+
+State 58
+
+   31 sentencia: asignacion ';' .
+
+    $default  reduce using rule 31 (sentencia)
+
+
+State 59
+
+   36 or: or OPOR . and
+
+    ID      shift, and go to state 81
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    and         go to state 82
+    igualdad    go to state 42
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 60
+
+   38 and: and OPAND . igualdad
+
+    ID      shift, and go to state 81
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    igualdad    go to state 83
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 61
+
+   40 igualdad: igualdad IGUAL . relacional
+
+    ID      shift, and go to state 81
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    relacional  go to state 84
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 62
+
+   41 igualdad: igualdad DISTINTO . relacional
+
+    ID      shift, and go to state 81
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    relacional  go to state 85
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 63
+
+   43 relacional: relacional MENORIGUAL . suma
+
+    ID      shift, and go to state 81
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    suma      go to state 86
+    producto  go to state 45
+    basico    go to state 46
+
+
+State 64
+
+   44 relacional: relacional MAYORIGUAL . suma
+
+    ID      shift, and go to state 81
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    suma      go to state 87
+    producto  go to state 45
+    basico    go to state 46
+
+
+State 65
+
+   45 relacional: relacional '<' . suma
+
+    ID      shift, and go to state 81
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    suma      go to state 88
+    producto  go to state 45
+    basico    go to state 46
+
+
+State 66
+
+   46 relacional: relacional '>' . suma
+
+    ID      shift, and go to state 81
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    suma      go to state 89
+    producto  go to state 45
+    basico    go to state 46
+
+
+State 67
+
+   48 suma: suma '+' . producto
+
+    ID      shift, and go to state 81
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    producto  go to state 90
+    basico    go to state 46
+
+
+State 68
+
+   49 suma: suma '-' . producto
+
+    ID      shift, and go to state 81
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    producto  go to state 91
+    basico    go to state 46
+
+
+State 69
+
+   51 producto: producto '*' . basico
+
+    ID      shift, and go to state 81
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    basico  go to state 92
+
+
+State 70
+
+   52 producto: producto '/' . basico
+
+    ID      shift, and go to state 81
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    basico  go to state 93
+
+
+State 71
+
+   57 entrada: asignacion . entradas
+
+    $default  reduce using rule 60 (entradas)
+
+    entradas  go to state 94
+
+
+State 72
+
+   54 basico: ID '(' entrada . ')'
+
+    ')'  shift, and go to state 95
+
+
+State 73
+
+   34 asignacion: ID '=' asignacion .
+
+    $default  reduce using rule 34 (asignacion)
+
+
+State 74
+
+   24 sentencia: INT ID $@6 . lista ';'
+
+    $default  reduce using rule 20 (lista)
+
+    lista  go to state 96
+
+
+State 75
+
+   28 sentencia: RETURN asignacion ';' .
+
+    $default  reduce using rule 28 (sentencia)
+
+
+State 76
+
+   26 sentencia: IF '(' asignacion . ')' sentencia
+   27          | IF '(' asignacion . ')' sentencia ELSE sentencia
+
+    ')'  shift, and go to state 97
+
+
+State 77
+
+   25 sentencia: WHILE '(' asignacion . ')' sentencia
+
+    ')'  shift, and go to state 98
+
+
+State 78
+
+   30 sentencia: SCANF '(' CADENA . entradas ')' ';'
+
+    $default  reduce using rule 60 (entradas)
+
+    entradas  go to state 99
+
+
+State 79
+
+   29 sentencia: PRINTF '(' CADENA . entradas ')' ';'
+
+    $default  reduce using rule 60 (entradas)
+
+    entradas  go to state 100
+
+
+State 80
+
+   56 basico: '(' asignacion ')' .
+
+    $default  reduce using rule 56 (basico)
+
+
+State 81
+
+   53 basico: ID .
+   54       | ID . '(' entrada ')'
+
+    '('  shift, and go to state 48
+
+    $default  reduce using rule 53 (basico)
+
+
+State 82
+
+   36 or: or OPOR and .
+   38 and: and . OPAND igualdad
+
+    OPAND  shift, and go to state 60
+
+    $default  reduce using rule 36 (or)
+
+
+State 83
+
+   38 and: and OPAND igualdad .
+   40 igualdad: igualdad . IGUAL relacional
+   41         | igualdad . DISTINTO relacional
+
+    IGUAL     shift, and go to state 61
+    DISTINTO  shift, and go to state 62
+
+    $default  reduce using rule 38 (and)
+
+
+State 84
+
+   40 igualdad: igualdad IGUAL relacional .
+   43 relacional: relacional . MENORIGUAL suma
+   44           | relacional . MAYORIGUAL suma
+   45           | relacional . '<' suma
+   46           | relacional . '>' suma
+
+    MENORIGUAL  shift, and go to state 63
+    MAYORIGUAL  shift, and go to state 64
+    '<'         shift, and go to state 65
+    '>'         shift, and go to state 66
+
+    $default  reduce using rule 40 (igualdad)
+
+
+State 85
+
+   41 igualdad: igualdad DISTINTO relacional .
+   43 relacional: relacional . MENORIGUAL suma
+   44           | relacional . MAYORIGUAL suma
+   45           | relacional . '<' suma
+   46           | relacional . '>' suma
+
+    MENORIGUAL  shift, and go to state 63
+    MAYORIGUAL  shift, and go to state 64
+    '<'         shift, and go to state 65
+    '>'         shift, and go to state 66
+
+    $default  reduce using rule 41 (igualdad)
+
+
+State 86
+
+   43 relacional: relacional MENORIGUAL suma .
+   48 suma: suma . '+' producto
+   49     | suma . '-' producto
+
+    '+'  shift, and go to state 67
+    '-'  shift, and go to state 68
+
+    $default  reduce using rule 43 (relacional)
+
+
+State 87
+
+   44 relacional: relacional MAYORIGUAL suma .
+   48 suma: suma . '+' producto
+   49     | suma . '-' producto
+
+    '+'  shift, and go to state 67
+    '-'  shift, and go to state 68
+
+    $default  reduce using rule 44 (relacional)
+
+
+State 88
+
+   45 relacional: relacional '<' suma .
+   48 suma: suma . '+' producto
+   49     | suma . '-' producto
+
+    '+'  shift, and go to state 67
+    '-'  shift, and go to state 68
+
+    $default  reduce using rule 45 (relacional)
+
+
+State 89
+
+   46 relacional: relacional '>' suma .
+   48 suma: suma . '+' producto
+   49     | suma . '-' producto
+
+    '+'  shift, and go to state 67
+    '-'  shift, and go to state 68
+
+    $default  reduce using rule 46 (relacional)
+
+
+State 90
+
+   48 suma: suma '+' producto .
+   51 producto: producto . '*' basico
+   52         | producto . '/' basico
+
+    '*'  shift, and go to state 69
+    '/'  shift, and go to state 70
+
+    $default  reduce using rule 48 (suma)
+
+
+State 91
+
+   49 suma: suma '-' producto .
+   51 producto: producto . '*' basico
+   52         | producto . '/' basico
+
+    '*'  shift, and go to state 69
+    '/'  shift, and go to state 70
+
+    $default  reduce using rule 49 (suma)
+
+
+State 92
+
+   51 producto: producto '*' basico .
+
+    $default  reduce using rule 51 (producto)
+
+
+State 93
+
+   52 producto: producto '/' basico .
+
+    $default  reduce using rule 52 (producto)
+
+
+State 94
+
+   57 entrada: asignacion entradas .
+   59 entradas: entradas . ',' asignacion
+
+    ','  shift, and go to state 101
+
+    $default  reduce using rule 57 (entrada)
+
+
+State 95
+
+   54 basico: ID '(' entrada ')' .
+
+    $default  reduce using rule 54 (basico)
+
+
+State 96
+
+   19 lista: lista . ',' ID
+   24 sentencia: INT ID $@6 lista . ';'
+
+    ';'  shift, and go to state 102
+    ','  shift, and go to state 103
+
+
+State 97
+
+   26 sentencia: IF '(' asignacion ')' . sentencia
+   27          | IF '(' asignacion ')' . sentencia ELSE sentencia
+
+    ID      shift, and go to state 26
+    ENTERO  shift, and go to state 27
+    INT     shift, and go to state 28
+    RETURN  shift, and go to state 29
+    IF      shift, and go to state 30
+    WHILE   shift, and go to state 31
+    SCANF   shift, and go to state 32
+    PRINTF  shift, and go to state 33
+    '('     shift, and go to state 34
+    ';'     shift, and go to state 35
+
+    $default  reduce using rule 21 ($@5)
+
+    sentencia   go to state 104
+    $@5         go to state 38
+    asignacion  go to state 39
+    or          go to state 40
+    and         go to state 41
+    igualdad    go to state 42
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 98
+
+   25 sentencia: WHILE '(' asignacion ')' . sentencia
+
+    ID      shift, and go to state 26
+    ENTERO  shift, and go to state 27
+    INT     shift, and go to state 28
+    RETURN  shift, and go to state 29
+    IF      shift, and go to state 30
+    WHILE   shift, and go to state 31
+    SCANF   shift, and go to state 32
+    PRINTF  shift, and go to state 33
+    '('     shift, and go to state 34
+    ';'     shift, and go to state 35
+
+    $default  reduce using rule 21 ($@5)
+
+    sentencia   go to state 105
+    $@5         go to state 38
+    asignacion  go to state 39
+    or          go to state 40
+    and         go to state 41
+    igualdad    go to state 42
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 99
+
+   30 sentencia: SCANF '(' CADENA entradas . ')' ';'
+   59 entradas: entradas . ',' asignacion
+
+    ')'  shift, and go to state 106
+    ','  shift, and go to state 101
+
+
+State 100
+
+   29 sentencia: PRINTF '(' CADENA entradas . ')' ';'
+   59 entradas: entradas . ',' asignacion
+
+    ')'  shift, and go to state 107
+    ','  shift, and go to state 101
+
+
+State 101
+
+   59 entradas: entradas ',' . asignacion
+
+    ID      shift, and go to state 26
+    ENTERO  shift, and go to state 27
+    '('     shift, and go to state 34
+
+    asignacion  go to state 108
+    or          go to state 40
+    and         go to state 41
+    igualdad    go to state 42
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 102
+
+   24 sentencia: INT ID $@6 lista ';' .
+
+    $default  reduce using rule 24 (sentencia)
+
+
+State 103
+
+   19 lista: lista ',' . ID
+
+    ID  shift, and go to state 109
+
+
+State 104
+
+   26 sentencia: IF '(' asignacion ')' sentencia .
+   27          | IF '(' asignacion ')' sentencia . ELSE sentencia
+
+    ELSE  shift, and go to state 110
+
+    $default  reduce using rule 26 (sentencia)
+
+
+State 105
+
+   25 sentencia: WHILE '(' asignacion ')' sentencia .
+
+    $default  reduce using rule 25 (sentencia)
+
+
+State 106
+
+   30 sentencia: SCANF '(' CADENA entradas ')' . ';'
+
+    ';'  shift, and go to state 111
+
+
+State 107
+
+   29 sentencia: PRINTF '(' CADENA entradas ')' . ';'
+
+    ';'  shift, and go to state 112
+
+
+State 108
+
+   59 entradas: entradas ',' asignacion .
+
+    $default  reduce using rule 59 (entradas)
+
+
+State 109
+
+   19 lista: lista ',' ID .
+
+    $default  reduce using rule 19 (lista)
+
+
+State 110
+
+   27 sentencia: IF '(' asignacion ')' sentencia ELSE . sentencia
+
+    ID      shift, and go to state 26
+    ENTERO  shift, and go to state 27
+    INT     shift, and go to state 28
+    RETURN  shift, and go to state 29
+    IF      shift, and go to state 30
+    WHILE   shift, and go to state 31
+    SCANF   shift, and go to state 32
+    PRINTF  shift, and go to state 33
+    '('     shift, and go to state 34
+    ';'     shift, and go to state 35
+
+    $default  reduce using rule 21 ($@5)
+
+    sentencia   go to state 113
+    $@5         go to state 38
+    asignacion  go to state 39
+    or          go to state 40
+    and         go to state 41
+    igualdad    go to state 42
+    relacional  go to state 43
+    suma        go to state 44
+    producto    go to state 45
+    basico      go to state 46
+
+
+State 111
+
+   30 sentencia: SCANF '(' CADENA entradas ')' ';' .
+
+    $default  reduce using rule 30 (sentencia)
+
+
+State 112
+
+   29 sentencia: PRINTF '(' CADENA entradas ')' ';' .
+
+    $default  reduce using rule 29 (sentencia)
+
+
+State 113
+
+   27 sentencia: IF '(' asignacion ')' sentencia ELSE sentencia .
+
+    $default  reduce using rule 27 (sentencia)

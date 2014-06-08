@@ -38,7 +38,7 @@ inicio		: global {ensamblador +=ambitos.devolverCadenas()+$1->traducir();}
 global		: global declaracion {$$ = new NodoGlobal($1,$2);}
 			|	{$$ = new NodoNulo();}
 ;
-declaracion	: INT ID '(' {ambitos.abrirAmbito();} atributos ')' {ambitos.declaracion(*$2, "funcion");} bloque {$$ = new NodoFuncion($8,*$2,to_string(ambitos.nfun-1),atoi(ambitos.llamada(*$2).c_str())); ambitos.cerrarAmbito();}
+declaracion	: INT ID '(' {ambitos.abrirAmbito();} atributos ')' {ambitos.declaracion(*$2, "funcion");} bloque {$$ = new NodoFuncion($8,*$2,to_string(ambitos.nfun-1),ambitos.npar); ambitos.cerrarAmbito();}
 			| INT ID {ambitos.declaracion(*$2, "global");} glista ';' {$$ = new NodoDeclaracion($4, *$2);}
 ;
 glista		: glista ',' ID {ambitos.declaracion(*$3, "global"); $$ = new NodoDeclaracion($1, *$3);}
@@ -71,10 +71,10 @@ sentencia 	: {ambitos.abrirAmbito();} bloque {ambitos.cerrarAmbito(); $$ = $2;}
 ifnot		: ELSE sentencia {$$ = $2;}
 			| %prec "then" {$$ = new NodoNulo();}
 ;
-entrada 	: asignacion entradas {$$= new NodoParametror($2,$1);}
+entrada 	: asignacion entradas {$$= new NodoParametro($1,$2);}
 			| 	{$$ = new NodoNulo();}
 ;
-entradas	: entradas ',' asignacion {$$= new NodoParametro($3,$1);}
+entradas	: entradas ',' asignacion {$$= new NodoParametro($1,$3);}
 			|	{$$ = new NodoNulo();}
 ;
 entradaScan	: entradaScan ',' '&' ID {$$= new NodoScanPar($1,ambitos.llamada(*$4));}
