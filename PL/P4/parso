@@ -1,0 +1,37 @@
+Ini : {pila.push(new TablaSimbolos());} Ld {pila.top()->escribe(); pila.pop();}
+    ;
+
+Ld : Ld Def
+   | 
+   ;
+
+Def : Tipo {LVar.h := Tipo.s;} LVar ';'
+    ;
+
+Tipo : INT  {Tipo.s = new NodoInt();}
+     | CHAR {Tipo.s = new NodoChar();}
+     | STRUCT ID '{' {push(new TablaSimbolos());}  Ld '}'
+                   {Tipo.s = new NodoStruct(ID.lexval, pila.top()); pila.pop();}
+     ;
+
+LVar : {LVar1.h := LVar.h;} LVar1 ',' {Var.h := LVar.h;} Var
+     | {Var.h := LVar.h;} Var
+     ; 
+
+Var : {Lpnt.h := Var.h;} Lpnt {VFin.h := Lpnt.s;} VFin
+    ;
+    
+Lpnt : '*' {Lpnt1.h = new NodoPunt(Lpnt.h);} Lpnt1 {Lpnt.s := Lpnt1.s;}
+     |     {Lpnt.s := Lpnt.h;}
+     ;
+
+VFin : ID  {Tablas.h := VFin.h;}
+       Tablas
+       { pila.top().apunta_en_tabla(ID.lexval, Tablas.s;}
+     ;
+
+Tablas : '[' NUM ']' {Tablas1.h := Tablas.h;}
+         Tablas1
+             {Tablas.s = new NodoArray(NUM.lexval, Tablas1.s);}
+       |   {Tablas.s := Tablas.h;}
+       ;

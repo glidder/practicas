@@ -1,13 +1,16 @@
 #include "cabecera.h"
 #include <iostream>
 #include <string>
+
 using namespace::std;
 YYSTYPE yylval;
+
 void inic(void);
 string tipo(void);
 string elem(void);
 string dims(void);
 int yylex(void);
+
 void error(string em){cout<<"!!!!!!!"<<em<<"!!!!!!!"<<endl;}
 
 int ta;
@@ -24,6 +27,7 @@ void cuadra(int obj){
 		ta=yylex();
 	else error("cuadra");
 }
+
 void inic(void){
 	if(ta==FLOAT||ta==CHAR||ta==INT){
 		string tipon=tipo();
@@ -31,7 +35,7 @@ void inic(void){
 		cout<<elemn<<" sizeof("<<tipon<<") bytes"<<endl;
 		cuadra(';');
 		inic();
-	}else
+	}else if (ta != 0)
 		error("inic");
 }
 string elem(void){

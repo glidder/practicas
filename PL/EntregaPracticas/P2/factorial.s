@@ -19,7 +19,7 @@ factorial:
 	jle	.base
 	movl	8(%ebp), %eax
 	subl	$1, %eax
-	movl	%eax, (%esp)
+	pushl	%eax
 	call	factorial
 	imul	8(%ebp), %eax
 	jmp		.fin
@@ -45,17 +45,15 @@ main:
 
 	movl	$n, %eax
 	pushl	%eax
-	pushl	$.LC1
+	pushl	$.LC2
 	call	__isoc99_scanf
 
 	movl	n, %eax
 	pushl	%eax
-	call fact
-	
-	addl	$4, %esp
+	call 	factorial
 	pushl	%eax
 
-	pushl	$.LC2
+	pushl	$.LC1
 	call	printf
 	movl	$0, %eax
 

@@ -3,7 +3,6 @@
 #include <string>
 
 using namespace std;
-//#include "parser.tab.h"
 #include "cabecera.h"
 
 

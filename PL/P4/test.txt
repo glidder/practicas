@@ -1,0 +1,9 @@
+int a, ** b, *c[2][34];
+char *** y, x;
+struct hola {
+	int m, *n;
+	char p, q[3];
+	struct pp {
+		char * a, b[2];
+	} s;
+} z, f;

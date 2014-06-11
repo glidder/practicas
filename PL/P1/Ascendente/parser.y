@@ -1,8 +1,6 @@
 %{
 #include <iostream>
 #include <string>
-//#include <sstream>
-//#include "nodo.h"
 
 using namespace std;
 int yyerror(string);
@@ -17,14 +15,16 @@ extern FILE *yyin;
 }
 
 %token CAD NUM CHAR FLOAT INT
-%type <cadena> CAD NUM elem dims tipo
+%type <cadena> CAD NUM elem dims tipo sentencias
 
 %start inic
 
 %%
 
-//arranque: inicio	{cout<<"AST ->" <<$1->toStr()<<endl;}
-inic: tipo elem ';'	{cout<<*$2<<" sizeof("<<*$1<<") bytes"<<endl;}
+inic: sentencias	{ cout<<*$1<<endl;}
+;
+sentencias: tipo elem ';' sentencias	{$$ = new string(*$2+" sizeof("+*$1+") bytes\n"+*$4);}
+| {$$=new string("");}
 ;
 
 elem: CAD dims		{$$ = new string(*$1+" ocupa "+*$2);}

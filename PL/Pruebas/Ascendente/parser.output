@@ -1,0 +1,191 @@
+Grammar
+
+    0 $accept: inic $end
+
+    1 inic: sentencias
+
+    2 sentencias: tipo elem ';' sentencias
+    3           | %empty
+
+    4 elem: CAD dims
+
+    5 dims: '[' NUM ']' dims
+    6     | %empty
+
+    7 tipo: CHAR
+    8     | FLOAT
+    9     | INT
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+';' (59) 2
+'[' (91) 5
+']' (93) 5
+error (256)
+CAD (258) 4
+NUM (259) 5
+CHAR (260) 7
+FLOAT (261) 8
+INT (262) 9
+
+
+Nonterminals, with rules where they appear
+
+$accept (11)
+    on left: 0
+inic (12)
+    on left: 1, on right: 0
+sentencias (13)
+    on left: 2 3, on right: 1 2
+elem (14)
+    on left: 4, on right: 2
+dims (15)
+    on left: 5 6, on right: 4 5
+tipo (16)
+    on left: 7 8 9, on right: 2
+
+
+State 0
+
+    0 $accept: . inic $end
+
+    CHAR   shift, and go to state 1
+    FLOAT  shift, and go to state 2
+    INT    shift, and go to state 3
+
+    $default  reduce using rule 3 (sentencias)
+
+    inic        go to state 4
+    sentencias  go to state 5
+    tipo        go to state 6
+
+
+State 1
+
+    7 tipo: CHAR .
+
+    $default  reduce using rule 7 (tipo)
+
+
+State 2
+
+    8 tipo: FLOAT .
+
+    $default  reduce using rule 8 (tipo)
+
+
+State 3
+
+    9 tipo: INT .
+
+    $default  reduce using rule 9 (tipo)
+
+
+State 4
+
+    0 $accept: inic . $end
+
+    $end  shift, and go to state 7
+
+
+State 5
+
+    1 inic: sentencias .
+
+    $default  reduce using rule 1 (inic)
+
+
+State 6
+
+    2 sentencias: tipo . elem ';' sentencias
+
+    CAD  shift, and go to state 8
+
+    elem  go to state 9
+
+
+State 7
+
+    0 $accept: inic $end .
+
+    $default  accept
+
+
+State 8
+
+    4 elem: CAD . dims
+
+    '['  shift, and go to state 10
+
+    $default  reduce using rule 6 (dims)
+
+    dims  go to state 11
+
+
+State 9
+
+    2 sentencias: tipo elem . ';' sentencias
+
+    ';'  shift, and go to state 12
+
+
+State 10
+
+    5 dims: '[' . NUM ']' dims
+
+    NUM  shift, and go to state 13
+
+
+State 11
+
+    4 elem: CAD dims .
+
+    $default  reduce using rule 4 (elem)
+
+
+State 12
+
+    2 sentencias: tipo elem ';' . sentencias
+
+    CHAR   shift, and go to state 1
+    FLOAT  shift, and go to state 2
+    INT    shift, and go to state 3
+
+    $default  reduce using rule 3 (sentencias)
+
+    sentencias  go to state 14
+    tipo        go to state 6
+
+
+State 13
+
+    5 dims: '[' NUM . ']' dims
+
+    ']'  shift, and go to state 15
+
+
+State 14
+
+    2 sentencias: tipo elem ';' sentencias .
+
+    $default  reduce using rule 2 (sentencias)
+
+
+State 15
+
+    5 dims: '[' NUM ']' . dims
+
+    '['  shift, and go to state 10
+
+    $default  reduce using rule 6 (dims)
+
+    dims  go to state 16
+
+
+State 16
+
+    5 dims: '[' NUM ']' dims .
+
+    $default  reduce using rule 5 (dims)
