@@ -5,13 +5,13 @@
 
 using namespace std;
 
-static int const POP=5;
+static int const POP=10;
 static int const ITERA= 1000;
 static int const TOP= 40;
 static int const BOT= 0;
 //static int const PCROSS= 2;
 //static int const PMUT =1;
-static int const BETA= 1;
+static int const BETA= 4;
 
 vector<double> initialPopulation(int);
 vector<double> geneticAlgorithm(vector<double>);
@@ -56,15 +56,29 @@ vector<double> initialPopulation(int n){
 	vector<double> population(n);
 	for(int i=0; i<n;++i)
 		population[i]=(rand() % TOP) + BOT;
+	//for(int i=0; i<n; ++i)
+	//	cout<<population[i]<<" ";
+	//cout<<endl;
 	return population;
 }
 
 vector<double> geneticAlgorithm(vector<double> population){
 	vector<double> desc(2), newpopulation = population;
-	int i=0;
-	while (i++<ITERA){ //Placeholder!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	int i=0,e;
+	while (i++<ITERA){ //Placeholder!!!!!!!!!!!!!!!!
 		desc = mutate(combine(selectParents(newpopulation)));
 		newpopulation = replace(newpopulation, desc);
+		//cin>>e;
+		for (int i=0;i<newpopulation.size();++i)
+			cout<<newpopulation[i]<<" ";
+		cout<<endl;
+		vector<double> c=evaluate(newpopulation);
+		double t=0;
+		for (int i=0;i<newpopulation.size();++i){
+			cout<<c[i]<< " ";
+			t+=c[i];
+		}
+		cout<<" = "<<t<<endl;
 	}
 	return newpopulation;
 }
@@ -76,23 +90,27 @@ vector<double> nitchingGeneticAlgorithm(vector<double> population){
 
 vector<double> evaluate(vector<double> population){
 	vector<double> out(population.size());
-	for (int i=0;i<population.size();++i)
+	for (int i=0;i<population.size();++i){
 		out[i]=pow(sin(population[i]),2)-sin(population[i]);
+		//cout<<out[i]<<" ";
+	}
+	//cout<<endl;
 	return out;
 }
 
-int 	 getBest(vector<double> population){
+int 	 getBest(vector<double> cost){
 	int out=0;
-	for(int i=1;i<population.size();++i)
-		if(population[i]>population[out]) out=i;
+	for(int i=1;i<cost.size();++i)
+		if(cost[i]>cost[out]) out=i;
 	return out;
 }
 
-double	 mean(vector<double> population){
-	int t=0;
-	for(int i=0;i<population.size();++i)
-		t+=population[i];
-	return t/population.size();
+double	 mean(vector<double> costs){
+	double t=0;
+	for(int i=0;i<costs.size();++i)
+		t+=costs[i];
+	//cout<<"TOTAL: "<<t<<endl;
+	return t/costs.size();
 }
 
 vector<double> selectParents(vector<double> population){
@@ -103,12 +121,30 @@ vector<double> selectParents(vector<double> population){
 	for(int i=0;i<population.size();++i){
 		t+=c[i];
 		roulette[i]=t;
+		//cout<<population[i]<<"= "<<roulette[i]<<" ";
 	}
+	//cout<<"\n t: "<<t<<" "<<((int)t)<<endl;
 	double ticket = rand() % ((int)t);
-	for(int i=0;i<population.size();++i){
+	/*for(int i=0;i<population.size();++i){
 		if (roulette[i]>=ticket){
-			i=j*population.size();
-			out[j++]=population[i];
+			out[j]=population[i];
+			ticket = rand() % ((int)t);
+			i=j++*population.size();
+		}
+	}*/
+	//cout<<"\nt: "<<((int)t)<<" ticket: "<<ticket<<endl;
+	for(int i=0;i<population.size();++i){
+		if(roulette[i]>=ticket){
+			out[0]=population[i];
+			i+=population.size();
+		}
+	}
+	ticket = rand() % ((int)t);
+	//cout<<"t: "<<((int)t)<<" ticket: "<<ticket<<endl;
+	for(int i=0;i<population.size();++i){
+		if(roulette[i]>=ticket){
+			out[1]=population[i];
+			i+=population.size();
 		}
 	}
 	return out;
@@ -117,14 +153,18 @@ vector<double> selectParents(vector<double> population){
 vector<double> combine(vector<double> parents){
 	int alpha=rand() % 2;
 	vector<double> out={parents[0]*alpha+parents[1]*(1-alpha), parents[0]*(1-alpha)+parents[1]*alpha};
+	//cout<<parents[0]<<" "<<parents[1]<<": "<<out[0]<<" "<<out[1]<<endl;
 	return out;
 }
 
 vector<double> mutate(vector<double> population){
 	int alpha=((rand() %2)?1:-1);
 	vector<double> out(population.size());
-	for (int i=0;i<population.size();++i)
+	for (int i=0;i<population.size();++i){
 		out[i]=population[i]+alpha*BETA;
+		if(out[i]>=TOP)out[i]=TOP-1;
+		else if(out[i]<BOT)out[i]=BOT;
+	}
 	return out;
 }
 
